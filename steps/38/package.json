@@ -15,7 +15,7 @@
     "@ui5/ts-interface-generator": "^0.10.5",
     "local-web-server": "^5.4.0",
     "typescript": "^5.9.3",
-    "ui5-middleware-livereload": "^3.2.1",
+    "ui5-middleware-livereload": "^3.3.0",
     "ui5-middleware-serveframework": "^3.8.0",
     "ui5-middleware-simpleproxy": "^3.7.0",
     "ui5-tooling-transpile": "^3.11.0"
