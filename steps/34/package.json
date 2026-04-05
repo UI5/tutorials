@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@types/openui5": "^1.142.0",
-    "@ui5/cli": "^4.0.50",
+    "@ui5/cli": "^4.0.51",
     "@ui5/ts-interface-generator": "^0.10.5",
     "typescript": "^5.9.3",
     "ui5-middleware-livereload": "^3.3.0",
