@@ -1,0 +1,61 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:recommended",
+		"github>ui5/renovate-config"
+	],
+	"rangeStrategy": "bump",
+	"lockFileMaintenance": {
+		"enabled": true,
+		"automerge": true,
+		"commitMessagePrefix": "build:",
+		"commitMessageAction": "In-range update of npm dependencies",
+		"schedule": [
+			"* 0-8 * * 1"
+		]
+	},
+	"packageRules": [
+		{
+			"matchDepNames": [
+				"*"
+			],
+			"automerge": true,
+			"commitMessagePrefix": "build(deps-dev):",
+			"commitMessageAction": "Bump",
+			"schedule": [
+				"* 8-16 * * 1"
+			]
+		},
+		{
+			"matchManagers": [
+				"github-actions"
+			],
+			"automerge": true,
+			"commitMessagePrefix": "build(github-actions):",
+			"commitMessageAction": "Bump",
+			"schedule": [
+				"* 8-16 * * 1"
+			]
+		},
+		{
+			"matchPackageNames": [
+				"node",
+				"npm"
+			],
+			"enabled": false
+		},
+		{
+			"matchDepNames": [
+				"openui5",
+        "@types/openui5"
+			],
+      "groupName": "openui5",
+			"automerge": true,
+			"commitMessagePrefix": "deps:",
+			"commitMessageAction": "Update",
+			"schedule": [
+				"* 8-16 * * 1"
+			]
+		}
+	]
+}

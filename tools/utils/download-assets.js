@@ -19,7 +19,7 @@ const findMarkdownFiles = (dir) => {
     return results;
 };
 
-const markdownFiles = [path.join(cwd, "README.md"), findMarkdownFiles(path.join(cwd, 'steps'))].flat();
+const markdownFiles = findMarkdownFiles(cwd);
 
 const downloadImage = async (url, outputPath) => {
 	const response = await axios({
