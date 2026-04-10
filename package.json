@@ -1,10 +1,30 @@
 {
-  "description": "OpenUI5 TypeScript Walkthrough",
-  "author": "SAP SE",
+  "name": "@ui5/tutorials",
   "private": true,
+  "version": "0.0.0",
+  "description": "A repository offering tutorials for UI5.",
+  "author": {
+    "name": "SAP SE",
+    "email": "openui5@sap.com",
+    "url": "https://www.sap.com"
+  },
+  "keywords": [
+    "openui5",
+    "sapui5",
+    "ui5",
+    "build",
+    "development",
+    "tutorial"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SAP-samples/ui5-typescript-walkthrough.git"
+  },
   "scripts": {
     "build": "node tools/builder",
-    "start": "node tools/dev-server"
+    "start": "node tools/dev-server",
+    "download-assets": "node tools/utils/download-assets"
   },
   "devDependencies": {
     "@highlightjs/cdn-assets": "^11.11.1",
@@ -23,6 +43,6 @@
     "showdown-highlight": "^3.1.0"
   },
   "workspaces": [
-    "steps/*"
+    "packages/*/steps/*"
   ]
 }

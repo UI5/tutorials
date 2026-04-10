@@ -30,45 +30,51 @@ function zipDirectory(sourceDir, outPath) {
 	});
 }
 
-(async function() {
+function getTutorials() {
+	const packagesDir = join(cwd, "packages");
+	return readdirSync(packagesDir).filter((entry) =>
+		statSync(join(packagesDir, entry)).isDirectory() &&
+		existsSync(join(packagesDir, entry, "steps"))
+	);
+}
 
-	let steps = readdirSync(join(cwd, "steps"));
-	// only consider directories
-	steps = steps.filter((step) => statSync(join(cwd, "steps", step)).isDirectory());
+function getSteps(tutorialDir) {
+	let steps = readdirSync(join(tutorialDir, "steps"));
+	return steps.filter((step) => statSync(join(tutorialDir, "steps", step)).isDirectory());
+}
+
+(async function() {
 
 	if (existsSync(join(cwd, "dist"))) {
 		rmSync(join(cwd, "dist"), { recursive: true });
 	}
-
 	mkdirSync(join(cwd, "dist"), { recursive: true });
 
-	console.log(`👉 Zipping TypeScript sources...`);
-	await Promise.all(steps.map((step) => {
-		return zipDirectory(join(cwd, "steps", step), join(cwd, "dist", `ui5-typescript-walkthrough-step-${step}.zip`))
-	}));
-
-	mkdirSync(join(cwd, "dist/build"), { recursive: true });
-
-	console.log(`👉 Building steps...`);
-	for (const step of steps) {
-		console.log(`  👉 Building step ${step}...`);
-		//console.log(`npx ui5 build --dest ${join(cwd, "dist", "build", `${step}`)}`);
-		await execute(`npx ui5 build --dest ${join(cwd, "dist", "build", `${step}`)}`, {
-			cwd: join(cwd, "steps", step)
-		});
-	}
-
-	function rewriteLinks(file, path) {
-		let content = `---\npermalink: ${path ? `build/${path.replace(".md", ".html")}` : "index.html"}\n---\n\n${readFileSync(file, { encoding: "utf8"})}`;
-		content = content.replace(/steps\/(\d{2})/g, "build/$1");
-		content = content.replace(/\.\.\/(\d{2})/g, "../$1");
+	console.log(`👉 Copying root README.md...`);
+	function rewriteLinks(file, path, tutorialName) {
+		let permalink;
+		if (!path) {
+			permalink = "index.html";
+		} else if (!tutorialName) {
+			permalink = `build/${path.replace(".md", ".html")}`;
+		} else {
+			permalink = `${tutorialName}/build/${path.replace(".md", ".html")}`;
+		}
+		let content = `---\npermalink: ${permalink}\n---\n\n${readFileSync(file, { encoding: "utf8"})}`;
+		if (tutorialName) {
+			content = content.replace(/steps\/(\d{2})/g, `${tutorialName}/build/$1`);
+			content = content.replace(/\.\.\/(\d{2})/g, "../$1");
+		} else {
+			content = content.replace(/steps\/(\d{2})/g, "build/$1");
+			content = content.replace(/\.\.\/(\d{2})/g, "../$1");
+		}
 		content = content.replace(/README\.md/g, "README.html");
 		writeFileSync(file, content, { encoding: "utf8" });
 	}
 
-	console.log(`👉 Copying README.md...`);
 	copyFileSync(join(cwd, "README.md"), join(cwd, "dist/index.md"));
 	rewriteLinks(join(cwd, "dist/index.md"));
+	copyFileSync(join(cwd, "404.html"), join(cwd, "dist/404.html"));
 
 	console.log(`  🌅 Copying _includes....`);
 	const includes = fg.globSync(["**/*"], { cwd: join(cwd, "_includes") });
@@ -84,65 +90,103 @@ function zipDirectory(sourceDir, outPath) {
 		copyFileSync(join(cwd, "assets", asset), join(cwd, `dist/assets/${asset}`));
 	});
 
-	console.log(`👉 Copying steps README.md files...`);
-	const readmes = fg.globSync(["steps/*/README.md"], { cwd });
-	readmes.forEach((readme) => {
-		const [, path, step] = readme.match("steps/((.*)/README.md)");
-		mkdirSync(join(cwd, `dist/build/${step}`), { recursive: true });
-		copyFileSync(join(cwd, readme), join(cwd, `dist/build/${path}`));
-		rewriteLinks(join(cwd, `dist/build/${path}`), `${path}`);
-	});
-	console.log(`  🌅 Copying steps assets....`);
-	const assets = fg.globSync(["steps/*/assets/**/*"], { cwd });
-	assets.forEach((asset) => {
-		const [, step, assetFile] = asset.match("steps/(.*)/assets/(.*)");
-		mkdirSync(dirname(join(cwd, "dist/build", step, "assets", assetFile)), { recursive: true });
-		copyFileSync(join(cwd, "steps", step, "assets", assetFile), join(cwd, "dist/build", step, "assets", assetFile));
-	});
+	const tutorials = getTutorials();
+	console.log(`👉 Found tutorials: ${tutorials.join(", ")}`);
 
+	for (const tutorial of tutorials) {
+		const tutorialDir = join(cwd, "packages", tutorial);
+		const distTutorialDir = join(cwd, "dist", tutorial);
+		const steps = getSteps(tutorialDir);
 
-	console.log(`👉 Generate the JavaScript sources...`);
-	await Promise.all(steps.map((step) => {
-		const jsStepBaseDir = join(cwd, "steps", step);
-		const buildOutputDir = join(cwd, "dist", "build", `${step}`);
-		const targetDir = join(cwd, "dist", "steps", `${step}`);
+		console.log(`\n📦 Processing tutorial: ${tutorial} (${steps.length} steps)`);
 
-		console.log(`  👉 Generate sources for step ${step}...`);
+		mkdirSync(distTutorialDir, { recursive: true });
 
-		// copy all files from buildOutputDir to targetDir except of TS files
-		const files = fg.sync(["**/*"], { cwd: jsStepBaseDir, dot: true });
-		files.forEach((file) => {
-			const source = join(jsStepBaseDir, file);
-			const target = join(targetDir, file);
-			if (file.endsWith(".ts") && file.startsWith("webapp")) {
-				const outputFile = file.substring(7, file.length - 3);
-				let sourceJS;
-				if (file.endsWith("controller.ts")) {
-					sourceJS = join(buildOutputDir, `${outputFile.substring(0, outputFile.length - 11)}-dbg.controller.js`);
-				} else if (file.endsWith(".ts") && !file.endsWith(".d.ts")) {
-					sourceJS = join(buildOutputDir, `${outputFile}-dbg.js`);
-				}
+		console.log(`  👉 Copying tutorial README.md...`);
+		if (existsSync(join(tutorialDir, "README.md"))) {
+			copyFileSync(join(tutorialDir, "README.md"), join(distTutorialDir, "index.md"));
+			rewriteLinks(join(distTutorialDir, "index.md"), null, tutorial);
+		}
 
-				if (!file.endsWith(".d.ts")) {
-					if (existsSync(sourceJS)) {
-						const targetJS = target.replace(/\.ts$/, ".js");
-						mkdirSync(dirname(targetJS), { recursive: true });
-						// rewrite content of the JS file
-						let content = readFileSync(sourceJS, { encoding: "utf8" });
-						content = sanitize(content);
-						writeFileSync(targetJS, content, { encoding: "utf8" });
-					} else {
-						console.error("No JS file found for", source);
-					}
-				}
-			} else if (file !== "tsconfig.json") {
-				mkdirSync(dirname(target), { recursive: true });
-				copyFileSync(source, target);
-			}
+		console.log(`  👉 Zipping TypeScript sources...`);
+		await Promise.all(steps.map((step) => {
+			return zipDirectory(
+				join(tutorialDir, "steps", step),
+				join(distTutorialDir, `${tutorial}-step-${step}.zip`)
+			);
+		}));
+
+		const buildDir = join(distTutorialDir, "build");
+		mkdirSync(buildDir, { recursive: true });
+
+		console.log(`  👉 Building steps...`);
+		for (const step of steps) {
+			console.log(`    👉 Building step ${step}...`);
+			await execute(`npx ui5 build --dest ${join(buildDir, step)}`, {
+				cwd: join(tutorialDir, "steps", step)
+			});
+		}
+
+		console.log(`  👉 Copying step README.md files...`);
+		const readmes = fg.globSync(["steps/*/README.md"], { cwd: tutorialDir });
+		readmes.forEach((readme) => {
+			const [, path, step] = readme.match("steps/((.*)/README.md)");
+			mkdirSync(join(buildDir, step), { recursive: true });
+			copyFileSync(join(tutorialDir, readme), join(buildDir, path));
+			rewriteLinks(join(buildDir, path), path, tutorial);
 		});
 
-		//console.log(`${jsStepBaseDir} -> ${buildOutputDir}`);
-		return zipDirectory(join(cwd, "dist", "steps", `${step}`), join(cwd, "dist", `ui5-typescript-walkthrough-step-${step}-js.zip`))
-	}));
+		console.log(`  🌅 Copying step assets...`);
+		const assets = fg.globSync(["steps/*/assets/**/*"], { cwd: tutorialDir });
+		assets.forEach((asset) => {
+			const [, step, assetFile] = asset.match("steps/(.*)/assets/(.*)");
+			mkdirSync(dirname(join(buildDir, step, "assets", assetFile)), { recursive: true });
+			copyFileSync(join(tutorialDir, "steps", step, "assets", assetFile), join(buildDir, step, "assets", assetFile));
+		});
+
+		console.log(`  👉 Generating JavaScript sources...`);
+		await Promise.all(steps.map((step) => {
+			const jsStepBaseDir = join(tutorialDir, "steps", step);
+			const buildOutputDir = join(buildDir, step);
+			const targetDir = join(distTutorialDir, "steps", step);
+
+			console.log(`    👉 Generating sources for step ${step}...`);
+
+			const files = fg.sync(["**/*"], { cwd: jsStepBaseDir, dot: true });
+			files.forEach((file) => {
+				const source = join(jsStepBaseDir, file);
+				const target = join(targetDir, file);
+				if (file.endsWith(".ts") && file.startsWith("webapp")) {
+					const outputFile = file.substring(7, file.length - 3);
+					let sourceJS;
+					if (file.endsWith("controller.ts")) {
+						sourceJS = join(buildOutputDir, `${outputFile.substring(0, outputFile.length - 11)}-dbg.controller.js`);
+					} else if (!file.endsWith(".d.ts")) {
+						sourceJS = join(buildOutputDir, `${outputFile}-dbg.js`);
+					}
+
+					if (!file.endsWith(".d.ts")) {
+						if (existsSync(sourceJS)) {
+							const targetJS = target.replace(/\.ts$/, ".js");
+							mkdirSync(dirname(targetJS), { recursive: true });
+							let content = readFileSync(sourceJS, { encoding: "utf8" });
+							content = sanitize(content);
+							writeFileSync(targetJS, content, { encoding: "utf8" });
+						} else {
+							console.error("No JS file found for", source);
+						}
+					}
+				} else if (file !== "tsconfig.json") {
+					mkdirSync(dirname(target), { recursive: true });
+					copyFileSync(source, target);
+				}
+			});
+
+			return zipDirectory(
+				join(distTutorialDir, "steps", step),
+				join(distTutorialDir, `${tutorial}-step-${step}-js.zip`)
+			);
+		}));
+	}
 
 }());

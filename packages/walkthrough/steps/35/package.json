@@ -1,0 +1,20 @@
+{
+  "name": "ui5.walkthrough.step35",
+  "version": "1.0.0",
+  "author": "SAP SE",
+  "description": "OpenUI5 TypeScript Walkthrough: Step 35 - Device Adaptation",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve -o test/mockServer.html"
+  },
+  "devDependencies": {
+    "@types/openui5": "^1.145.0",
+    "@ui5/cli": "^4.0.51",
+    "@ui5/ts-interface-generator": "^0.10.5",
+    "typescript": "^5.9.3",
+    "ui5-middleware-livereload": "^3.3.0",
+    "ui5-middleware-serveframework": "^3.8.0",
+    "ui5-middleware-simpleproxy": "^3.7.0",
+    "ui5-tooling-transpile": "^3.11.0"
+  }
+}
