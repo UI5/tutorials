@@ -8,6 +8,7 @@ const archiver = require("archiver");
 const fg = require('fast-glob');
 
 const sanitize = require("./sanitze");
+const { title } = require("process");
 
 const cwd = process.cwd();
 
@@ -53,7 +54,8 @@ function getSteps(tutorialDir) {
 	console.log(`👉 Copying root README.md...`);
 	function rewriteLinks(file) {
 		let permalink = file.split("dist/")[1].replace(".md", ".html");
-		let content = `---\npermalink: ${permalink}\n---\n\n${readFileSync(file, { encoding: "utf8"})}`;
+		const title = "UI5 Tutorials";
+		let content = `---\ntitle: ${title}\npermalink: ${permalink}\n---\n\n${readFileSync(file, { encoding: "utf8"})}`;
 		content = content.replace(/README\.md/g, "index.html");
 		content = content.replace(/\.\/packages\//g, "./");
 		content = content.replace(/\[LICENSE\]\([\.\/\w]*\)/g, "[LICENSE](https://github.com/UI5/tutorials/blob/-/LICENSE)");
