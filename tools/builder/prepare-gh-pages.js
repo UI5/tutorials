@@ -56,6 +56,7 @@ function getSteps(tutorialDir) {
 		let content = `---\npermalink: ${permalink}\n---\n\n${readFileSync(file, { encoding: "utf8"})}`;
 		content = content.replace(/README\.md/g, "README.html");
 		content = content.replace(/\.\/packages\//g, "./");
+		content = content.replace(/\[LICENSE\]\([\.\/\w]*\)/g, "[LICENSE](https://github.com/UI5/tutorials/blob/-/LICENSE)");
 		writeFileSync(file, content, { encoding: "utf8" });
 	}
 
