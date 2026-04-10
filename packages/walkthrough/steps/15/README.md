@@ -12,7 +12,7 @@ Our panel content is getting more and more complex and now it is time to move th
 
 <sup>*The panel content is now refactored to a separate view \(No visual changes to last step\)*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 15](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/15/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 15](https://ui5.github.io/tutorials/walkthrough/build/15/index-cdn.html).
 
 ***
 
@@ -21,13 +21,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 15](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-15.zip).
+You can download the solution for this step here: [📥 Download step 15](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-15.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 15](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-15-js.zip).
+You can download the solution for this step here: [📥 Download step 15](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-15-js.zip).
 
 </details>
 ***

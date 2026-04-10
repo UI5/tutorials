@@ -18,7 +18,7 @@ We will now add a dialog to our app. Dialogs are special, because they open on t
 
 <sup>*A dialog opens when the new “Say Hello With Dialog” button is clicked*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 16](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/16/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 16](https://ui5.github.io/tutorials/walkthrough/build/16/index-cdn.html).
 
 ***
 
@@ -27,13 +27,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 16](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-16.zip).
+You can download the solution for this step here: [📥 Download step 16](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-16.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 16](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-16-js.zip).
+You can download the solution for this step here: [📥 Download step 16](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-16-js.zip).
 
 </details>
 ***

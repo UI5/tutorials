@@ -12,20 +12,20 @@ Our dialog is still pretty much empty. Since OpenUI5 is shipped with a large ico
 
 <sup>*An icon is now displayed in the dialog box*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 18](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/18/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 18](https://ui5.github.io/tutorials/walkthrough/build/18/index-cdn.html).
 ***
 
 ### Coding
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 18](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-18.zip).
+You can download the solution for this step here: [📥 Download step 18](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-18.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 18](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-18-js.zip).
+You can download the solution for this step here: [📥 Download step 18](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-18-js.zip).
 
 </details>
 ***

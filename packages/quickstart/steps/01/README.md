@@ -13,7 +13,7 @@ Let's get you ready for your journey! We bootstrap OpenUI5 in an HTML page and i
 
 <sup>*The browser shows a "Ready" button that triggers a "Hello World" message*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 1](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart/build/01/index.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 1](https://ui5.github.io/tutorials/quickstart/build/01/index.html).
 
 ***
 
@@ -21,13 +21,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 1](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart-step-01.zip). 
+You can download the solution for this step here: [📥 Download step 1](https://ui5.github.io/tutorials/quickstart-step-01.zip). 
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 1](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart-step-01-js.zip).
+You can download the solution for this step here: [📥 Download step 1](https://ui5.github.io/tutorials/quickstart-step-01-js.zip).
 
 </details>
 ***

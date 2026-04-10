@@ -13,7 +13,7 @@ In this step, we replace the text with a button and show the “Hello World” m
 
 <sup>*A Say Hello button is added*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 5](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/05/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 5](https://ui5.github.io/tutorials/walkthrough/build/05/index-cdn.html).
 
 ***
 
@@ -21,13 +21,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 5](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-05.zip).
+You can download the solution for this step here: [📥 Download step 5](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-05.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 download step 5](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-05-js.zip).
+You can download the solution for this step here: [📥 download step 5](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-05-js.zip).
 
 </details>
 ***

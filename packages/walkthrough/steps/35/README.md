@@ -12,20 +12,20 @@ We now configure the visibility and properties of controls based on the device t
 
 <sup>*On phone devices, the panel is collapsed to save screen space and a button is hidden*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 35](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/35/test/mockServer-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 35](https://ui5.github.io/tutorials/walkthrough/build/35/test/mockServer-cdn.html).
 
 ***
 
 ### Coding
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 35](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-35.zip).
+You can download the solution for this step here: [📥 Download step 35](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-35.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 35](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-35-js.zip).
+You can download the solution for this step here: [📥 Download step 35](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-35-js.zip).
 
 </details>
 ***

@@ -22,7 +22,7 @@ We add a new folder `unit` under the `test` folder and a `model` subfolder where
 ![](assets/loio1b5613ac3ab94757af2c7823039222a9_LowRes.png "Folder Structure for this Step")
 <sup>*Folder Structure for this Step*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 27](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/27/test/Test.cdn.qunit.html?testsuite=test-resources/ui5/walkthrough/testsuite.cdn.qunit&test=unit/unitTests).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 27](https://ui5.github.io/tutorials/walkthrough/build/27/test/Test.cdn.qunit.html?testsuite=test-resources/ui5/walkthrough/testsuite.cdn.qunit&test=unit/unitTests).
 
 ***
 
@@ -30,13 +30,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 27](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-27.zip).
+You can download the solution for this step here: [📥 Download step 27](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-27.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 27](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-27-js.zip).
+You can download the solution for this step here: [📥 Download step 27](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-27-js.zip).
 
 </details>
 ***

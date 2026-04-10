@@ -1,4 +1,4 @@
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/ui5-typescript-walkthrough)](https://api.reuse.software/info/github.com/SAP-samples/ui5-typescript-walkthrough)
+[![REUSE status](https://api.reuse.software/badge/github.com/UI5/tutorials)](https://api.reuse.software/info/github.com/UI5/tutorials)
 
 # UI5 Tutorials
 
@@ -16,7 +16,7 @@ This repository contains following tutorials:
 
 ## How to obtain support
 
-[Create an issue](https://github.com/SAP-samples/ui5-typescript-walkthrough/issues) in this repository if you find a bug or have questions about the content.
+[Create an issue](https://github.com/UI5/tutorials/issues) in this repository if you find a bug or have questions about the content.
 
 For additional support, [ask a question in OpenUI5 Community on Slack](https://ui5-slack-invite.cfapps.eu10.hana.ondemand.com/).
 

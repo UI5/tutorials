@@ -12,20 +12,20 @@ In this step of our Walkthrough tutorial, we adjust the content density based on
 
 <sup>*The content density is compact on devices without a touch screen and cozy on touch-enabled devices*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 36](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/36/test/mockServer-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 36](https://ui5.github.io/tutorials/walkthrough/build/36/test/mockServer-cdn.html).
 
 ***
 
 ### Coding
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 36](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-36.zip).
+You can download the solution for this step here: [📥 Download step 36](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-36.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 36](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-36-js.zip).
+You can download the solution for this step here: [📥 Download step 36](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-36-js.zip).
 
 </details>
 ***

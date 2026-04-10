@@ -23,13 +23,13 @@ Luckily, OpenUI5 provides a couple of debugging tools that we can use within the
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 29](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-29.zip).
+You can download the solution for this step here: [📥 Download step 29](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-29.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 29](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-29-js.zip).
+You can download the solution for this step here: [📥 Download step 29](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-29-js.zip).
 
 </details>
 

@@ -13,7 +13,7 @@ Now we extend our minimalist HTML page to a basic app with a view and a controll
 
 <sup>*The browser shows a Steady button in an app*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 2](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart/build/02/index.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 2](https://ui5.github.io/tutorials/quickstart/build/02/index.html).
 
 ***
 
@@ -21,13 +21,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 2](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart-step-02.zip). 
+You can download the solution for this step here: [📥 Download step 2](https://ui5.github.io/tutorials/quickstart-step-02.zip). 
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 2](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart-step-02-js.zip).
+You can download the solution for this step here: [📥 Download step 2](https://ui5.github.io/tutorials/quickstart-step-02-js.zip).
 
 </details>
 ***

@@ -12,20 +12,20 @@ In this step, we are going to extend the functionality of OpenUI5 with a custom 
 
 <sup>*A custom product rating control is added to the detail page*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 33](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/33/test/mockServer-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 33](https://ui5.github.io/tutorials/walkthrough/build/33/test/mockServer-cdn.html).
  
 ***
 
 ### Coding
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 33](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-33.zip).
+You can download the solution for this step here: [📥 Download step 33](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-33.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 33](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-33-js.zip).
+You can download the solution for this step here: [📥 Download step 33](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-33-js.zip).
 
 </details>
 ***

@@ -3,10 +3,10 @@
 
   <script>
 
-    // Redirect for old sap-samples.github.io/ui5-typescript-walkthrough to new location sap-samples.github.io/ui5-typescript-walkthrough
-    if (window.location.href.startsWith("https://sap-samples.github.io/ui5-typescript-walkthrough")) {
-        var pathname = window.location.pathname.replace("/ui5-typescript-walkthrough-", "/walkthrough-");
-        window.location.replace("https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough" + pathname + window.location.search);
+    // Redirect for old single tutorial to multi tutorials setup - build folder
+    if (window.location.href.startsWith("https://ui5.github.io/tutorials/build/")) {
+        var pathname = window.location.pathname.replace("/tutorials/build/", "/tutorials/walkthrough/build/");
+        window.location.replace("https://ui5.github.io/" + pathname + window.location.search);
     }
 
   </script>
