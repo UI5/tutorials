@@ -51,24 +51,11 @@ function getSteps(tutorialDir) {
 	mkdirSync(join(cwd, "dist"), { recursive: true });
 
 	console.log(`👉 Copying root README.md...`);
-	function rewriteLinks(file, path, tutorialName) {
-		let permalink;
-		if (!path) {
-			permalink = "index.html";
-		} else if (!tutorialName) {
-			permalink = `build/${path.replace(".md", ".html")}`;
-		} else {
-			permalink = `${tutorialName}/build/${path.replace(".md", ".html")}`;
-		}
+	function rewriteLinks(file) {
+		let permalink = file.split("dist/")[1].replace(".md", ".html");
 		let content = `---\npermalink: ${permalink}\n---\n\n${readFileSync(file, { encoding: "utf8"})}`;
-		if (tutorialName) {
-			content = content.replace(/steps\/(\d{2})/g, `${tutorialName}/build/$1`);
-			content = content.replace(/\.\.\/(\d{2})/g, "../$1");
-		} else {
-			content = content.replace(/steps\/(\d{2})/g, "build/$1");
-			content = content.replace(/\.\.\/(\d{2})/g, "../$1");
-		}
 		content = content.replace(/README\.md/g, "README.html");
+		content = content.replace(/\.\/packages\//g, "./");
 		writeFileSync(file, content, { encoding: "utf8" });
 	}
 
@@ -104,7 +91,7 @@ function getSteps(tutorialDir) {
 		console.log(`  👉 Copying tutorial README.md...`);
 		if (existsSync(join(tutorialDir, "README.md"))) {
 			copyFileSync(join(tutorialDir, "README.md"), join(distTutorialDir, "index.md"));
-			rewriteLinks(join(distTutorialDir, "index.md"), null, tutorial);
+			rewriteLinks(join(distTutorialDir, "index.md"));
 		}
 
 		console.log(`  👉 Zipping TypeScript sources...`);
@@ -132,7 +119,7 @@ function getSteps(tutorialDir) {
 			const [, path, step] = readme.match("steps/((.*)/README.md)");
 			mkdirSync(join(buildDir, step), { recursive: true });
 			copyFileSync(join(tutorialDir, readme), join(buildDir, path));
-			rewriteLinks(join(buildDir, path), path, tutorial);
+			rewriteLinks(join(buildDir, path));
 		});
 
 		console.log(`  🌅 Copying step assets...`);
