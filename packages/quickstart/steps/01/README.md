@@ -13,7 +13,7 @@ Let's get you ready for your journey! We bootstrap OpenUI5 in an HTML page and i
 
 <sup>*The browser shows a "Ready" button that triggers a "Hello World" message*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 1](https://ui5.github.io/tutorials/quickstart/build/01/index.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 1](https://ui5.github.io/tutorials/quickstart/build/01/index-cdn.html).
 
 ***
 

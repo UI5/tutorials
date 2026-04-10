@@ -13,7 +13,7 @@ Finally, we add a second page to our app showcasing some of the key OpenUI5 conc
 
 <sup>*The second page shows plenty of UI controls and concepts to explore*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 3](https://ui5.github.io/tutorials/quickstart/build/03/index.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 3](https://ui5.github.io/tutorials/quickstart/build/03/index-cdn.html).
 
 ***
 

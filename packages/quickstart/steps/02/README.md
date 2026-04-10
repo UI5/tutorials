@@ -13,7 +13,7 @@ Now we extend our minimalist HTML page to a basic app with a view and a controll
 
 <sup>*The browser shows a Steady button in an app*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 2](https://ui5.github.io/tutorials/quickstart/build/02/index.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 2](https://ui5.github.io/tutorials/quickstart/build/02/index-cdn.html).
 
 ***
 
