@@ -13,20 +13,20 @@ Before we can do something with OpenUI5, we need to load and initialize it. This
 
 <sup>*An alert &quot;UI5 is ready&quot; is displayed*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 2](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/02/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 2](https://ui5.github.io/tutorials/walkthrough/build/02/index-cdn.html).
 
 ***
 ### Coding
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 2](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-02.zip).
+You can download the solution for this step here: [📥 Download step 2](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-02.zip).
 
 </details> 
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 2](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-02-js.zip).
+You can download the solution for this step here: [📥 Download step 2](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-02-js.zip).
 
 </details>
 ***

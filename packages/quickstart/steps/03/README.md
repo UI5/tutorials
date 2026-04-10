@@ -13,7 +13,7 @@ Finally, we add a second page to our app showcasing some of the key OpenUI5 conc
 
 <sup>*The second page shows plenty of UI controls and concepts to explore*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 3](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart/build/03/index.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 3](https://ui5.github.io/tutorials/quickstart/build/03/index.html).
 
 ***
 
@@ -21,13 +21,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 3](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart-step-03.zip). 
+You can download the solution for this step here: [📥 Download step 3](https://ui5.github.io/tutorials/quickstart-step-03.zip). 
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 3](https://sap-samples.github.io/ui5-typescript-walkthrough/quickstart-step-03-js.zip).
+You can download the solution for this step here: [📥 Download step 3](https://ui5.github.io/tutorials/quickstart-step-03-js.zip).
 
 </details>
 ***

@@ -22,7 +22,7 @@ We add a new folder `integration` below the `test` folder, where we put our new 
 ![](assets/loio27e84d5bd72a485498564b92894869b5_LowRes.png "Folder Structure for this Step")
 <sup>*Folder Structure for this Step*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 28](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/28/test/Test.cdn.qunit.html?testsuite=test-resources/ui5/walkthrough/testsuite.cdn.qunit&test=integration/opaTests).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 28](https://ui5.github.io/tutorials/walkthrough/build/28/test/Test.cdn.qunit.html?testsuite=test-resources/ui5/walkthrough/testsuite.cdn.qunit&test=integration/opaTests).
 
 ***
 
@@ -31,13 +31,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 28](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-28.zip).
+You can download the solution for this step here: [📥 Download step 28](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-28.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 28](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-28-js.zip).
+You can download the solution for this step here: [📥 Download step 28](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-28-js.zip).
 
 </details>
 ***

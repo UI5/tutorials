@@ -19,7 +19,7 @@ One part of the ARIA attribute set are the so-called landmarks. You can compare 
 
 <sup>*Landmarks in our app*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 37](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/37/test/mockServer-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 37](https://ui5.github.io/tutorials/walkthrough/build/37/test/mockServer-cdn.html).
 
 ***
 
@@ -27,13 +27,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 37](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-37.zip).
+You can download the solution for this step here: [📥 Download step 37](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-37.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 37](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-37-js.zip).
+You can download the solution for this step here: [📥 Download step 37](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-37-js.zip).
 
 </details>
 ***

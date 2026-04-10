@@ -12,7 +12,7 @@ Now we use a shell control as container for our app and use it as our new root e
 
 <sup>*The app is now run in a shell that limits the app width*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 12](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/12/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 12](https://ui5.github.io/tutorials/walkthrough/build/12/index-cdn.html).
 
 ***
 
@@ -20,13 +20,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 12](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-12.zip).
+You can download the solution for this step here: [📥 Download step 12](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-12.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 12](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-12-js.zip).
+You can download the solution for this step here: [📥 Download step 12](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-12-js.zip).
 
 </details>
 ***

@@ -17,7 +17,7 @@ By encapsulating our application as a component, we can seamlessly integrate it 
 
 <sup>*An input field and a description displaying the value of the input field \(No visual changes to last step\)*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 9](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/09/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 9](https://ui5.github.io/tutorials/walkthrough/build/09/index-cdn.html).
 
 After this step your project structure will look like the figure below. We will create the `Component.?s` file now and modify the related files in the app.
 
@@ -30,13 +30,13 @@ After this step your project structure will look like the figure below. We will 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 9](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-09.zip).
+You can download the solution for this step here: [📥 Download step 9](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-09.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 9](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-09-js.zip).
+You can download the solution for this step here: [📥 Download step 9](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-09-js.zip).
 
 </details>
 ***

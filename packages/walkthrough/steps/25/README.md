@@ -24,13 +24,13 @@ In the real world, data often resides on remote servers and is accessed via an O
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 25](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-25.zip).
+You can download the solution for this step here: [📥 Download step 25](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-25.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 25](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-25-js.zip).
+You can download the solution for this step here: [📥 Download step 25](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-25-js.zip).
 
 </details>
 ***

@@ -12,7 +12,7 @@ In this step, we add a search field for our product list and define a filter tha
 
 <sup>*A search field is displayed above the list*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 23](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/23/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 23](https://ui5.github.io/tutorials/walkthrough/build/23/index-cdn.html).
 
 ***
 
@@ -20,13 +20,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 23](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-23.zip).
+You can download the solution for this step here: [📥 Download step 23](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-23.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 23](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-23-js.zip).
+You can download the solution for this step here: [📥 Download step 23](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-23-js.zip).
 
 </details>
 ***

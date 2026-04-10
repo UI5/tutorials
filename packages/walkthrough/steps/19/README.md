@@ -11,7 +11,7 @@ Now that we have established a good structure for our app, it's time to add some
 
 <sup>*A list of invoices is displayed below the panel*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 19](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/19/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 19](https://ui5.github.io/tutorials/walkthrough/build/19/index-cdn.html).
 
 ***
 
@@ -19,13 +19,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 19](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-19.zip).
+You can download the solution for this step here: [📥 Download step 19](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-19.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 19](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-19-js.zip).
+You can download the solution for this step here: [📥 Download step 19](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-19-js.zip).
 
 </details>
 ***

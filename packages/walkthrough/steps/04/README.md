@@ -14,7 +14,7 @@ When working with OpenUI5, we recommend the use of XML views, as this produces t
 
 <sup>*The &quot;Hello World&quot; text is now displayed by an OpenUI5 control \(No visual changes to last step\)*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 4](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/04/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 4](https://ui5.github.io/tutorials/walkthrough/build/04/index-cdn.html).
 
 ***
 
@@ -22,13 +22,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 4](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-04.zip).
+You can download the solution for this step here: [📥 Download step 4](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-04.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 4](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-04-js.zip).
+You can download the solution for this step here: [📥 Download step 4](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-04-js.zip).
 
 </details>
 ***

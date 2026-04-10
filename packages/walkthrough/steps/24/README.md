@@ -13,7 +13,7 @@ To make our list of invoices even more user-friendly, we sort it alphabetically 
 
 <sup>*The list is now sorted and grouped by the shipping company*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 24](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/24/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 24](https://ui5.github.io/tutorials/walkthrough/build/24/index-cdn.html).
 
 ***
 
@@ -21,13 +21,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 24](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-24.zip).
+You can download the solution for this step here: [📥 Download step 24](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-24.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 24](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-24-js.zip).
+You can download the solution for this step here: [📥 Download step 24](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-24-js.zip).
 
 </details>
 ***

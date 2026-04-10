@@ -12,20 +12,20 @@ The list of invoices is already looking nice, but what is an invoice without a p
 
 <sup>*The list of invoices with prices and number units*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 20](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/20/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 20](https://ui5.github.io/tutorials/walkthrough/build/20/index-cdn.html).
 ***
 
 ### Coding
 
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 20](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-20.zip).
+You can download the solution for this step here: [📥 Download step 20](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-20.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 20](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-20-js.zip).
+You can download the solution for this step here: [📥 Download step 20](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-20-js.zip).
 
 </details>
 ***

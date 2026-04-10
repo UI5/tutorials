@@ -13,7 +13,7 @@ In this step, we improve the responsiveness of our app. OpenUI5 applications can
 
 <sup>*A responsive table is hiding some of the columns on small devices*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 34](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/34/test/mockServer-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 34](https://ui5.github.io/tutorials/walkthrough/build/34/test/mockServer-cdn.html).
 
 
 ***
@@ -21,13 +21,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 ### Coding
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 34](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-34.zip).
+You can download the solution for this step here: [📥 Download step 34](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-34.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 34](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-34-js.zip).
+You can download the solution for this step here: [📥 Download step 34](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-34-js.zip).
 
 </details>
 ***

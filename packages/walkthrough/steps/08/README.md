@@ -14,20 +14,20 @@ This way, they are all in a central place and can be easily translated into othe
 
 <sup>*An input field and a description displaying the value of the input field \(No visual changes to last step\)*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 8](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/08/index-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 8](https://ui5.github.io/tutorials/walkthrough/build/08/index-cdn.html).
 
 ***
 
 ### Coding
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 8](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-08.zip).
+You can download the solution for this step here: [📥 Download step 8](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-08.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 8](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-08-js.zip).
+You can download the solution for this step here: [📥 Download step 8](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-08-js.zip).
 
 </details>
 ***

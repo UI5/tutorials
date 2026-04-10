@@ -23,20 +23,20 @@ The new `localService` folder contains a `metadata.xml` service description file
 
 <sup>*Folder Structure for this Step*</sup>
 
-You can access the live preview by clicking on this link: [🔗 Live Preview of Step 26](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/build/26/test/mockServer-cdn.html).
+You can access the live preview by clicking on this link: [🔗 Live Preview of Step 26](https://ui5.github.io/tutorials/walkthrough/build/26/test/mockServer-cdn.html).
 
 ***
 
 ### Coding
 <details class="ts-only">
 
-You can download the solution for this step here: [📥 Download step 26](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-26.zip).
+You can download the solution for this step here: [📥 Download step 26](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-26.zip).
 
 </details>
 
 <details class="js-only">
 
-You can download the solution for this step here: [📥 Download step 26](https://sap-samples.github.io/ui5-typescript-walkthrough/walkthrough/walkthrough-step-26-js.zip).
+You can download the solution for this step here: [📥 Download step 26](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-26-js.zip).
 
 </details>
 ***
