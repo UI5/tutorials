@@ -74,7 +74,6 @@ function getSteps(tutorialDir) {
 
 	copyFileSync(join(cwd, "README.md"), join(cwd, "dist/index.md"));
 	rewriteLinks(join(cwd, "dist/index.md"));
-	copyFileSync(join(cwd, "404.html"), join(cwd, "dist/404.html"));
 
 	console.log(`  🌅 Copying _includes....`);
 	const includes = fg.globSync(["**/*"], { cwd: join(cwd, "_includes") });
