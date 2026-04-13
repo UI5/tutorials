@@ -56,17 +56,6 @@ We now configure the `ui5-middleware-simpleproxy` in the `ui5.yaml` file, so the
 We schedule the simpleproxy middleware after the `compression` middleware, right after the livereload middleware. The `mountPath` property configures which URLs will be caught by the proxy. The `configuration/baseUri` property stores the real server address.
 
 ```yaml
-specVersion: '3.0'
-metadata:
-  name: "ui5.walkthrough"
-type: application
-framework:
-  name: OpenUI5
-  version: "1.145.1"
-  libraries:
-    - name: sap.m
-    - name: sap.ui.core
-    - name: themelib_sap_horizon
 builder:
   customTasks:
   - name: ui5-tooling-transpile-task

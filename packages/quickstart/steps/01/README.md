@@ -298,15 +298,6 @@ Next,  we have to configure the tooling extension we installed from npm to our U
 <details class="ts-only">
 
 ```yaml
-framework:
-  name: OpenUI5
-  version: "1.145.1"
-  libraries:
-    - name: sap.m
-    - name: sap.tnt
-    - name: sap.ui.core
-    - name: sap.ui.layout
-    - name: themelib_sap_horizon
 builder:
   customTasks:
   - name: ui5-tooling-transpile-task
@@ -327,13 +318,6 @@ Now you can benefit from live reload on changes, built framework resources at de
 <details class="js-only">
 
 ```yaml
-framework:
-  name: OpenUI5
-  version: "1.145.1"
-  libraries:
-    - name: sap.ui.core
-    - name: themelib_sap_horizon
-builder:
 server:
   customMiddleware:
   - name: ui5-middleware-serveframework
