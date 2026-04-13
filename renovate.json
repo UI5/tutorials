@@ -44,18 +44,16 @@
 			],
 			"enabled": false
 		},
-		{
-			"matchDepNames": [
-				"openui5",
-        "@types/openui5"
-			],
+    {
+      "matchDepNames": [
+        "openui5"
+      ],
       "groupName": "openui5",
-			"automerge": true,
-			"commitMessagePrefix": "deps:",
-			"commitMessageAction": "Update",
-			"schedule": [
-				"* 8-16 * * 1"
-			]
-		}
+      "commitMessagePrefix": "deps:",
+      "commitMessageAction": "Update",
+      "schedule": [
+        "* 8-16 * * 1"
+      ]
+    }
 	]
 }
