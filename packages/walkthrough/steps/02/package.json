@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@ui5/cli": "^4.0.52",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "ui5-middleware-livereload": "^3.3.0",
     "ui5-middleware-serveframework": "^3.8.0",
     "ui5-tooling-transpile": "^3.11.0"
