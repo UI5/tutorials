@@ -74,20 +74,17 @@ We specify the compiler options as follow:
 ```json
 {
     "compilerOptions": {
-      "target": "es2023",
-      "module": "es2022",
-      "moduleResolution": "node",
+      "target": "es2025",
+      "types": ["node", "@types/openui5"],
       "skipLibCheck": true,
       "allowJs": true,
-      "strict": true,
       "strictPropertyInitialization": false,
-      "rootDir": "webapp",
-      "baseUrl": "./",
+      "rootDir": "./webapp",
       "paths": {
-        "ui5/walkthrough/*": ["webapp/*"]
+        "ui5/walkthrough/*": ["./webapp/*"]
       }
     },
-    "include": ["webapp/**/*"]
+    "include": ["./webapp/**/*"]
   }
 ```
 
@@ -111,7 +108,7 @@ Let's go through the compiler options specified in the file:
 
 - `"baseUrl": "./"`: The `baseUrl` parameter is used to resolve non-relative module names. We specified that non-relative module names are resolved relative to the location of the `tsconfig.json` file.
 
-- `"paths": { "ui5/walkthrough/*": ["webapp/*"] }`: The `path` paramter specifies path mappings for module resolution. It allows you to define custom module paths that map to specific directories or files. In this case, it maps the module path `ui5/walkthrough/*`
+- `"paths": { "ui5/walkthrough/*": ["./webapp/*"] }`: The `path` paramter specifies path mappings for module resolution. It allows you to define custom module paths that map to specific directories or files. In this case, it maps the module path `ui5/walkthrough/*`
 
 ***
 
