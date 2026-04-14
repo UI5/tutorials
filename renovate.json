@@ -4,6 +4,7 @@
 		"config:recommended",
 		"github>ui5/renovate-config"
 	],
+	"ignorePresets": [":ignoreModulesAndTests"],
 	"rangeStrategy": "bump",
 	"lockFileMaintenance": {
 		"enabled": true,
