@@ -1,17 +1,21 @@
 {
-    "compilerOptions": {
-        "target": "es2023",
-        "module": "es2022",
-        "moduleResolution": "node",
-        "skipLibCheck": true,
-        "allowJs": true,
-        "strict": true,
-        "strictPropertyInitialization": false,
-        "rootDir": "webapp",
-        "baseUrl": "./",
-        "paths": {
-            "ui5/quickstart/*": ["webapp/*"]
-        }
-    },
-    "include": ["webapp/**/*"]
+  "compilerOptions": {
+    "target": "es2025",
+    "types": [
+      "node",
+      "@types/openui5"
+    ],
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strictPropertyInitialization": false,
+    "rootDir": "./webapp",
+    "paths": {
+      "ui5/quickstart/*": [
+        "./webapp/*"
+      ]
+    }
+  },
+  "include": [
+    "./webapp/**/*"
+  ]
 }

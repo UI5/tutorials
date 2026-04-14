@@ -175,20 +175,24 @@ We specify the compiler options as follow:
 ```json
 {
   "compilerOptions": {
-    "target": "es2023",
-    "module": "es2022",
-    "moduleResolution": "node",
+    "target": "es2025",
+    "types": [
+      "node",
+      "@types/openui5"
+    ],
     "skipLibCheck": true,
     "allowJs": true,
-    "strict": true,
     "strictPropertyInitialization": false,
-    "rootDir": "webapp",
-    "baseUrl": "./",
+    "rootDir": "./webapp",
     "paths": {
-      "ui5/quickstart/*": ["webapp/*"]
+      "ui5/quickstart/*": [
+        "./webapp/*"
+      ]
     }
   },
-  "include": ["webapp/**/*"]
+  "include": [
+    "./webapp/**/*"
+  ]
 }
 ```
 
