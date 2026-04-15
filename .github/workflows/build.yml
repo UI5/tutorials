@@ -13,22 +13,20 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: "! contains(github.event.head_commit.message, '[skip ci]')"
-
-    strategy:
-      matrix:
-        node-version: [24.x]
 
     steps:
       - uses: actions/checkout@v6
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Install Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24.x
 
       - name: Install dependencies
         run: npm install
 
+      - name: Execute tests
+        run: npm run test
+
       - name: Build and validate all steps
-        run: node tools/builder
+        run: npm run build

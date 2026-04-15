@@ -7,7 +7,8 @@
   "scripts": {
     "start": "ui5 serve -o test/mockServer.html",
     "build": "ui5 build --all --clean-dest",
-    "serve-dist": "ws --compress -d dist --open"
+    "serve-dist": "ws --compress -d dist --open",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/openui5": "^1.147.0",

@@ -5,7 +5,8 @@
   "description": "OpenUI5 TypeScript Walkthrough: Step 21 - Expression Binding",
   "private": true,
   "scripts": {
-    "start": "ui5 serve -o index.html"
+    "start": "ui5 serve -o index.html",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/openui5": "^1.147.0",

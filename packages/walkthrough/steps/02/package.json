@@ -5,7 +5,8 @@
   "description": "OpenUI5 TypeScript Walkthrough: Step 2 - Bootstrap",
   "private": true,
   "scripts": {
-    "start": "ui5 serve -o index.html"
+    "start": "ui5 serve -o index.html",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@ui5/cli": "^4.0.52",

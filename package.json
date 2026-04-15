@@ -23,9 +23,11 @@
   },
   "scripts": {
     "build": "node tools/builder",
-    "start": "node tools/dev-server",
     "download-assets": "node tools/utils/download-assets",
-    "knip": "knip --config knip.config.js"
+    "knip": "knip --config knip.config.js",
+    "start": "node tools/dev-server",
+    "test": "npm run typecheck",
+    "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "devDependencies": {
     "@highlightjs/cdn-assets": "^11.11.1",
