@@ -7,6 +7,7 @@ import ListBinding from "sap/ui/model/ListBinding";
 import Event from "sap/ui/base/Event";
 import ObjectListItem from "sap/m/ObjectListItem";
 import UIComponent from "sap/ui/core/UIComponent";
+import Context from "sap/ui/model/Context";
 
 /**
  * @namespace ui5.walkthrough.controller
@@ -37,7 +38,7 @@ export default class App extends Controller {
         const item = event.getSource() as ObjectListItem;
         const router = UIComponent.getRouterFor(this);
         router.navTo("detail", {
-            invoicePath: window.encodeURIComponent(item.getBindingContext("invoice").getPath().substring(1))
+            invoicePath: window.encodeURIComponent((item.getBindingContext("invoice") as Context).getPath().substring(1))
         });
     }
 };

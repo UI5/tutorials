@@ -104,6 +104,7 @@ import ListBinding from "sap/ui/model/ListBinding";
 import Event from "sap/ui/base/Event";
 import ObjectListItem from "sap/m/ObjectListItem";
 import UIComponent from "sap/ui/core/UIComponent";
+import Context from "sap/ui/model/Context";
 
 /**
  * @namespace ui5.walkthrough.controller
@@ -116,7 +117,7 @@ export default class App extends Controller {
         const item = event.getSource() as ObjectListItem;
         const router = UIComponent.getRouterFor(this);
         router.navTo("detail", {
-            invoicePath: window.encodeURIComponent(item.getBindingContext("invoice").getPath().substring(1))
+            invoicePath: window.encodeURIComponent(((item.getBindingContext("invoice") as Context).getPath() as string).substring(1))
         });
     }     
 };
@@ -139,7 +140,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap
       });
     }
   });
-  ;
+
   return App;
 });
 
@@ -161,7 +162,7 @@ The `bindElement` function is creating a binding context for a OpenUI5 control a
 ```ts
 import Controller from "sap/ui/core/mvc/Controller";
 import UIComponent from "sap/ui/core/UIComponent";
-import { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
+import Route, { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
 
 /**
  * @namespace ui5.walkthrough.controller
@@ -170,11 +171,11 @@ export default class Detail extends Controller {
 
     onInit(): void {
         const router = UIComponent.getRouterFor(this);
-        router.getRoute("detail").attachPatternMatched(this.onObjectMatched, this);
+        (router.getRoute("detail") as Route).attachPatternMatched(this.onObjectMatched, this);
     }
 
     onObjectMatched(event: Route$PatternMatchedEvent): void {
-        this.getView().bindElement({
+        this.getView()?.bindElement({
             path: "/" + window.decodeURIComponent( (event.getParameter("arguments") as any).invoicePath),
             model: "invoice"
         });
