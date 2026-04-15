@@ -163,7 +163,7 @@ In the `Detail` controller we simply add the view model with our currency defini
 
 ```ts
 import Controller from "sap/ui/core/mvc/Controller";
-import { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
+import Route, { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
 import History from "sap/ui/core/routing/History";
 import MessageToast from "sap/m/MessageToast";
 import ProductRating, { ProductRating$ChangeEvent } from "../control/ProductRating";
@@ -181,10 +181,10 @@ export default class Detail extends Controller {
         const viewModel = new JSONModel({
             currency: "EUR"
         });
-        this.getView().setModel(viewModel, "view");
+        this.getView()?.setModel(viewModel, "view");
         
         const router = UIComponent.getRouterFor(this);
-        router.getRoute("detail").attachPatternMatched(this.onObjectMatched, this);
+        (router.getRoute("detail") as Route).attachPatternMatched(this.onObjectMatched, this);
     }
 	//...
 };

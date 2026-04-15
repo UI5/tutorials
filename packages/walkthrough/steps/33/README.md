@@ -439,7 +439,7 @@ In the `onObjectMatched` method, we call the `reset` method to make it possible 
 
 ```ts
 import Controller from "sap/ui/core/mvc/Controller";
-import { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
+import Route, { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
 import History from "sap/ui/core/routing/History";
 import MessageToast from "sap/m/MessageToast";
 import ProductRating, { ProductRating$ChangeEvent } from "../control/ProductRating";
@@ -454,13 +454,13 @@ export default class Detail extends Controller {
 
     onInit(): void {
         const router = UIComponent.getRouterFor(this);
-        router.getRoute("detail").attachPatternMatched(this.onObjectMatched, this);
+        (router.getRoute("detail") as Route).attachPatternMatched(this.onObjectMatched, this);
     }
 
     onObjectMatched(event: Route$PatternMatchedEvent): void {
     
         (this.byId("rating") as ProductRating).reset();
-        this.getView().bindElement({
+        this.getView()?.bindElement({
             path: "/" + window.decodeURIComponent((event.getParameter("arguments") as any).invoicePath),
             model: "invoice"
         });
@@ -480,9 +480,9 @@ export default class Detail extends Controller {
     
     onRatingChange(event: ProductRating$ChangeEvent): void {
         const value = event.getParameter("value");
-        const resourceBundle = (this?.getView().getModel("i18n") as ResourceModel)?.getResourceBundle() as ResourceBundle;
+        const resourceBundle = (this?.getView()?.getModel("i18n") as ResourceModel)?.getResourceBundle() as ResourceBundle;
 
-        MessageToast.show(resourceBundle.getText("ratingConfirmation", [value]));
+        MessageToast.show(resourceBundle.getText("ratingConfirmation", [value]) as string);
     }    
 };
 

@@ -53,7 +53,7 @@ export default class HelloPanel extends Controller {
         // functions with generic return values require casting 
         const resourceBundle = (this.getView()?.getModel("i18n") as ResourceModel)?.getResourceBundle() as ResourceBundle;
         const recipient = (this.getView()?.getModel() as JSONModel)?.getProperty("/recipient/name");
-        const msg = resourceBundle.getText("helloMsg", [recipient]);
+        const msg = resourceBundle.getText("helloMsg", [recipient]) as string;
         // show message
         MessageToast.show(msg);
     }
