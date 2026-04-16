@@ -8,7 +8,7 @@ const archiver = require("archiver");
 const fg = require('fast-glob');
 
 const sanitize = require("./sanitze");
-const { title } = require("process");
+const yaml = require('js-yaml');
 
 const cwd = process.cwd();
 
@@ -42,6 +42,23 @@ function getTutorials() {
 function getSteps(tutorialDir) {
 	let steps = readdirSync(join(tutorialDir, "steps"));
 	return steps.filter((step) => statSync(join(tutorialDir, "steps", step)).isDirectory());
+}
+
+function removeTSfromPackageJSON(packageJson) {
+	delete packageJson.devDependencies.typescript;
+	delete packageJson.devDependencies["@types/openui5"];
+	delete packageJson.devDependencies["ui5-tooling-transpile"];
+	delete packageJson.scripts.typecheck;
+	return packageJson;
+}
+
+function removeTSfromUI5YAML(ui5yaml) {
+	delete ui5yaml.builder;
+	if (ui5yaml?.server?.customMiddleware) {
+		const tsOnlyMiddlewares = ["ui5-tooling-transpile-middleware"];
+		ui5yaml.server.customMiddleware = ui5yaml.server.customMiddleware.filter((middleware) => !tsOnlyMiddlewares.includes(middleware.name));
+	}
+	return ui5yaml;
 }
 
 (async function() {
@@ -166,6 +183,12 @@ function getSteps(tutorialDir) {
 							console.error("No JS file found for", source);
 						}
 					}
+				} else if(file === "package.json") {
+					const packageJson = removeTSfromPackageJSON(JSON.parse(readFileSync(source, { encoding: "utf8" })));
+					writeFileSync(target, JSON.stringify(packageJson, null, 2), { encoding: "utf8" });
+				} else if(file.endsWith(".yaml")) {
+					const ui5yaml = removeTSfromUI5YAML(yaml.load(readFileSync(source, { encoding: "utf8" })));
+					writeFileSync(target, yaml.dump(ui5yaml));
 				} else if (file !== "tsconfig.json") {
 					mkdirSync(dirname(target), { recursive: true });
 					copyFileSync(source, target);
