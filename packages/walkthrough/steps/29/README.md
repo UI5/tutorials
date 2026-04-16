@@ -21,13 +21,13 @@ Luckily, OpenUI5 provides a couple of debugging tools that we can use within the
 
 ### Coding
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 29](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-29.zip).
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 29](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-29-js.zip).
 

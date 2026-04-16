@@ -17,13 +17,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 ***
 
 ### Coding
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 33](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-33.zip).
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 33](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-33-js.zip).
 
@@ -410,7 +410,7 @@ sap.ui.define(["sap/ui/core/Control", "sap/m/Label", "sap/m/Button", "sap/m/Rati
 
 ```
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 ### Generate Control Interfaces to Resolve the TypeScript Errors
 
 While the application would run successfully, the editor still displays an error in the `ProductRating.ts` renderer.
@@ -554,7 +554,7 @@ All we need now is to add our new control to the detail view. To do so we must a
 &nbsp;
 We can now rate a product on the detail page with our brand new control.
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 ### webapp/control/ProductRating.ts
 

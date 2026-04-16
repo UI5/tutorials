@@ -18,13 +18,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 ***
 ### Coding
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 2](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-02.zip).
 
 </details> 
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 2](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-02-js.zip).
 
@@ -50,7 +50,7 @@ ui5 add sap.ui.core themelib_sap_horizon
 The `ui5 add` command adds specific libraries as dependency to the projects UI5 CLI configuration. In this case, we'e adding the `sap.ui.core` library, which provides core functionality of the OpenUI5 framework. This library is essential for bootstrapping OpenUI5. Additionally, we're adding the `themelib_sap_horizon` library which provides the visual styles for the Horizon theme. We'll use this theme with our application. 
 
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 ### TypeScript Setup
 
@@ -180,14 +180,14 @@ Let's enhance our tooling setup once again by installing some custom middleware 
 
 We open a terminal and navigate to the root folder of our app. Then, we execute the following command:
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 ```sh
 npm install ui5-middleware-livereload ui5-middleware-serveframework ui5-tooling-transpile --save-dev
 ```
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 ```sh
 npm install ui5-middleware-livereload ui5-middleware-serveframework --save-dev
@@ -202,7 +202,7 @@ Let's break down what each package does:
 
 -	`ui5-middleware-serveframework` is another middleware plugin for the UI5 CLI that provides a web server to serve your OpenUI5 project during development. It allows you to easily serve the necessary OpenUI5 libraries and resources required by your application from your development environment.
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 - `ui5-tooling-transpile` is a plugin for the UI5 CLI that transpiles modern JavaScript (ES6+) and TypeScript into a compatible version for OpenUI5. OpenUI5 is based on older versions of JavaScript, so this plugin allows you to take advantage of the latest language features and syntax while ensuring that your code remains compatible with OpenUI5.
 
@@ -211,7 +211,7 @@ Let's break down what each package does:
 ### ui5.yaml
 
 Next,  we have to configure the tooling extension we installed from npm to our UI5 CLI setup, so we can use them in our project. To hook a custom task into a certain build phase of a project, it needs to reference another task that will get executed before or after it. The same applies for a custom middleware:
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 -   For the `ui5-tooling-transpile-task` we specify that this should happen after the`replaceVersion` task.
 
@@ -222,7 +222,7 @@ Next,  we have to configure the tooling extension we installed from npm to our U
 > 📌 **Important:** <br>
 > Middleware configurations are applied in the order in which they are defined. 
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 ```yaml
 builder:
@@ -242,7 +242,7 @@ Now you can benefit from live reload on changes, built framework resources at de
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 ```yaml
 server:

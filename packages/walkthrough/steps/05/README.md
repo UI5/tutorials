@@ -19,13 +19,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 ### Coding
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 5](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-05.zip).
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 You can download the solution for this step here: [📥 download step 5](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-05-js.zip).
 
@@ -68,7 +68,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
 });
 
 ```
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 > 📝 **Note:** <br>
 > The comment `@name ui5.walkthrough.controller.App` is a JSDoc comment that names this controller. It can be used by documentation generators and IDEs to provide more information about this class.

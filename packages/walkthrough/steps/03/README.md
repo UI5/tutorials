@@ -17,20 +17,20 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 ***
 ### Coding
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 3](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-03.zip).
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 3](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-03-js.zip).
 
 </details>
 ***
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 ### Development Environment
 
@@ -46,14 +46,14 @@ npm install @types/openui5 --save-dev
 
 ### webapp/index.?s
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 We will replace the native script in our file with the OpenUI5 Text control displaying "Hello Word". 
 For this, we will create a new instance of the Text control, setting its `text` property to "Hello World" by passing it as an object to the constructor.
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 We will replace the native script in our file with the OpenUI5 Text control displaying "Hello Word". 
 For this, we will first use OpenUI5's module definition `sap.ui.define` to create a module. To instantiate and render the Text control, we will define the `sap/m/Text` module as a dependency to this module. We will then create a new instance of the Text control and set its `text` property to "Hello World".
@@ -62,7 +62,7 @@ For this, we will first use OpenUI5's module definition `sap.ui.define` to creat
 
 To place the text control to our HTML document, we chain the constructor call of the control with the `placeAt` method. This method is used to position OpenUI5 controls. In our case, we add the Text control to the DOM element with the ID `content`.
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 > 📌 **Important:** <br>
 > It is best practice to use of Anynchronous Module Loading (AMD) style for defining modules and their dependencies. This ensures better performance, proper dependency tracking between modules and helps avoid issues related to loading order.
@@ -162,13 +162,13 @@ ui5 add sap.m
 
 [API Reference: `sap.ui.base.ManagedObject`](https://sdk.openui5.orgapi/sap.ui.base.ManagedObject)
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 [TypeScript definitions for OpenUI5](https://www.npmjs.com/package/@types/openui5)
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 [Best Practices for Loading Modules](https://sdk.openui5.org/topic/00737d6c1b864dc3ab72ef56611491c4 "This section provides best practices for OpenUI5 module loading patterns.")
 

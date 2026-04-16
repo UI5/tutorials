@@ -20,13 +20,13 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 
 ### Coding
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 13](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-13.zip).
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 13](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-13-js.zip).
 

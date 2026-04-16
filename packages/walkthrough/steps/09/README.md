@@ -28,13 +28,13 @@ After this step your project structure will look like the figure below. We will 
 ***
 ### Coding
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 9](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-09.zip).
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 9](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-09-js.zip).
 

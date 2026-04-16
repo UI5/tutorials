@@ -22,13 +22,13 @@ In the real world, data often resides on remote servers and is accessed via an O
 
 ### Coding
 
-<details class="ts-only">
+<details class="ts-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 25](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-25.zip).
 
 </details>
 
-<details class="js-only">
+<details class="js-only" markdown="1">
 
 You can download the solution for this step here: [📥 Download step 25](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-25-js.zip).
 
