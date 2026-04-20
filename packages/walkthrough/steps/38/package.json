@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@types/openui5": "^1.146.0",
-    "@ui5/cli": "^4.0.51",
+    "@ui5/cli": "^4.0.52",
     "@ui5/ts-interface-generator": "^0.10.5",
     "local-web-server": "^5.4.0",
     "typescript": "^5.9.3",
