@@ -104,6 +104,7 @@ Instead of the `ObjectListItem` that we had before, we will now split the inform
 <mvc:View
 	controllerName="ui5.walkthrough.controller.InvoiceList"
 	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Table
 		id="invoiceList"
