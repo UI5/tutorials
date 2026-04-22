@@ -94,6 +94,7 @@ We add an `sap.m.Panel` around the invoice list and move the toolbar from the ta
 <mvc:View
 	controllerName="ui5.walkthrough.controller.InvoiceList"
 	xmlns="sap.m"
+  xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Panel accessibleRole="Region">
 		<headerToolbar>
