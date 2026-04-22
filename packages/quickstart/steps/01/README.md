@@ -246,7 +246,7 @@ ui5 use OpenUI5
 To use install the required UI5 libraries, execute the following command:
 
 ```sh
-ui5 add sap.m sap.tnt sap.ui.core sap.ui.layout themelib_sap_horizon`
+ui5 add sap.m sap.tnt sap.ui.core sap.ui.layout themelib_sap_horizon
 ```
 
 Let's enhance our tooling setup once again by installing some custom middleware for the ui5-server. This will help us handle our development project more efficiently.
