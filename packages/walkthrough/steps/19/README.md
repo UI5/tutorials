@@ -148,6 +148,7 @@ In the `items` aggregation, we define the template for the list that will be aut
 ```xml
 <mvc:View
    xmlns="sap.m"
+   xmlns:core="sap.ui.core"
    xmlns:mvc="sap.ui.core.mvc">
    <List
       headerText="{i18n>invoiceListTitle}"
