@@ -8,7 +8,7 @@
     "start": "ui5 serve -o test/mockServer.html"
   },
   "devDependencies": {
-    "@types/openui5": "^1.146.0",
+    "@types/openui5": "^1.147.0",
     "@ui5/cli": "^4.0.52",
     "@ui5/ts-interface-generator": "^0.10.5",
     "typescript": "^5.9.3",
