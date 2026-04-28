@@ -74,7 +74,7 @@ We specify the compiler options as follow:
 ```json
 {
     "compilerOptions": {
-      "target": "es2025",
+      "target": "es2023",
       "types": ["node", "@types/openui5"],
       "skipLibCheck": true,
       "allowJs": true,
@@ -90,25 +90,21 @@ We specify the compiler options as follow:
 
 Let's go through the compiler options specified in the file:
 
-- `"target": "es2022"`: The `target` parameter sets the JavaScript language level that the TypeScript code should be compiled down to. We set it to ES2022, which means the generated JavaScript code will be compatible with ECMAScript 2022.
+- `"target": "es2023"`: The `target` parameter sets the JavaScript language level that the TypeScript code should be compiled down to. We set it to `es2023`, which means the generated JavaScript code is compatible with ECMAScript 2023.
 
-- `"module": "es2022"`: The `module` parameter specifies the module code generation for the compiled JavaScript. We configured it to ES2022, which means the generated JavaScript will use ECMAScript modules.
-
-- `"moduleResolution": "node"`: The `moduleResolution` parameter specifies how module dependencies should be resolved. We set it to "node", which means the compiler will use Node.js-style module resolution.
+- `"types": [ "node", "@types/openui5"]`: The `types` parameter defines the types used for TypeScript code. We configure this parameter to use the built-in Node.js types and the OpenUI5 types delivered by the `@types/openui5` package. 
 
 - `"skipLibCheck": true`: When the `skipLibCheck` parameter is set to `true`, it tells the compiler to skip type checking of declaration files (`.d.ts` files) that are part of external libraries. This can improve compilation speed.
 
 - `"allowJs": true`: The `allwJs` parameter allows JavaScript files to be included in the TypeScript project. This option enables TypeScript to compile JavaScript code along with TypeScript code.
 
-- `"strict": true`: When set to "true" the `strict` parameter enables a wide range of type checking behavior that results in more type-safe programs. It includes settings like `noImplicitAny`, `noImplicitThis`, `alwaysStrict` and others.
-
 - `"strictPropertyInitialization": false`: The `strictPropertyInitialization` parameter is a specific type of strict check that ensures that each instance property of a class gets initialized in the constructor body, or by a property initializer. By setting this to false, it disables strict checking of uninitialized class properties. This means that class properties can be left uninitialized or assigned the value `undefined` without causing a compiler error.
 
-- `"rootDir": "webapp"`: The `rootDir` paraemter specifies the root directory of the TypeScript source files. The compiler will consider this directory as the starting point for resolving file paths. We set it to our `webapp` folder.
+- `"rootDir": "./webapp"`: The `rootDir` parameter specifies the root directory of the TypeScript source files. The compiler considers this directory as the starting point for resolving file paths. We set it to our `webapp` folder.
 
-- `"baseUrl": "./"`: The `baseUrl` parameter is used to resolve non-relative module names. We specified that non-relative module names are resolved relative to the location of the `tsconfig.json` file.
+- `"paths": { "ui5/walkthrough/*": ["./webapp/*"] }`: The `path` paramter specifies path mappings for module resolution. It allows you to define custom module paths that map to specific directories or files. In this case, it maps the module path `ui5/walkthrough/*`.
 
-- `"paths": { "ui5/walkthrough/*": ["./webapp/*"] }`: The `path` paramter specifies path mappings for module resolution. It allows you to define custom module paths that map to specific directories or files. In this case, it maps the module path `ui5/walkthrough/*`
+- `"include": [ "./webapp/**/*" ]`: Specifies an array of filenames or patterns to include in TypeScript compilation. 
 
 ***
 
