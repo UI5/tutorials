@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "target": "es2025",
+      "target": "es2023",
       "types": ["node", "@types/openui5"],
       "skipLibCheck": true,
       "allowJs": true,

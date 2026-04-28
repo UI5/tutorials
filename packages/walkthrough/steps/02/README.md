@@ -74,7 +74,7 @@ We specify the compiler options as follow:
 ```json
 {
     "compilerOptions": {
-      "target": "es2025",
+      "target": "es2023",
       "types": ["node", "@types/openui5"],
       "skipLibCheck": true,
       "allowJs": true,
@@ -90,7 +90,7 @@ We specify the compiler options as follow:
 
 Let's go through the compiler options specified in the file:
 
-- `"target": "es2025"`: The `target` parameter sets the JavaScript language level that the TypeScript code should be compiled down to. We set it to ES2025, which means the generated JavaScript code will be compatible with ECMAScript 2025.
+- `"target": "es2023"`: The `target` parameter sets the JavaScript language level that the TypeScript code should be compiled down to. We set it to es2023, which means the generated JavaScript code will be compatible with ECMAScript 2025.
 
 - `"types": [ "node", "@types/openui5"]`: The `types` parameter defines the types used for TypeScript code. We configure this parameter to use the built-in Node.js types and the OpenUI5 types delivered by the `@types/openui5` package. 
 
