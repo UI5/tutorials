@@ -90,7 +90,7 @@ We specify the compiler options as follow:
 
 Let's go through the compiler options specified in the file:
 
-- `"target": "es2023"`: The `target` parameter sets the JavaScript language level that the TypeScript code should be compiled down to. We set it to es2023, which means the generated JavaScript code will be compatible with ECMAScript 2025.
+- `"target": "es2023"`: The `target` parameter sets the JavaScript language level that the TypeScript code should be compiled down to. We set it to `es2023`, which means the generated JavaScript code is compatible with ECMAScript 2023.
 
 - `"types": [ "node", "@types/openui5"]`: The `types` parameter defines the types used for TypeScript code. We configure this parameter to use the built-in Node.js types and the OpenUI5 types delivered by the `@types/openui5` package. 
 
@@ -100,7 +100,7 @@ Let's go through the compiler options specified in the file:
 
 - `"strictPropertyInitialization": false`: The `strictPropertyInitialization` parameter is a specific type of strict check that ensures that each instance property of a class gets initialized in the constructor body, or by a property initializer. By setting this to false, it disables strict checking of uninitialized class properties. This means that class properties can be left uninitialized or assigned the value `undefined` without causing a compiler error.
 
-- `"rootDir": "./webapp"`: The `rootDir` paraemter specifies the root directory of the TypeScript source files. The compiler will consider this directory as the starting point for resolving file paths. We set it to our `webapp` folder.
+- `"rootDir": "./webapp"`: The `rootDir` parameter specifies the root directory of the TypeScript source files. The compiler considers this directory as the starting point for resolving file paths. We set it to our `webapp` folder.
 
 - `"paths": { "ui5/walkthrough/*": ["./webapp/*"] }`: The `path` paramter specifies path mappings for module resolution. It allows you to define custom module paths that map to specific directories or files. In this case, it maps the module path `ui5/walkthrough/*`.
 
