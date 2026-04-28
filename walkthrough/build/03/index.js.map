@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","names":["Text","text","placeAt"],"sources":["index.ts"],"sourcesContent":["import Text from \"sap/m/Text\";\n\nnew Text({\n    text: \"Hello World\"\n}).placeAt(\"content\");\n"],"mappings":"sDAEA,IAAIA,EAAK,CACLC,KAAM,gBACPC,QAAQ,UAAW","ignoreList":[]}

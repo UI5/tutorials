@@ -1,0 +1,15 @@
+{
+  "name": "ui5.quickstart.step01",
+  "private": true,
+  "version": "1.0.0",
+  "author": "SAP SE",
+  "description": "UI5 Demo App - Quickstart Tutorial",
+  "scripts": {
+    "start": "ui5 serve -o index.html"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^4.0.52",
+    "ui5-middleware-livereload": "^3.3.0",
+    "ui5-middleware-serveframework": "^3.8.0"
+  }
+}

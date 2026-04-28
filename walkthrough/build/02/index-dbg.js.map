@@ -1,0 +1,1 @@
+{"version":3,"file":"index-dbg.js","names":["alert"],"sources":["index.ts"],"sourcesContent":["alert(\"UI5 is ready\");\n"],"mappings":"AAAAA,KAAK,CAAC,cAAc,CAAC","ignoreList":[]}

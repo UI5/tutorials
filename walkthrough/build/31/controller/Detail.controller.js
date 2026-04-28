@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/core/UIComponent"],function(t,e){"use strict";const n=t.extend("ui5.walkthrough.controller.Detail",{onInit:function t(){const n=e.getRouterFor(this);n.getRoute("detail").attachPatternMatched(this.onObjectMatched,this)},onObjectMatched:function t(e){this.getView()?.bindElement({path:"/"+window.decodeURIComponent(e.getParameter("arguments").invoicePath),model:"invoice"})}});return n});
+//# sourceMappingURL=Detail.controller.js.map

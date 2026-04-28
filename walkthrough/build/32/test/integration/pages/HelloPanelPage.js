@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/test/Opa5","sap/ui/test/actions/Press"],function(e,t){"use strict";const o="ui5.walkthrough.view.HelloPanel";class i extends e{iPressTheSayHelloWithDialogButton(){return this.waitFor({id:"helloDialogButton",viewName:o,actions:new t,errorMessage:"Did not find the 'Say Hello With Dialog' button on the HelloPanel view"})}iShouldSeeTheHelloDialog(){return this.waitFor({controlType:"sap.m.Dialog",success:function(){e.assert.ok(true,"The dialog is open")},errorMessage:"Did not find the dialog control"})}}return i});
+//# sourceMappingURL=HelloPanelPage.js.map

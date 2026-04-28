@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageToast","sap/ui/core/mvc/Controller"],function(o,e){"use strict";const n=e.extend("ui5.walkthrough.controller.App",{onShowHello:function e(){o.show("Hello World")}});return n});
+//# sourceMappingURL=App.controller.js.map
