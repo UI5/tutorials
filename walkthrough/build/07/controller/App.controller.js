@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageToast","sap/ui/core/mvc/Controller","sap/ui/model/json/JSONModel"],function(o,e,n){"use strict";const t=e.extend("ui5.walkthrough.controller.App",{onInit:function o(){const e={recipient:{name:"World"}};const t=new n(e);this.getView()?.setModel(t)},onShowHello:function e(){o.show("Hello World")}});return t});
+//# sourceMappingURL=App.controller.js.map

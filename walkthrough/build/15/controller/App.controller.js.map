@@ -1,0 +1,1 @@
+{"version":3,"file":"App.controller.js","names":["App","Controller","extend"],"sources":["App.controller.ts"],"sourcesContent":["import Controller from \"sap/ui/core/mvc/Controller\";\n/**\n * @namespace ui5.walkthrough.controller\n */\nexport default class App extends Controller {\n\n};\n"],"mappings":"sEACA,MAGqBA,EAAYC,EAAUC,OAAA,qCAEzC,OAFmBF,CAAG","ignoreList":[]}

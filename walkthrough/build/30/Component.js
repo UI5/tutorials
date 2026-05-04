@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/model/json/JSONModel"],function(t,e){"use strict";const n=t.extend("ui5.walkthrough.Component",{metadata:{interfaces:["sap.ui.core.IAsyncContentCreation"],manifest:"json"},init:function n(){t.prototype.init.call(this);const i={recipient:{name:"World"}};const o=new e(i);this.setModel(o);this.getRouter().initialize()}});return n});
+//# sourceMappingURL=Component.js.map

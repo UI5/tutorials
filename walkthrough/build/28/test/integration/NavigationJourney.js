@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/test/opaQunit","./pages/HelloPanelPage"],function(e,o){"use strict";function n(e){return e&&e.__esModule&&typeof e.default!=="undefined"?e.default:e}const t=n(o);const i=new t;QUnit.module("Navigation");e("Should open the Hello dialog",function(){i.iStartMyUIComponent({componentConfig:{name:"ui5.walkthrough"}});i.iPressTheSayHelloWithDialogButton();i.iShouldSeeTheHelloDialog();i.iTeardownMyApp()})});
+//# sourceMappingURL=NavigationJourney.js.map

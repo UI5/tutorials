@@ -1,0 +1,11 @@
+<mvc:View
+	controllerName="ui5.walkthrough.controller.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true">
+	<Shell>
+		<App 
+			class="myAppDemoWT" 
+			id="app"/>
+	</Shell>
+</mvc:View>

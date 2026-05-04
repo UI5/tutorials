@@ -1,0 +1,19 @@
+{
+  "name": "ui5.walkthrough.step38",
+  "version": "1.0.0",
+  "author": "SAP SE",
+  "description": "OpenUI5 TypeScript Walkthrough: Step 38 - Build Your Application",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve -o test/mockServer.html",
+    "build": "ui5 build --all --clean-dest",
+    "serve-dist": "ws --compress -d dist --open"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^4.0.52",
+    "local-web-server": "^5.4.0",
+    "ui5-middleware-livereload": "^3.3.0",
+    "ui5-middleware-serveframework": "^3.8.0",
+    "ui5-middleware-simpleproxy": "^3.7.0"
+  }
+}

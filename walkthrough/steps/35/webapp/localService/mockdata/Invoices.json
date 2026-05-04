@@ -1,0 +1,42 @@
+[
+  {
+    "ProductName": "Pineapple",
+    "Quantity": 21,
+    "ExtendedPrice": 87.2,
+    "ShipperName": "Fun Inc.",
+    "ShippedDate": "/Date(1427839200000)/",
+    "Status": "A"
+  },
+  {
+    "ProductName": "Milk",
+    "Quantity": 4,
+    "ExtendedPrice": 10,
+    "ShipperName": "ACME",
+    "ShippedDate": "/Date(1424214000000)/",
+    "Status": "B"
+  },
+  {
+    "ProductName": "Canned Beans",
+    "Quantity": 3,
+    "ExtendedPrice": 6.85,
+    "ShipperName": "ACME",
+    "ShippedDate": "/Date(1425250800000)/",
+    "Status": "B"
+  },
+  {
+    "ProductName": "Salad",
+    "Quantity": 2,
+    "ExtendedPrice": 8.8,
+    "ShipperName": "ACME",
+    "ShippedDate": "/Date(1428789600000)/",
+    "Status": "C"
+  },
+  {
+    "ProductName": "Bread",
+    "Quantity": 1,
+    "ExtendedPrice": 2.71,
+    "ShipperName": "Fun Inc.",
+    "ShippedDate": "/Date(1422313200000)/",
+    "Status": "A"
+  }
+]
