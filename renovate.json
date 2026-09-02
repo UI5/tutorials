@@ -69,7 +69,12 @@
 			"minimumReleaseAge": null,
 			"schedule": [
 				"* 8-16 * * 1"
-			]
+			],
+			"postUpgradeTasks": {
+				"commands": ["npm install"],
+				"fileFilters": ["package-lock.json"],
+				"executionMode": "branch"
+			}
 		}
 	]
 }
