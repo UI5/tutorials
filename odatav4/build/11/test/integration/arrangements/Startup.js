@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/test/Opa5","ui5/tutorial/odatav4/localService/mockserver"],function(t,i){"use strict";return t.extend("ui5.tutorial.odatav4.test.integration.arrangements.Startup",{iStartMyApp:function(){this.iWaitForPromise(i.init());this.iStartMyUIComponent({componentConfig:{name:"ui5.tutorial.odatav4",async:true},autoWait:true,timeout:45})}})});
+//# sourceMappingURL=Startup.js.map

@@ -1,0 +1,2 @@
+sap.ui.define(["ui5/tutorial/navigation/controller/BaseController"],function(t){"use strict";function o(t){return t&&t.__esModule&&typeof t.default!=="undefined"?t.default:t}const e=o(t);const n=e.extend("ui5.tutorial.navigation.controller.Home",{onDisplayNotFound:function t(){this.getRouter().getTargets().display("notFound",{fromTarget:"home"})}});return n});
+//# sourceMappingURL=Home.controller.js.map

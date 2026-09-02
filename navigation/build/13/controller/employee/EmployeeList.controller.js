@@ -1,0 +1,2 @@
+sap.ui.define(["ui5/tutorial/navigation/controller/BaseController"],function(e){"use strict";function t(e){return e&&e.__esModule&&typeof e.default!=="undefined"?e.default:e}const o=t(e);const n=o.extend("ui5.tutorial.navigation.controller.employee.EmployeeList",{onListItemPressed:function e(t){const o=t.getSource();const n=o.getBindingContext();this.getRouter().navTo("employee",{employeeId:n.getProperty("EmployeeID")})}});return n});
+//# sourceMappingURL=EmployeeList.controller.js.map

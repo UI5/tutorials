@@ -1,0 +1,11 @@
+import UIComponent from "sap/ui/core/UIComponent";
+
+/**
+ * @namespace ui5.tutorial.quickstart
+ */
+export default class Component extends UIComponent {
+	public static metadata = {
+		interfaces: ["sap.ui.core.IAsyncContentCreation"],
+		manifest: "json"
+	};
+}
