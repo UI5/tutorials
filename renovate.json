@@ -48,8 +48,7 @@
 			"matchDepNames": [
 				"@openui5/types"
 			],
-			"overrideDatasource": "custom.openui5_lts",
-			"overridePackageName": "openui5_types"
+			"overrideDatasource": "custom.openui5_lts"
 		},
 		{
 			"matchDepNames": [
