@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/m/MessageToast"],function(s,t){"use strict";const e=s.extend("ui5.tutorial.quickstart.App",{onPress:function s(){t.show("Hello App!")}});return e});
+//# sourceMappingURL=App.controller.js.map

@@ -1,0 +1,19 @@
+<mvc:View
+	controllerName="ui5.tutorial.navigation.controller.NotFound"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	core:require="{
+		IllustratedMessageType: 'sap/m/IllustratedMessageType'
+	}">
+	<Page
+		title="{i18n>NotFound}"
+		titleAlignment="Center"
+		showNavButton="true"
+		navButtonPress=".onNavBack">
+		<IllustratedMessage
+			title="{i18n>NotFound.text}"
+			description="{i18n>NotFound.description}"
+			illustrationType="{= IllustratedMessageType.PageNotFound}"/>
+	</Page>
+</mvc:View>

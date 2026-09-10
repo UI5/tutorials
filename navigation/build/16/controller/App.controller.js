@@ -1,0 +1,2 @@
+sap.ui.define(["ui5/tutorial/navigation/controller/BaseController","sap/base/Log"],function(t,e){"use strict";function n(t){return t&&t.__esModule&&typeof t.default!=="undefined"?t.default:t}const o=n(t);const a=o.extend("ui5.tutorial.navigation.controller.App",{onInit:function t(){e.setLevel(e.Level.INFO);const n=this.getRouter();n.attachBypassed(t=>{const n=t.getParameter("hash");e.info(`Sorry, but the hash '${n}' is invalid.`,"The resource was not found.")})}});return a});
+//# sourceMappingURL=App.controller.js.map

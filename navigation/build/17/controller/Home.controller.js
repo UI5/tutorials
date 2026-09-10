@@ -1,0 +1,2 @@
+sap.ui.define(["ui5/tutorial/navigation/controller/BaseController"],function(e){"use strict";function o(e){return e&&e.__esModule&&typeof e.default!=="undefined"?e.default:e}const t=o(e);const n=t.extend("ui5.tutorial.navigation.controller.Home",{onDisplayNotFound:function e(){this.getRouter().getTargets().display("notFound",{fromTarget:"home"})},onNavToEmployees:function e(){this.getRouter().navTo("employeeList")},onNavToEmployeeOverview:function e(){this.getRouter().navTo("employeeOverview")}});return n});
+//# sourceMappingURL=Home.controller.js.map

@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/test/Opa5","ui5/tutorial/odatav4/test/integration/arrangements/Startup","ui5/tutorial/odatav4/test/integration/TutorialJourney"],function(t,a){"use strict";t.extendConfig({arrangements:new a,viewNamespace:"ui5.tutorial.odatav4.view.",autoWait:true})});
+//# sourceMappingURL=AllJourneys.js.map

@@ -1,0 +1,2 @@
+sap.ui.define(["ui5/tutorial/navigation/controller/BaseController"],function(n){"use strict";function t(n){return n&&n.__esModule&&typeof n.default!=="undefined"?n.default:n}const o=t(n);const e=o.extend("ui5.tutorial.navigation.controller.NotFound",{onInit:function n(){}});return e});
+//# sourceMappingURL=NotFound.controller.js.map

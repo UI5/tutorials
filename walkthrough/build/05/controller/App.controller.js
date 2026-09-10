@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(o){"use strict";const t=o.extend("ui5.tutorial.walkthrough.controller.App",{onShowHello:function o(){alert("Hello World")}});return t});
+//# sourceMappingURL=App.controller.js.map

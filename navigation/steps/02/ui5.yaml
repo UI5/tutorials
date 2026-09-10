@@ -1,0 +1,18 @@
+specVersion: '4.0'
+metadata:
+  name: ui5.tutorial.navigation
+type: application
+framework:
+  name: OpenUI5
+  version: 1.148.7
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ui.layout
+    - name: themelib_sap_horizon
+server:
+  customMiddleware:
+    - name: ui5-middleware-serveframework
+      afterMiddleware: compression
+    - name: ui5-middleware-livereload
+      afterMiddleware: compression
