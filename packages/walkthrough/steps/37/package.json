@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@openui5/types": "1.148.7",
+    "@openui5/types": "1.148.8",
     "@types/qunit": "2.5.4",
     "@ui5/cli": "^4.0.53",
     "@ui5/ts-interface-generator": "^0.11.0",
