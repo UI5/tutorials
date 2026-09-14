@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","./model/models"],function(e,t){"use strict";const n=t["createDeviceModel"];const o=e.extend("ui5.tutorial.odatav4.Component",{metadata:{interfaces:["sap.ui.core.IAsyncContentCreation"],manifest:"json"},init:function t(){e.prototype.init.call(this);this.setModel(n(),"device")}});return o});
+//# sourceMappingURL=Component.js.map
