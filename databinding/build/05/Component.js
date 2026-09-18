@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/model/BindingMode"],function(n,t){"use strict";const e=n.extend("ui5.tutorial.databinding.Component",{metadata:{interfaces:["sap.ui.core.IAsyncContentCreation"],manifest:"json"},init:function e(){n.prototype.init.call(this);this.getModel().setDefaultBindingMode(t.OneWay)}});return e});
+//# sourceMappingURL=Component.js.map

@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/model/json/JSONModel"],function(e,t){"use strict";const o=e.extend("ui5.tutorial.odatav4.controller.App",{onInit:function e(){const o={busy:false};const n=new t(o);this.getView().setModel(n,"appView")}});return o});
+//# sourceMappingURL=App.controller.js.map

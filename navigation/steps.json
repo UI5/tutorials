@@ -1,0 +1,159 @@
+{
+  "tutorial": "navigation",
+  "namespace": "ui5.tutorial.navigation",
+  "steps": [
+    {
+      "n": 1,
+      "id": "01",
+      "title": "Set Up the Initial App",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/01/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-01.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-01-js.zip",
+      "description": "We start by setting up a simple app for this tutorial. The app displays mock data only and mimics real OData back-end calls with the mock server as you have seen in the Walkthrough tutorial."
+    },
+    {
+      "n": 2,
+      "id": "02",
+      "title": "Enable Routing",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/02/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-02.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-02-js.zip",
+      "description": "In this step we will modify the app and introduce routing. Instead of having the home page of the app hard coded we will configure a router to wire multiple views together when our app is called. The routing configuration controls the application flow when the user triggers a navigation action or opens a link to the application directly."
+    },
+    {
+      "n": 3,
+      "id": "03",
+      "title": "Catch Invalid Hashes",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/03/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-03.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-03-js.zip",
+      "description": "Sometimes it is important to display an indication that the requested resource was not found. To give you an example: If a user tries to access an invalid pattern which does not match any of the configured routes, the user is notified that something went wrong. You might also know this as a “404” or Not Found Page from traditional web pages. In this step, we will implement a feature that detects invalid hashes and visualizes this in a nice way."
+    },
+    {
+      "n": 4,
+      "id": "04",
+      "title": "Add a *Back* Button to *Not Found* Page",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/04/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-04.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-04-js.zip",
+      "description": "When we are on the Not Found page because of an invalid hash, we want to get back to our app to select another page. Therefore, we will add a Back button to the NotFound view and make sure that the user gets redirected to either the previous page or the overview page when the Back button is pressed."
+    },
+    {
+      "n": 5,
+      "id": "05",
+      "title": "Display a Target Without Changing the Hash",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/05/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-05.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-05-js.zip",
+      "description": "In this step, you will learn more about targets and how to display a target from the routing configuration manually."
+    },
+    {
+      "n": 6,
+      "id": "06",
+      "title": "Navigate to Routes with Hard-Coded Patterns",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/06/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-06.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-06-js.zip",
+      "description": "In this step, we'll create a second button on the home page, with which we can navigate to a simple list of employees. This example illustrates how to navigate to a route that has a hard-coded pattern."
+    },
+    {
+      "n": 7,
+      "id": "07",
+      "title": "Navigate to Routes with Mandatory Parameters",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/07/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-07.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-07-js.zip",
+      "description": "In this step, we implement a feature that allows the user to click on an employee in the list to see additional details of the employee. A route pattern can have one or more mandatory parameters to identify objects in an app."
+    },
+    {
+      "n": 8,
+      "id": "08",
+      "title": "Navigate with Flip Transition",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/08/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-08.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-08-js.zip",
+      "description": "In this step, we want to illustrate how to navigate to a page with a custom transition animation. Both forward and backward navigation will use the “flip” transition but with a different direction. We will create a simple link on the Employee view that triggers a flip navigation to a page that displays the resume data of a certain employee. Pressing the Back button will navigate back to the Employee view with a reversed flip transition."
+    },
+    {
+      "n": 9,
+      "id": "09",
+      "title": "Allow Bookmarkable Tabs with Optional Query Parameters",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/09/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-09.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-09-js.zip",
+      "description": "The resume view contains four tabs as we have seen in the previous step of this tutorial. However, when the user navigates to the resume page, only the first tab is displayed initially. Navigating directly to a specific tab or bookmarking a tab is not yet supported in our current app."
+    },
+    {
+      "n": 10,
+      "id": "10",
+      "title": "Implement “Lazy Loading”",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/10/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-10.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-10-js.zip",
+      "description": "In the previous steps, we have implemented a Resume view that uses tabs to display data. The complete content of all the tabs is loaded once, no matter which tab is currently displayed. We can increase the performance of our app by avoiding to load content that is not visible. Therefore, we implement a “lazy loading” feature that only loads the view and data when requested by the user."
+    },
+    {
+      "n": 11,
+      "id": "11",
+      "title": "Assign Multiple Targets",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/11/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-11.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-11-js.zip",
+      "description": "In this step, we will add a new button to the home page to illustrate the usage of multiple targets for a route. When the button is pressed, a new page opens that contains two parts: a header part at the top and a content part. The content part displays a table of employees that can be sorted and searched. We will use the array notation in the routing configuration to assign multiple targets to a route - a feature that we have not yet introduced."
+    },
+    {
+      "n": 12,
+      "id": "12",
+      "title": "Make a Search Bookmarkable",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/12/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-12.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-12-js.zip",
+      "description": "In this step we will make the search bookmarkable. This allows users to search for employees in the Employees table and they can bookmark their search query or share the URL."
+    },
+    {
+      "n": 13,
+      "id": "13",
+      "title": "Make Table Sorting Bookmarkable",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/13/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-13.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-13-js.zip",
+      "description": "In this step, we will create a button at the top of the table which will change the sorting of the table. When the current sorting state of the table is changed, the sorting state will be reflected in the URL. This illustrates how to make the table sorting bookmarkable."
+    },
+    {
+      "n": 14,
+      "id": "14",
+      "title": "Make Dialogs Bookmarkable",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/14/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-14.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-14-js.zip",
+      "description": "In this step, we want to allow bookmarking of the dialog box that is opened when the user clicks the Sort button. The dialog should automatically open when the URL contains the query parameter showDialog."
+    },
+    {
+      "n": 15,
+      "id": "15",
+      "title": "Reuse an Existing Route",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/15/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-15.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-15-js.zip",
+      "description": "The Employees table displays employee data. However, the resumes of the employees are not accessible from this view yet. We could create a new route and a new view to visualize the resume again, but we could also simply reuse an existing route to cross-link the resume of a certain employee. In this step, we will add a feature that allows users to directly navigate to the resume of a certain employee. We will reuse the Resume page that we have created in an earlier step. This example illustrates that there can be multiple navigation paths that direct to the same page."
+    },
+    {
+      "n": 16,
+      "id": "16",
+      "title": "Handle Invalid Hashes by Listening to Bypassed Events",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/16/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-16.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-16-js.zip",
+      "description": "So far we have created many useful routes in our app. In the very early steps we have also made sure that a Not Found page is displayed in case the app was called with an invalid hash. Now, we proceed further and track invalid hashes to be able to detect and correct any invalid links or add new URL patterns that are often requested but not found. Therefore, we simply listen to the bypassed events"
+    },
+    {
+      "n": 17,
+      "id": "17",
+      "title": "Listen to Matched Events of Any Route",
+      "previewUrl": "https://ui5.github.io/tutorials/navigation/build/17/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/navigation/navigation-step-17.zip",
+      "zipJs": "https://ui5.github.io/tutorials/navigation/navigation-step-17-js.zip",
+      "description": "In the previous step, we have listened for bypassed events to detect possible technical issues with our app. In this step, we want to improve the analysis use case even more by listening to any matched event of the route. We could use this information to measure how the app is used and how frequently the pages are called. Many Web analytic tools track page hits this way. The collected information can be used, for example to improve our app and its usability."
+    }
+  ]
+}
