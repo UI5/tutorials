@@ -1,0 +1,204 @@
+/* color-scheme for light/default appearance */
+:root {
+    --active-bg: white;
+    --active-color: black;
+    --active-border: #0969da;
+    --inactive-bg: #eee;
+    --inactive-color: #666;
+    --inactive-border: #ccc;
+    --neutral-border: #aaa;
+    /* sliding switch track */
+    --switch-track-bg: #eef4f9;
+    --switch-track-border: #d6e3ef;
+}
+
+/* color-scheme for dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --active-bg: black;
+        --active-color: white;
+        --active-border: #0969da;
+        --inactive-bg: black;
+        --inactive-color: #aaa;
+        --inactive-border: #666;
+        --neutral-border: #666;
+        /* sliding switch track */
+        --switch-track-bg: #0b0f14;
+        --switch-track-border: #30363d;
+    }
+}
+
+/* hide content in the non-current language */
+.page-language-ts .js-only,
+.page-language-ts .code-couple .language-js.highlighter-rouge {
+    display: none;
+}
+
+.page-language-js .ts-only,
+.page-language-js .code-couple .language-ts.highlighter-rouge {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Suffix like "(TS)" / "(JS)" attached to language-paired inline links
+   (e.g. download-solution links). Visible in raw markdown for readability,
+   hidden on the rendered site — the surrounding .ts-only / .js-only span
+   already disambiguates the language once one of the pair is displayed. */
+.lang-suffix {
+    display: none;
+}
+
+
+/* tabbed switchable language area: folder-style tabs above the code block */
+.code-couple-button {
+    margin-top: 8px;
+    padding: 10px 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-bottom-width: 0;
+    border-radius: 16px 16px 0 0;
+    cursor: pointer;
+}
+
+/* active */
+.code-couple-button-active {
+    color: var(--active-color);
+    background-color: var(--active-bg);
+    font-weight: bold;
+    border-color: var(--active-border);
+}
+
+/* inactive */
+.code-couple-button-inactive {
+    color: var(--inactive-color);
+    background-color: var(--inactive-bg);
+    border-color: var(--inactive-border);
+}
+
+/* default state based on page language */
+.page-language-ts .code-couple-button-ts:not(.code-couple-button-active):not(.code-couple-button-inactive),
+.page-language-js .code-couple-button-js:not(.code-couple-button-active):not(.code-couple-button-inactive) {
+    color: var(--active-color);
+    background-color: var(--active-bg);
+    font-weight: bold;
+}
+
+.page-language-ts .code-couple-button-js:not(.code-couple-button-active):not(.code-couple-button-inactive),
+.page-language-js .code-couple-button-ts:not(.code-couple-button-active):not(.code-couple-button-inactive) {
+    color: var(--inactive-color);
+    background-color: var(--inactive-bg);
+}
+
+.code-couple-container {
+    border: 1px solid var(--neutral-border);
+}
+
+
+/* overall language switch buttons: matching segmented pill, top-right,
+   with a knob that slides between the two segments. */
+
+.language-switch-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: inline-flex;
+    gap: 2px;
+    padding: 4px;
+    background-color: var(--switch-track-bg);
+    border: 1px solid var(--switch-track-border);
+    border-radius: 999px;
+    z-index: 1000;
+}
+
+/* the sliding knob sits behind the active segment.
+   Geometry: buttons are 48px wide with a 2px gap, so a language change
+   slides the knob by exactly one segment (48px + 2px = 50px). */
+.language-switch-container::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 48px;
+    height: calc(100% - 8px);
+    box-sizing: border-box;
+    background-color: var(--active-bg);
+    border: 2px solid var(--active-border);
+    border-radius: 999px;
+    transition: transform 0.25s ease;
+}
+
+body.page-language-js .language-switch-container::before {
+    transform: translateX(50px);
+}
+
+.language-switch-button {
+    position: relative;   /* keep labels above the sliding knob */
+    z-index: 1;
+    width: 48px;
+    padding: 5px 0;
+    text-align: center;
+    background-color: transparent;
+    color: var(--inactive-color);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.25s ease;
+}
+
+body.page-language-js .language-switch-button.lang-js,
+body.page-language-ts .language-switch-button.lang-ts {
+    color: var(--active-color);
+}
+
+li > section.ts-only, li > section.js-only {
+	display: inline;
+}
+
+.language-switch-button:hover {
+    opacity: 0.85;
+}
+
+#__bs_notify__ {
+    background-color: rgba(27, 32, 50, 0.3) !important;
+    top: 40px !important;
+}
+
+/* Image captions rendered from each image's alt text (see renderImageCaptions
+   in assets/js/custom.js). Restores the SAP Demo Kit behavior of showing the
+   image description below the figure. The figure shrink-wraps to the image and
+   is centered on the page, with the caption centered beneath the image. */
+figure.img-figure {
+    display: table;
+    margin: 16px auto;
+}
+
+figure.img-figure > .img-caption {
+    display: table-caption;
+    caption-side: bottom;
+    margin-top: 6px;
+    font-size: 90%;
+    font-style: italic;
+    color: var(--inactive-color);
+    text-align: center;
+}
+
+/* Breadcrumb shown at the top of each step page: "UI5 Tutorials › <Tutorial>".
+   Injected server-side (tools/builder/prepare-gh-pages.js for GitHub Pages,
+   tools/dev-server/server.js for local preview) so the reader knows which
+   tutorial they are in and can jump back to its overview. */
+.tutorial-breadcrumb {
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--neutral-border);
+    font-size: 90%;
+    color: var(--inactive-color);
+}
+
+.tutorial-breadcrumb .tutorial-breadcrumb-sep {
+    margin: 0 6px;
+    color: var(--inactive-color);
+}

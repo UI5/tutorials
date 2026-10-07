@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","names":["alert"],"sources":["index.ts"],"sourcesContent":["alert(\"UI5 is ready\");\n"],"mappings":"AAAAA,MAAM","ignoreList":[]}
