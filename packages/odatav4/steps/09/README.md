@@ -19,117 +19,112 @@ You can download the solution for this step here: <span class="ts-only">[📥 Do
 ```ts
 // webapp/controller/App.controller.ts
 ...
-		onDelete() {
-			const oContext,
-				oPeopleList = this.byId("peopleList"),
-				oSelected = oPeopleList.getSelectedItem(),
-				sUserName;
+		onDelete(): void {
+			const peopleList = this.byId("peopleList") as List;
+			const selected = peopleList.getSelectedItem() as ColumnListItem | null;
 
-			if (oSelected) {
-				oContext = oSelected.getBindingContext();
-				sUserName = oContext.getProperty("UserName");
-				oContext.delete().then(function () {
-					MessageToast.show(this._getText("deletionSuccessMessage", sUserName));
-				}.bind(this), function (oError) {
-					if (oContext === oPeopleList.getSelectedItem().getBindingContext()) {
-						this._setDetailArea(oContext);
+			if (selected) {
+				const context = selected.getBindingContext() as Context;
+				const userName = context.getProperty("UserName") as string;
+				void context.delete().then(() => {
+					MessageToast.show(this._getText("deletionSuccessMessage", [userName]));
+				}, (error2: Error & { canceled?: boolean }) => {
+					const currentSelected = peopleList.getSelectedItem() as ColumnListItem | null;
+					if (currentSelected && context === currentSelected.getBindingContext()) {
+						this._setDetailArea(context);
 					}
 					this._setUIChanges();
-					if (oError.canceled) {
-						MessageToast.show(this._getText("deletionRestoredMessage", sUserName));
+					if (error2.canceled) {
+						MessageToast.show(this._getText("deletionRestoredMessage", [userName]));
 						return;
 					}
-					MessageBox.error(oError.message + ": " + sUserName);
-				}.bind(this));
+					MessageBox.error(error2.message + ": " + userName);
+				});
 				this._setDetailArea();
-				this._setUIChanges(true);
+				this._setUIChanges();
 			}
 		},
 ...
-		onMessageBindingChange(oEvent) {
+		onMessageBindingChange(event: Event): void {
 			...
 		},
 
-		onSelectionChange(oEvent) {
-			this._setDetailArea(oEvent.getParameter("listItem").getBindingContext());
+		onSelectionChange(event: Event<{ listItem: ColumnListItem }>): void {
+			const listItem = event.getParameter("listItem");
+			this._setDetailArea(listItem.getBindingContext() as Context);
 		},
 
 ...
-		 /**
-		 * Toggles the visibility of the detail area
-		 *
-		 * @param {object} [oUserContext] - the current user context
-		 */
-		_setDetailArea(oUserContext) {
-			const oDetailArea = this.byId("detailArea"),
-				oLayout = this.byId("defaultLayout"),
-				oSearchField = this.byId("searchField");
+		_setDetailArea(userContext?: Context): void {
+			const detailArea = this.byId("detailArea") as Control;
+			const layout = this.byId("defaultLayout") as SplitterLayoutData;
+			const searchField = this.byId("searchField") as SearchField;
 
-			oDetailArea.setBindingContext(oUserContext || null);
+			if (!detailArea) {
+				return; // do nothing during view destruction
+			}
+
+			detailArea.setBindingContext(userContext || null);
 			// resize view
-			oDetailArea.setVisible(!!oUserContext);
-			oLayout.setSize(oUserContext ? "60%" : "100%");
-			oLayout.setResizable(!!oUserContext);
-			oSearchField.setWidth(oUserContext ? "40%" : "20%");
+			detailArea.setVisible(!!userContext);
+			layout.setSize(userContext ? "60%" : "100%");
+			layout.setResizable(!!userContext);
+			searchField.setWidth(userContext ? "40%" : "20%");
 		}
 ```
 
 ```js
 // webapp/controller/App.controller.js
 ...
-		onDelete : function () {
-			var oContext,
-				oPeopleList = this.byId("peopleList"),
-				oSelected = oPeopleList.getSelectedItem(),
-				sUserName;
-
-			if (oSelected) {
-				oContext = oSelected.getBindingContext();
-				sUserName = oContext.getProperty("UserName");
-				oContext.delete().then(function () {
-					MessageToast.show(this._getText("deletionSuccessMessage", sUserName));
-				}.bind(this), function (oError) {
-					if (oContext === oPeopleList.getSelectedItem().getBindingContext()) {
-						this._setDetailArea(oContext);
-					}
-					this._setUIChanges();
-					if (oError.canceled) {
-						MessageToast.show(this._getText("deletionRestoredMessage", sUserName));
-						return;
-					}
-					MessageBox.error(oError.message + ": " + sUserName);
-				}.bind(this));
-				this._setDetailArea();
-				this._setUIChanges(true);
-			}
-		},
+    onDelete() {
+      const peopleList = this.byId("peopleList");
+      const selected = peopleList.getSelectedItem();
+      if (selected) {
+        const context = selected.getBindingContext();
+        const userName = context.getProperty("UserName");
+        void context.delete().then(() => {
+          MessageToast.show(this._getText("deletionSuccessMessage", [userName]));
+        }, error2 => {
+          const currentSelected = peopleList.getSelectedItem();
+          if (currentSelected && context === currentSelected.getBindingContext()) {
+            this._setDetailArea(context);
+          }
+          this._setUIChanges();
+          if (error2.canceled) {
+            MessageToast.show(this._getText("deletionRestoredMessage", [userName]));
+            return;
+          }
+          MessageBox.error(error2.message + ": " + userName);
+        });
+        this._setDetailArea();
+        this._setUIChanges();
+      }
+    },
 ...
-		onMessageBindingChange : function (oEvent) {
-			...
-		},
+    onMessageBindingChange(event) {
+      ...
+    },
 
-		onSelectionChange : function (oEvent) {
-			this._setDetailArea(oEvent.getParameter("listItem").getBindingContext());
-		},
+    onSelectionChange(event) {
+      const listItem = event.getParameter("listItem");
+      this._setDetailArea(listItem.getBindingContext());
+    },
 
 ...
-		 /**
-		 * Toggles the visibility of the detail area
-		 *
-		 * @param {object} [oUserContext] - the current user context
-		 */
-		_setDetailArea : function (oUserContext) {
-			var oDetailArea = this.byId("detailArea"),
-				oLayout = this.byId("defaultLayout"),
-				oSearchField = this.byId("searchField");
-
-			oDetailArea.setBindingContext(oUserContext || null);
-			// resize view
-			oDetailArea.setVisible(!!oUserContext);
-			oLayout.setSize(oUserContext ? "60%" : "100%");
-			oLayout.setResizable(!!oUserContext);
-			oSearchField.setWidth(oUserContext ? "40%" : "20%");
-		}
+    _setDetailArea(userContext) {
+      const detailArea = this.byId("detailArea");
+      const layout = this.byId("defaultLayout");
+      const searchField = this.byId("searchField");
+      if (!detailArea) {
+        return; // do nothing during view destruction
+      }
+      detailArea.setBindingContext(userContext || null);
+      // resize view
+      detailArea.setVisible(!!userContext);
+      layout.setSize(userContext ? "60%" : "100%");
+      layout.setResizable(!!userContext);
+      searchField.setWidth(userContext ? "40%" : "20%");
+    }
 ```
 
 The `onSelectionChange` event handler retrieves the context of the selected list item and passes it to a new `_setDetailArea` function. Within `_setDetailArea`, the given context is passed as binding context for the semantic page detail area.

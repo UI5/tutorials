@@ -19,52 +19,56 @@ You can download the solution for this step here: <span class="ts-only">[📥 Do
 ```ts
 // webapp/controller/App.controller.ts
 ...
-		onResetChanges() {
-			this.byId("peopleList").getBinding("items").resetChanges();
-			this._setUIChanges();
-		},
+		onResetChanges(): void {
+			((this.byId("peopleList") as List).getBinding("items") as ODataListBinding).resetChanges();
+			// If there were technical errors, cancelling changes resets them.
+			this._bTechnicalErrors = false;
+			this._setUIChanges(false);
+		}
 
-		onResetDataSource() {
-			const oModel = this.getView().getModel(),
-				oOperation = oModel.bindContext("/ResetDataSource(...)");
+		onResetDataSource(): void {
+			const model = this.getView().getModel() as ODataModel;
+			const operation = model.bindContext("/ResetDataSource(...)");
 
-			oOperation.invoke().then(function () {
-					oModel.refresh();
-					MessageToast.show(this._getText("sourceResetSuccessMessage"));
-				}.bind(this), function (oError) {
-					MessageBox.error(oError.message);
-				}
-			);
-		},
+			void operation.invoke().then(() => {
+				model.refresh();
+				MessageToast.show(this._getText("sourceResetSuccessMessage"));
+			}, (error2: Error) => {
+				MessageBox.error(error2.message);
+			});
+		}
 
-		onSave() {
+		onSave(): void {
 ...
 ```
 
 ```js
 // webapp/controller/App.controller.js
 ...
-		onResetChanges : function () {
-			this.byId("peopleList").getBinding("items").resetChanges();
-			this._setUIChanges();
-		},
-
-		onResetDataSource : function () {
-			var oModel = this.getView().getModel(),
-				oOperation = oModel.bindContext("/ResetDataSource(...)");
-
-			oOperation.invoke().then(function () {
-					oModel.refresh();
-					MessageToast.show(this._getText("sourceResetSuccessMessage"));
-				}.bind(this), function (oError) {
-					MessageBox.error(oError.message);
-				}
-			);
-		},
-
-		onSave : function () {
+    onResetChanges() {
+      this.byId("peopleList").getBinding("items").resetChanges();
+      // If there were technical errors, cancelling changes resets them.
+      this._bTechnicalErrors = false;
+      this._setUIChanges(false);
+    },
+    /**
+     * Reset the data source.
+     */
+    onResetDataSource() {
+      const model = this.getView().getModel();
+      const operation = model.bindContext("/ResetDataSource(...)");
+      void operation.invoke().then(() => {
+        model.refresh();
+        MessageToast.show(this._getText("sourceResetSuccessMessage"));
+      }, error2 => {
+        MessageBox.error(error2.message);
+      });
+    },
+    /**
+     * Save changes to the source.
+     */
+    onSave() {
 ...
-
 ```
 
 The `onResetDataSource` event handler calls the `ResetDataSource` action, which is an action of the *TripPin* OData service that resets the data of the service to its original state.
@@ -93,7 +97,7 @@ The invocation is asynchronous; the `invoke` method therefore returns a `Promise
               id="resetChangesButton"
               text="{i18n>resetChangesButtonText}"
               enabled="{= !${appView>/hasUIChanges}}"
-              press="onResetDataSource"
+              press=".onResetDataSource"
               type="Emphasized">
             </Button>
           </headerContent>

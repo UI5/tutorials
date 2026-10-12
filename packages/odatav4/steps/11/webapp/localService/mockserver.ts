@@ -35,7 +35,7 @@ let metadata: string; // The string that holds the cached mock service metadata
 const namespace = "ui5/tutorial/odatav4";
 // Component for writing logs into the console
 const logComponent = "ui5.tutorial.odatav4.mockserver";
-const rBaseUrl = /services.odata.org\/TripPinRESTierService/;
+const baseUrl = /services.odata.org\/TripPinRESTierService/;
 
 /**
  * Returns the base URL from a given URL.
@@ -251,19 +251,50 @@ function applySort(xhr: MockXhr, resultSet: MockUser[]): MockUser[] {
  * Does NOT change the given result set but returns a new array.
  */
 function applyFilter(xhr: MockXhr, resultSet: MockUser[]): MockUser[] {
-	let filteredUsers = [...resultSet]; // work with a copy
-	const matches = xhr.url.match(/\$filter=.*\((.*),'(.*)'\)/);
-
-	// If the request contains a filter command, apply the filter
-	if (Array.isArray(matches) && matches.length >= 3) {
-		const fieldName = matches[1];
-		const query = matches[2];
-
-		if (fieldName !== "LastName") {
-			throw new Error("Filters on field " + fieldName + " are not supported.");
+	const filter = new URL(xhr.url).searchParams.get("$filter");
+	let filteredUsers = resultSet.slice(); // work with a copy
+	if (!filter) {
+		return filteredUsers;
+	}
+	// support filters like:
+	// - "contains(LastName,'e')"
+	// - "(contains(LastName,'e')) and not (UserName eq 'a' or UserName eq 'b')"
+	// - "not (UserName eq 'a' or UserName eq 'b')"
+	// - "UserName eq 'foo'"
+	let remainingFilter = filter.startsWith("(") ? filter.slice(1) : filter;
+	if (remainingFilter.startsWith("contains(LastName,'")) { // from search field
+		remainingFilter = remainingFilter.slice(19); // remove "contains(LastName,'"
+		const value = remainingFilter.split("')")[0];
+		filteredUsers = filteredUsers.filter(function (user) {
+			return user.LastName.includes(value);
+		});
+		// remove the rest of "contains" from the filter and the optional following ") and "
+		remainingFilter = remainingFilter.slice(value.length + 2);
+		if (remainingFilter.startsWith(") and ")) {
+			remainingFilter = remainingFilter.slice(6);
 		}
-
-		filteredUsers = users.filter((user) => (user.LastName || "").indexOf(query) !== -1);
+	}
+	if (remainingFilter.startsWith("not (UserName eq ")) { // exclusive filter
+		const end = remainingFilter.indexOf(")");
+		const excludedUsers = remainingFilter.slice(17, end) // remove "not (UserName eq "
+			.split(" or UserName eq ")
+			// after splitting each entry contains the username in single quotes, e.g. "'me'"
+			.map((filterPart) => filterPart.slice(1, -1));
+		filteredUsers = filteredUsers.filter(function (user) {
+			return !excludedUsers.includes(user.UserName);
+		});
+		remainingFilter = remainingFilter.slice(end + 1);
+	}
+	if (remainingFilter.startsWith("UserName eq '")) { // refresh of selected user
+		const end = remainingFilter.indexOf("'", 13);
+		const value = remainingFilter.slice(13, end); // remove "UserName eq '"
+		filteredUsers = filteredUsers.filter(function (user) {
+			return user.LastName.includes(value);
+		});
+		remainingFilter = remainingFilter.slice(end + 1);
+	}
+	if (remainingFilter) {
+		throw new Error(`"${remainingFilter}" of filter "${filter}" is not supported`);
 	}
 
 	return filteredUsers;
@@ -292,7 +323,7 @@ function handleGetCountRequests(): MockResponse {
 /**
  * Handles GET requests for user data and returns a fitting response.
  */
-function handleGetUserRequests(xhr: MockXhr, _bCount: boolean): MockResponse {
+function handleGetUserRequests(xhr: MockXhr, _count: boolean): MockResponse {
 	let count: number;
 	let expand: RegExpMatchArray | string[] | null;
 	let expand2: string;
@@ -381,7 +412,7 @@ function handleGetUserRequests(xhr: MockXhr, _bCount: boolean): MockResponse {
  * Returns a specific user in the aUsers array.
  */
 function getUserByIndex(index: number, properties: string[]): MockUser | null {
-	const helper: MockUser = { UserName: "" };
+	const helper = {} as MockUser;
 	const user = users[index];
 
 	if (user) {
@@ -509,10 +540,16 @@ function handleDeleteUserRequests(xhr: MockXhr): MockResponse {
  * Handles POST requests for users and returns a fitting response.
  */
 function handlePostUserRequests(xhr: MockXhr): MockResponse {
-	const user = getUserDataFromRequestBody(xhr.requestBody || "");
+	let user = getUserDataFromRequestBody(xhr.requestBody || "");
 
 	// Check if that user already exists
 	if (isUnique(user.UserName)) {
+		user = {
+			HomeAddress : null, // prevents drillDown errors
+			LastName : "",
+			FirstName : "",
+			...user
+		};
 		users.push(user);
 
 		let responseBody = '{"@odata.context": "' + getBaseUrl(xhr.url)
@@ -697,8 +734,7 @@ function handleAllRequests(xhr: MockXhr): void {
 		"Mockserver: Received " + xhr.method + " request to URL " + xhr.url,
 		(xhr.requestBody ? "Request body is:\n" + xhr.requestBody : "No request body.")
 		+ "\n",
-		logComponent
-	);
+		logComponent);
 
 	if (xhr.method === "POST" && /\$batch/.test(xhr.url)) {
 		response2 = handleBatchRequest(xhr);
@@ -716,8 +752,7 @@ function handleAllRequests(xhr: MockXhr): void {
 			"Mockserver: Sent response with return code " + response2[0],
 			("Response headers: " + JSON.stringify(response2[1]) + "\n\nResponse body:\n"
 				+ (response2[2] || "")) + "\n",
-			logComponent
-		);
+			logComponent);
 	}
 }
 
@@ -725,7 +760,7 @@ export default {
 
 	/**
 	 * Creates a Sinon fake service, intercepting all http requests to
-	 * the URL defined in variable rBaseUrl above.
+	 * the URL defined in variable baseUrl above.
 	 * @returns a promise that is resolved when the mock server is started
 	 */
 	init(): Promise<unknown> {
@@ -744,16 +779,16 @@ export default {
 					sandbox.server.autoRespond = true;
 
 					// Register the requests for which responses should be faked.
-					sandbox.server.respondWith(rBaseUrl, handleAllRequests);
+					sandbox.server.respondWith(baseUrl, handleAllRequests);
 
 					// Apply a filter to the fake XmlHttpRequest.
 					// Otherwise, ALL requests (e.g. for the component, views etc.) would be
 					// intercepted.
 					sinon.FakeXMLHttpRequest.useFilters = true;
-					sinon.FakeXMLHttpRequest.addFilter((_sMethod: string, url: string) => {
+					sinon.FakeXMLHttpRequest.addFilter((_method: string, url: string) => {
 						// If the filter returns true, the request will NOT be faked.
 						// We only want to fake requests that go to the intended service.
-						return !rBaseUrl.test(url);
+						return !baseUrl.test(url);
 					});
 
 					// Set the logging level for console entries from the mock server

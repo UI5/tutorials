@@ -19,45 +19,43 @@ You can download the solution for this step here: <span class="ts-only">[📥 Do
 ```ts
 // webapp/controller/App.controller.ts
 ...
-		onMessageBindingChange(oEvent) {
+		onMessageBindingChange(event: Event): void {
 			...
 		},
 
-		onSelectionChange(oEvent) {
-			this._setDetailArea(oEvent.getParameter("listItem").getBindingContext());
+		onSelectionChange(event: Event<{ listItem: ColumnListItem }>): void {
+			const listItem = event.getParameter("listItem");
+			this._setDetailArea(listItem.getBindingContext() as Context);
 		},
 ...
 		/**
 		 * Toggles the visibility of the detail area
-		 *
-		 * @param {object} [oUserContext] - the current user context
+		 * @param oUserContext - the current user context
 		 */
-		_setDetailArea(oUserContext) {
-			const oDetailArea = this.byId("detailArea"),
-				oLayout = this.byId("defaultLayout"),
-				oOldContext,
-				oSearchField = this.byId("searchField");
+		_setDetailArea(userContext?: Context): void {
+			const detailArea = this.byId("detailArea") as Control;
+			const layout = this.byId("defaultLayout") as SplitterLayoutData;
+			const searchField = this.byId("searchField") as SearchField;
 
-			if (!oDetailArea) {
-				return; // do nothing when running within view destruction
+			if (!detailArea) {
+				return; // do nothing during view destruction
 			}
 
-			oOldContext = oDetailArea.getBindingContext();
-			if (oOldContext) {
-				oOldContext.setKeepAlive(false);
+			const oldContext = detailArea.getBindingContext() as Context | null;
+			if (oldContext && !oldContext.isTransient()) {
+				oldContext.setKeepAlive(false);
 			}
-			if (oUserContext) {
-				oUserContext.setKeepAlive(true,
-					// hide details if kept entity was refreshed but does not exists any more
+			if (userContext && !userContext.isTransient()) {
+				userContext.setKeepAlive(true,
+					// hide details if kept entity was refreshed but does not exist any more
 					this._setDetailArea.bind(this));
-
 			}
-			oDetailArea.setBindingContext(oUserContext || null);
+			detailArea.setBindingContext(userContext || null);
 			// resize view
-			oDetailArea.setVisible(!!oUserContext);
-			oLayout.setSize(oUserContext ? "60%" : "100%");
-			oLayout.setResizable(!!oUserContext);
-			oSearchField.setWidth(oUserContext ? "40%" : "20%");
+			detailArea.setVisible(!!userContext);
+			layout.setSize(userContext ? "60%" : "100%");
+			layout.setResizable(!!userContext);
+			searchField.setWidth(userContext ? "40%" : "20%");
 		}
  ...
 ```
@@ -65,46 +63,42 @@ You can download the solution for this step here: <span class="ts-only">[📥 Do
 ```js
 // webapp/controller/App.controller.js
 ...
-		onMessageBindingChange : function (oEvent) {
-			...
-		},
+    onMessageBindingChange(event) {
+      ...
+    },
 
-		onSelectionChange : function (oEvent) {
-			this._setDetailArea(oEvent.getParameter("listItem").getBindingContext());
-		},
+    onSelectionChange(event) {
+      const listItem = event.getParameter("listItem");
+      this._setDetailArea(listItem.getBindingContext());
+    },
 ...
-		/**
-		 * Toggles the visibility of the detail area
-		 *
-		 * @param {object} [oUserContext] - the current user context
-		 */
-		_setDetailArea : function (oUserContext) {
-			var oDetailArea = this.byId("detailArea"),
-				oLayout = this.byId("defaultLayout"),
-				oOldContext,
-				oSearchField = this.byId("searchField");
-
-			if (!oDetailArea) {
-				return; // do nothing when running within view destruction
-			}
-
-			oOldContext = oDetailArea.getBindingContext();
-			if (oOldContext) {
-				oOldContext.setKeepAlive(false);
-			}
-			if (oUserContext) {
-				oUserContext.setKeepAlive(true,
-					// hide details if kept entity was refreshed but does not exists any more
-					this._setDetailArea.bind(this));
-
-			}
-			oDetailArea.setBindingContext(oUserContext || null);
-			// resize view
-			oDetailArea.setVisible(!!oUserContext);
-			oLayout.setSize(oUserContext ? "60%" : "100%");
-			oLayout.setResizable(!!oUserContext);
-			oSearchField.setWidth(oUserContext ? "40%" : "20%");
-		}
+    /**
+     * Toggles the visibility of the detail area
+     * @param oUserContext - the current user context
+     */
+    _setDetailArea(userContext) {
+      const detailArea = this.byId("detailArea");
+      const layout = this.byId("defaultLayout");
+      const searchField = this.byId("searchField");
+      if (!detailArea) {
+        return; // do nothing during view destruction
+      }
+      const oldContext = detailArea.getBindingContext();
+      if (oldContext && !oldContext.isTransient()) {
+        oldContext.setKeepAlive(false);
+      }
+      if (userContext && !userContext.isTransient()) {
+        userContext.setKeepAlive(true,
+        // hide details if kept entity was refreshed but does not exist any more
+        this._setDetailArea.bind(this));
+      }
+      detailArea.setBindingContext(userContext || null);
+      // resize view
+      detailArea.setVisible(!!userContext);
+      layout.setSize(userContext ? "60%" : "100%");
+      layout.setResizable(!!userContext);
+      searchField.setWidth(userContext ? "40%" : "20%");
+    }
  ...
 ```
 

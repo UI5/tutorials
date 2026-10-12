@@ -19,13 +19,15 @@ import type Input from "sap/m/Input";
 import type Context from "sap/ui/model/odata/v4/Context";
 import type ODataModel from "sap/ui/model/odata/v4/ODataModel";
 import type ODataListBinding from "sap/ui/model/odata/v4/ODataListBinding";
+import type SplitterLayoutData from "sap/ui/layout/SplitterLayoutData";
+import type Control from "sap/ui/core/Control";
 
 /**
  * @namespace ui5.tutorial.odatav4.controller
  */
 export default class App extends Controller {
 
-	private _bTechnicalErrors = false;
+	private _bTechnicalErrors: boolean;
 
 	/**
 	 *  Hook for initializing the controller
@@ -108,8 +110,8 @@ export default class App extends Controller {
 	/**
 	 * Lock UI when changing data in the input controls
 	 */
-	onInputChange(evt: Event): void {
-		if ((evt as unknown as { getParameter(n: string): unknown }).getParameter("escPressed")) {
+	onInputChange(evt: Event<{ escPressed: boolean }>): void {
+		if (evt.getParameter("escPressed")) {
 			this._setUIChanges();
 		} else {
 			this._setUIChanges(true);
@@ -239,8 +241,8 @@ export default class App extends Controller {
 		messageOpen = true;
 	}
 
-	onSelectionChange(event: Event): void {
-		const listItem = (event as unknown as { getParameter(n: string): unknown }).getParameter("listItem") as ColumnListItem;
+	onSelectionChange(event: Event<{ listItem: ColumnListItem }>): void {
+		const listItem = event.getParameter("listItem");
 		this._setDetailArea(listItem.getBindingContext() as Context);
 	}
 
@@ -285,17 +287,17 @@ export default class App extends Controller {
 	 * @param oUserContext - the current user context
 	 */
 	_setDetailArea(userContext?: Context): void {
-		const detailArea = this.byId("detailArea");
-		const layout = this.byId("defaultLayout") as unknown as { setSize(s: string): void; setResizable(b: boolean): void };
+		const detailArea = this.byId("detailArea") as Control;
+		const layout = this.byId("defaultLayout") as SplitterLayoutData;
 		const searchField = this.byId("searchField") as SearchField;
 
 		if (!detailArea) {
 			return; // do nothing during view destruction
 		}
 
-		(detailArea as unknown as { setBindingContext(c: Context | null): void }).setBindingContext(userContext || null);
+		detailArea.setBindingContext(userContext || null);
 		// resize view
-		(detailArea as unknown as { setVisible(b: boolean): void }).setVisible(!!userContext);
+		detailArea.setVisible(!!userContext);
 		layout.setSize(userContext ? "60%" : "100%");
 		layout.setResizable(!!userContext);
 		searchField.setWidth(userContext ? "40%" : "20%");

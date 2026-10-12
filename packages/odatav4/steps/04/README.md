@@ -26,111 +26,134 @@ import Filter from "sap/ui/model/Filter";
 import FilterOperator from "sap/ui/model/FilterOperator";
 import FilterType from "sap/ui/model/FilterType";
 import JSONModel from "sap/ui/model/json/JSONModel";
+import ResourceModel from "sap/ui/model/resource/ResourceModel";
+import ResourceBundle from "sap/base/i18n/ResourceBundle";
+import Component from "sap/ui/core/Component";
+import List from "sap/m/List";
+import type SearchField from "sap/m/SearchField";
+import type ListBinding from "sap/ui/model/ListBinding";
+import type ODataListBinding from "sap/ui/model/odata/v4/ODataListBinding";
 
-	return Controller.extend("ui5.tutorial.odatav4.controller.App", {
+/**
+ * @namespace ui5.tutorial.odatav4.controller
+ */
+export default class App extends Controller {
 
-		onInit() {
-			const oJSONData = {
-				busy : false,
-				order : 0
-			};
-			const oModel = new JSONModel(oJSONData);
-			this.getView().setModel(oModel, "appView");
-		},
+	onInit(): void {
+		const jsonData = {
+			busy: false,
+			order: 0
+		};
+		const model = new JSONModel(jsonData);
 
-		onRefresh() {
-		...
-		},
+		this.getView().setModel(model, "appView");
+	}
 
-						onSearch() {
-			const oView = this.getView(),
-				sValue = oView.byId("searchField").getValue(),
-				oFilter = new Filter("LastName", FilterOperator.Contains, sValue);
+	onRefresh(): void {
+	...
+	}
 
-			oView.byId("peopleList").getBinding("items").filter(oFilter, FilterType.Application);
-		},
+	onSearch(): void {
+		const view = this.getView();
+		const value = (view.byId("searchField") as SearchField).getValue();
+		const filter = new Filter("LastName", FilterOperator.Contains, value);
 
-		onSort() {
-			const oView = this.getView(),
-				aStates = [undefined, "asc", "desc"],
-				aStateTextIds = ["sortNone", "sortAscending", "sortDescending"],
-				sMessage,
-				iOrder = oView.getModel("appView").getProperty("/order");
+		((view.byId("peopleList") as List).getBinding("items") as ListBinding).filter(filter, FilterType.Application);
+	}
 
-			iOrder = (iOrder + 1) % aStates.length;
-			const sOrder = aStates[iOrder];
+	onSort(): void {
+		const view = this.getView();
+		const states: (string | undefined)[] = [undefined, "asc", "desc"];
+		const stateTextIds = ["sortNone", "sortAscending", "sortDescending"];
+		let order = (view.getModel("appView") as JSONModel).getProperty("/order") as number;
 
-			oView.getModel("appView").setProperty("/order", iOrder);
-			oView.byId("peopleList").getBinding("items").sort(sOrder && new Sorter("LastName", sOrder === "desc"));
+		order = (order + 1) % states.length;
+		const order2 = states[order];
 
-			sMessage = this._getText("sortMessage", [this._getText(aStateTextIds[iOrder])]);
-			MessageToast.show(sMessage);
-			},
+		(view.getModel("appView") as JSONModel).setProperty("/order", order);
+		((view.byId("peopleList") as List).getBinding("items") as ListBinding)
+			.sort(order2 ? new Sorter("LastName", order2 === "desc") : []);
 
-		_getText(sTextId, aArgs) {
-		...
-		}
-});
+		const message = this._getText("sortMessage", [this._getText(stateTextIds[order])]);
+		MessageToast.show(message);
+	}
+
+	_getText(textId: string, args?: unknown[]): string {
+	...
+	}
+}
 ```
 
 ```js
 // webapp/controller/App.controller.js
-sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/m/MessageToast",
-	"sap/m/MessageBox",
-	"sap/ui/model/Sorter",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
-	"sap/ui/model/FilterType",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, MessageToast, MessageBox, Sorter, Filter, FilterOperator, FilterType, JSONModel) {
-	"use strict";
+sap.ui.define(["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/m/MessageBox", "sap/ui/model/Sorter", "sap/ui/model/Filter", "sap/ui/model/FilterOperator", "sap/ui/model/FilterType", "sap/ui/model/json/JSONModel"], function (Controller, MessageToast, MessageBox, Sorter, Filter, FilterOperator, FilterType, JSONModel) {
+  "use strict";
 
-	return Controller.extend("ui5.tutorial.odatav4.controller.App", {
+  /**
+   * @namespace ui5.tutorial.odatav4.controller
+   */
+  const App = Controller.extend("ui5.tutorial.odatav4.controller.App", {
+    /**
+     *  Hook for initializing the controller
+     */
+    onInit() {
+      const jsonData = {
+        busy: false,
+        order: 0
+      };
+      const model = new JSONModel(jsonData);
+      this.getView().setModel(model, "appView");
+    },
+    /* =========================================================== */
+    /*           begin: event handlers                             */
+    /* =========================================================== */
+    /**
+     * Refresh the data.
+     */
+    onRefresh() {
+    ...
+    },
+    /**
+     * Search for the term in the search field.
+     */
+    onSearch() {
+      const view = this.getView();
+      const value = view.byId("searchField").getValue();
+      const filter = new Filter("LastName", FilterOperator.Contains, value);
+      view.byId("peopleList").getBinding("items").filter(filter, FilterType.Application);
+    },
+    /**
+     * Sort the table according to the last name.
+     * Cycles between the three sorting states "none", "ascending" and "descending"
+     */
+    onSort() {
+      const view = this.getView();
+      const states = [undefined, "asc", "desc"];
+      const stateTextIds = ["sortNone", "sortAscending", "sortDescending"];
+      let order = view.getModel("appView").getProperty("/order");
 
-		onInit : function () {
-			var oJSONData = {
-				busy : false,
-				order : 0
-			};
-			var oModel = new JSONModel(oJSONData);
-			this.getView().setModel(oModel, "appView");
-		},
-
-		onRefresh : function () {
-		...
-		},
-
-						onSearch : function () {
-			var oView = this.getView(),
-				sValue = oView.byId("searchField").getValue(),
-				oFilter = new Filter("LastName", FilterOperator.Contains, sValue);
-
-			oView.byId("peopleList").getBinding("items").filter(oFilter, FilterType.Application);
-		},
-
-		onSort : function () {
-			var oView = this.getView(),
-				aStates = [undefined, "asc", "desc"],
-				aStateTextIds = ["sortNone", "sortAscending", "sortDescending"],
-				sMessage,
-				iOrder = oView.getModel("appView").getProperty("/order");
-
-			iOrder = (iOrder + 1) % aStates.length;
-			var sOrder = aStates[iOrder];
-
-			oView.getModel("appView").setProperty("/order", iOrder);
-			oView.byId("peopleList").getBinding("items").sort(sOrder && new Sorter("LastName", sOrder === "desc"));
-
-			sMessage = this._getText("sortMessage", [this._getText(aStateTextIds[iOrder])]);
-			MessageToast.show(sMessage);
-			},
-
-		_getText : function (sTextId, aArgs) {
-		...
-		}
-	});
+      // Cycle between the states
+      order = (order + 1) % states.length;
+      const order2 = states[order];
+      view.getModel("appView").setProperty("/order", order);
+      view.byId("peopleList").getBinding("items").sort(order2 ? new Sorter("LastName", order2 === "desc") : []);
+      const message = this._getText("sortMessage", [this._getText(stateTextIds[order])]);
+      MessageToast.show(message);
+    },
+    /* =========================================================== */
+    /*           end: event handlers                               */
+    /* =========================================================== */
+    /**
+     * Convenience method for retrieving a translatable text.
+     * @param sTextId - the ID of the text to be retrieved.
+     * @param aArgs - optional array of texts for placeholders.
+     * @returns the text belonging to the given ID.
+     */
+    _getText(textId, args) {
+    ...
+    }
+  });
+  return App;
 });
 ```
 
@@ -191,7 +214,7 @@ We add the `order` property to variable `oJSONData` in `onInit` method. This pro
                       id="sortUsersButton"
                       icon="sap-icon://sort"
                       tooltip="{i18n>sortButtonText}"
-                      press="onSort"/>
+                      press=".onSort"/>
                   </content>
                 </OverflowToolbar>
               </headerToolbar>

@@ -26,7 +26,7 @@ import ResourceModel from "sap/ui/model/resource/ResourceModel";
 import ResourceBundle from "sap/base/i18n/ResourceBundle";
 import Component from "sap/ui/core/Component";
 import List from "sap/m/List";
-import type ListBinding from "sap/ui/model/ListBinding";
+import type ODataListBinding from "sap/ui/model/odata/v4/ODataListBinding";
 
 /**
  * @namespace ui5.tutorial.odatav4.controller
@@ -53,7 +53,7 @@ export default class App extends Controller {
 	 * Refresh the data.
 	 */
 	onRefresh(): void {
-		const binding = (this.byId("peopleList") as List).getBinding("items") as unknown as { hasPendingChanges(): boolean; refresh(): void };
+		const binding = (this.byId("peopleList") as List).getBinding("items") as ODataListBinding;
 
 		if (binding.hasPendingChanges()) {
 			MessageBox.error(this._getText("refreshNotPossibleMessage"));
@@ -85,45 +85,48 @@ export default class App extends Controller {
 sap.ui.define(["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/m/MessageBox", "sap/ui/model/json/JSONModel"], function (Controller, MessageToast, MessageBox, JSONModel) {
   "use strict";
 
+  /**
+   * @namespace ui5.tutorial.odatav4.controller
+   */
   const App = Controller.extend("ui5.tutorial.odatav4.controller.App", {
-	/**
-	 *  Hook for initializing the controller
-	 */
-	onInit() {
-	  const jSONData = {
-		busy: false
-	  };
-	  const model = new JSONModel(jSONData);
-	  this.getView().setModel(model, "appView");
-	},
-	/* =========================================================== */
-	/*           begin: event handlers                             */
-	/* =========================================================== */
-	/**
-	 * Refresh the data.
-	 */
-	onRefresh() {
-	  const binding = this.byId("peopleList").getBinding("items");
-	  if (binding.hasPendingChanges()) {
-		MessageBox.error(this._getText("refreshNotPossibleMessage"));
-		return;
-	  }
-	  binding.refresh();
-	  MessageToast.show(this._getText("refreshSuccessMessage"));
-	},
-	/* =========================================================== */
-	/*           end: event handlers                               */
-	/* =========================================================== */
-	/**
-	 * Convenience method for retrieving a translatable text.
-	 * @param sTextId - the ID of the text to be retrieved.
-	 * @param aArgs - optional array of texts for placeholders.
-	 * @returns the text belonging to the given ID.
-	 */
-	_getText(textId, args) {
-	  const bundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-	  return bundle.getText(textId, args);
-	}
+    /**
+     *  Hook for initializing the controller
+     */
+    onInit() {
+      const jsonData = {
+        busy: false
+      };
+      const model = new JSONModel(jsonData);
+      this.getView().setModel(model, "appView");
+    },
+    /* =========================================================== */
+    /*           begin: event handlers                             */
+    /* =========================================================== */
+    /**
+     * Refresh the data.
+     */
+    onRefresh() {
+      const binding = this.byId("peopleList").getBinding("items");
+      if (binding.hasPendingChanges()) {
+        MessageBox.error(this._getText("refreshNotPossibleMessage"));
+        return;
+      }
+      binding.refresh();
+      MessageToast.show(this._getText("refreshSuccessMessage"));
+    },
+    /* =========================================================== */
+    /*           end: event handlers                               */
+    /* =========================================================== */
+    /**
+     * Convenience method for retrieving a translatable text.
+     * @param sTextId - the ID of the text to be retrieved.
+     * @param aArgs - optional array of texts for placeholders.
+     * @returns the text belonging to the given ID.
+     */
+    _getText(textId, args) {
+      const bundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+      return bundle.getText(textId, args);
+    }
   });
   return App;
 });
@@ -158,11 +161,10 @@ We also add the private method `_getText` to retrieve translatable texts from th
               icon="sap-icon://refresh"
               tooltip="{i18n>refreshButtonText}"
               press=".onRefresh"/>
-            </content>
-          </OverflowToolbar>
-        </headerToolbar>
-
-        <columns>
+          </content>
+        </OverflowToolbar>
+      </headerToolbar>
+      <columns>
 ...
 ```
 

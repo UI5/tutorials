@@ -19,20 +19,21 @@ You can download the solution for this step here: <span class="ts-only">[📥 Do
 ```ts
 // webapp/controller/App.controller.ts
 ...
-		onInit() {
-			const oMessageManager = sap.ui.getCore().getMessageManager(),
-				oMessageModel = oMessageManager.getMessageModel(),
-				oMessageModelBinding = oMessageModel.bindList("/", undefined, [],
-					new Filter("technical", FilterOperator.EQ, true)),
-				oViewModel = new JSONModel({
-					busy : false,
-					hasUIChanges : false,
-					usernameEmpty : true,
-					order : 0
-			this.getView().setModel(oViewModel, "appView");
-			this.getView().setModel(oMessageModel, "message");
+		onInit(): void {
+			const messageModel = Messaging.getMessageModel();
+			const messageModelBinding = messageModel.bindList("/", undefined, [],
+				new Filter("technical", FilterOperator.EQ, true));
+			const viewModel = new JSONModel({
+				busy: false,
+				hasUIChanges: false,
+				usernameEmpty: true,
+				order: 0
+			});
 
-			oMessageModelBinding.attachChange(this.onMessageBindingChange, this);
+			this.getView().setModel(viewModel, "appView");
+			this.getView().setModel(messageModel, "message");
+
+			messageModelBinding.attachChange(this.onMessageBindingChange, this);
 			this._bTechnicalErrors = false;
 },
 ...
@@ -41,23 +42,20 @@ You can download the solution for this step here: <span class="ts-only">[📥 Do
 ```js
 // webapp/controller/App.controller.js
 ...
-		onInit : function () {
-			var oMessageManager = sap.ui.getCore().getMessageManager(),
-				oMessageModel = oMessageManager.getMessageModel(),
-				oMessageModelBinding = oMessageModel.bindList("/", undefined, [],
-					new Filter("technical", FilterOperator.EQ, true)),
-				oViewModel = new JSONModel({
-					busy : false,
-					hasUIChanges : false,
-					usernameEmpty : true,
-					order : 0
-				});
-			this.getView().setModel(oViewModel, "appView");
-			this.getView().setModel(oMessageModel, "message");
-
-			oMessageModelBinding.attachChange(this.onMessageBindingChange, this);
-			this._bTechnicalErrors = false;
-},
+    onInit() {
+      const messageModel = Messaging.getMessageModel();
+      const messageModelBinding = messageModel.bindList("/", undefined, [], new Filter("technical", FilterOperator.EQ, true));
+      const viewModel = new JSONModel({
+        busy: false,
+        hasUIChanges: false,
+        usernameEmpty: true,
+        order: 0
+      });
+      this.getView().setModel(viewModel, "appView");
+      this.getView().setModel(messageModel, "message");
+      messageModelBinding.attachChange(this.onMessageBindingChange, this);
+      this._bTechnicalErrors = false;
+    },
 ...
 ```
 
@@ -73,15 +71,15 @@ We change the `onInit` method: The `appView` model receives two additional prope
 			...
 		},
 
-		_setUIChanges(bHasUIChanges) {
+		_setUIChanges(hasUIChanges?: boolean): void {
 			if (this._bTechnicalErrors) {
 				// If there is currently a technical error, then force 'true'.
-				bHasUIChanges = true;
-			} else if (bHasUIChanges === undefined) {
-				bHasUIChanges = this.getView().getModel().hasPendingChanges();
+				hasUIChanges = true;
+			} else if (hasUIChanges === undefined) {
+				hasUIChanges = (this.getView().getModel() as ODataModel).hasPendingChanges();
 			}
-			const oModel = this.getView().getModel("appView");
-			oModel.setProperty("/hasUIChanges", bHasUIChanges);
+			const model = this.getView().getModel("appView") as JSONModel;
+			model.setProperty("/hasUIChanges", hasUIChanges);
 		}
 });
 ```
@@ -89,24 +87,25 @@ We change the `onInit` method: The `appView` model receives two additional prope
 ```js
 // webapp/controller/App.controller.js
 ...
-		onSort : function () {
-			...
-		},
-		_getText : function (sTextId, aArgs) {
-			...
-		},
+    onSort() {
+      ...
+    },
+    _getText(textId, args) {
+      ...
+    },
 
-		_setUIChanges : function (bHasUIChanges) {
-			if (this._bTechnicalErrors) {
-				// If there is currently a technical error, then force 'true'.
-				bHasUIChanges = true;
-			} else if (bHasUIChanges === undefined) {
-				bHasUIChanges = this.getView().getModel().hasPendingChanges();
-			}
-			var oModel = this.getView().getModel("appView");
-			oModel.setProperty("/hasUIChanges", bHasUIChanges);
-		}
-	});
+    _setUIChanges(hasUIChanges) {
+      if (this._bTechnicalErrors) {
+        // If there is currently a technical error, then force 'true'.
+        hasUIChanges = true;
+      } else if (hasUIChanges === undefined) {
+        hasUIChanges = this.getView().getModel().hasPendingChanges();
+      }
+      const model = this.getView().getModel("appView");
+      model.setProperty("/hasUIChanges", hasUIChanges);
+    }
+  });
+  return App;
 });
 ```
 
@@ -118,23 +117,24 @@ We add the `_setUIChanges` private method that lets us set the property `hasUICh
 		onInit() {
 			...
 		},
-		onCreate() {
-			const oList = this.byId("peopleList"),
-				oBinding = oList.getBinding("items"),
-				oContext = oBinding.create({
-					"UserName" : "",
-					"FirstName" : "",
-					"LastName" : "",
-					"Age" : "18"
-			this._setUIChanges();
-			this.getView().getModel("appView").setProperty("/usernameEmpty", true);
+		onCreate(): void {
+			const list = this.byId("peopleList") as List;
+			const binding = list.getBinding("items") as ODataListBinding;
+			// Create a new entry through the table's list binding
+			const context = binding.create({ Age: "18" });
 
-			oList.getItems().some(function (oItem) {
-				if (oItem.getBindingContext() === oContext) {
-					oItem.focus();
-					oItem.setSelected(true);
+			this._setUIChanges(true);
+			(this.getView().getModel("appView") as JSONModel).setProperty("/usernameEmpty", true);
+
+			// Select and focus the table row that contains the newly created entry
+			list.getItems().some((item) => {
+				const columnItem = item as ColumnListItem;
+				if (columnItem.getBindingContext() === context) {
+					columnItem.focus();
+					columnItem.setSelected(true);
 					return true;
 				}
+				return false;
 			});
 		},
 		onRefresh
@@ -144,31 +144,31 @@ We add the `_setUIChanges` private method that lets us set the property `hasUICh
 ```js
 // webapp/controller/App.controller.js
 ...
-		onInit: function () {
-			...
-		},
-		onCreate : function () {
-			var oList = this.byId("peopleList"),
-				oBinding = oList.getBinding("items"),
-				oContext = oBinding.create({
-					"UserName" : "",
-					"FirstName" : "",
-					"LastName" : "",
-					"Age" : "18"
-				});
+    onInit() {
+      ...
+    },
+    onCreate() {
+      const list = this.byId("peopleList");
+      const binding = list.getBinding("items");
+      // Create a new entry through the table's list binding
+      const context = binding.create({
+        Age: "18"
+      });
+      this._setUIChanges(true);
+      this.getView().getModel("appView").setProperty("/usernameEmpty", true);
 
-			this._setUIChanges();
-			this.getView().getModel("appView").setProperty("/usernameEmpty", true);
-
-			oList.getItems().some(function (oItem) {
-				if (oItem.getBindingContext() === oContext) {
-					oItem.focus();
-					oItem.setSelected(true);
-					return true;
-				}
-			});
-		},
-		onRefresh
+      // Select and focus the table row that contains the newly created entry
+      list.getItems().some(item => {
+        const columnItem = item;
+        if (columnItem.getBindingContext() === context) {
+          columnItem.focus();
+          columnItem.setSelected(true);
+          return true;
+        }
+        return false;
+      });
+    },
+    onRefresh
 ...
 ```
 
@@ -182,22 +182,22 @@ We also use the binding context returned by the `create` method to focus and sel
 		onRefresh() {
 			...
 		},
-		onSave() {
-			const fnSuccess = function () {
+		onSave(): void {
+			const success = () => {
 				this._setBusy(false);
 				MessageToast.show(this._getText("changesSentMessage"));
 				this._setUIChanges(false);
-			}.bind(this);
-
-			const fnError = function (oError) {
+			};
+			const error = (error2: Error) => {
 				this._setBusy(false);
 				this._setUIChanges(false);
-				MessageBox.error(oError.message);
-			}.bind(this);
+				MessageBox.error(error2.message);
+			};
 
 			this._setBusy(true); // Lock UI until submitBatch is resolved.
-			this.getView().getModel().submitBatch("peopleGroup").then(fnSuccess, fnError);
-			this._bTechnicalErrors = false; // If there were technical errors, a new save resets them.
+			(this.getView().getModel() as ODataModel).submitBatch("peopleGroup").then(success, error);
+			// If there were technical errors, a new save resets them.
+			this._bTechnicalErrors = false;
 		},
 		onSearch() {
 			...
@@ -206,9 +206,9 @@ We also use the binding context returned by the `create` method to focus and sel
 		_setUIChanges(bHasUIChanges) {
 			...
 		},
-		_setBusy(bIsBusy) {
-			const oModel = this.getView().getModel("appView");
-			oModel.setProperty("/busy", bIsBusy);
+		_setBusy(isBusy: boolean): void {
+			const model = this.getView().getModel("appView") as JSONModel;
+			model.setProperty("/busy", isBusy);
 		}
 });
 ```
@@ -216,38 +216,38 @@ We also use the binding context returned by the `create` method to focus and sel
 ```js
 // webapp/controller/App.controller.js
 ...
-		onRefresh: function () {
-			...
-		},
-		onSave : function () {
-			var fnSuccess = function () {
-				this._setBusy(false);
-				MessageToast.show(this._getText("changesSentMessage"));
-				this._setUIChanges(false);
-			}.bind(this);
-
-			var fnError = function (oError) {
-				this._setBusy(false);
-				this._setUIChanges(false);
-				MessageBox.error(oError.message);
-			}.bind(this);
-
-			this._setBusy(true); // Lock UI until submitBatch is resolved.
-			this.getView().getModel().submitBatch("peopleGroup").then(fnSuccess, fnError);
-			this._bTechnicalErrors = false; // If there were technical errors, a new save resets them.
-		},
-		onSearch: function () {
-			...
-		},
-		...
-		_setUIChanges : function (bHasUIChanges) {
-			...
-		},
-		_setBusy : function (bIsBusy) {
-			var oModel = this.getView().getModel("appView");
-			oModel.setProperty("/busy", bIsBusy);
-		}
-	});
+    onRefresh() {
+      ...
+    },
+    onSave() {
+      const success = () => {
+        this._setBusy(false);
+        MessageToast.show(this._getText("changesSentMessage"));
+        this._setUIChanges(false);
+      };
+      const error = error2 => {
+        this._setBusy(false);
+        this._setUIChanges(false);
+        MessageBox.error(error2.message);
+      };
+      this._setBusy(true); // Lock UI until submitBatch is resolved.
+      this.getView().getModel().submitBatch("peopleGroup").then(success, error);
+      // If there were technical errors, a new save resets them.
+      this._bTechnicalErrors = false;
+    },
+    onSearch() {
+      ...
+    },
+    ...
+    _setUIChanges(hasUIChanges) {
+      ...
+    },
+    _setBusy(isBusy) {
+      const model = this.getView().getModel("appView");
+      model.setProperty("/busy", isBusy);
+    }
+  });
+  return App;
 });
 ```
 
@@ -264,30 +264,28 @@ We also define a `_setBusy` private function to lock the whole UI while the data
 			...
 		},
 
-		onMessageBindingChange(oEvent) {
-			const aContexts = oEvent.getSource().getContexts(),
-				aMessages,
-				bMessageOpen = false;
+		onMessageBindingChange(event: Event): void {
+			const contexts = (event.getSource() as ListBinding).getContexts();
+			let messageOpen = false;
 
-			if (bMessageOpen || !aContexts.length) {
+			if (messageOpen || !contexts.length) {
 				return;
 			}
 
 			// Extract and remove the technical messages
-			aMessages = aContexts.map(function (oContext) {
-				return oContext.getObject();
-			sap.ui.getCore().getMessageManager().removeMessages(aMessages);
+			const messages = contexts.map((context: Context) => context.getObject());
+			Messaging.removeMessages(messages);
 
 			this._setUIChanges(true);
 			this._bTechnicalErrors = true;
-			MessageBox.error(aMessages[0].message, {
-				id : "serviceErrorMessageBox",
-				onClose() {
-					bMessageOpen = false;
+			MessageBox.error((messages[0] as { message: string }).message, {
+				id: "serviceErrorMessageBox",
+				onClose: () => {
+					messageOpen = false;
 				}
 			});
 
-			bMessageOpen = true;
+			messageOpen = true;
 		},
 ...
 ```
@@ -295,36 +293,30 @@ We also define a `_setBusy` private function to lock the whole UI while the data
 ```js
 // webapp/controller/App.controller.js
 ...
-		onSort : function () {
-			...
-		},
+    onSort() {
+      ...
+    },
 
-		onMessageBindingChange : function (oEvent) {
-			var aContexts = oEvent.getSource().getContexts(),
-				aMessages,
-				bMessageOpen = false;
+    onMessageBindingChange(event) {
+      const contexts = event.getSource().getContexts();
+      let messageOpen = false;
+      if (messageOpen || !contexts.length) {
+        return;
+      }
 
-			if (bMessageOpen || !aContexts.length) {
-				return;
-			}
-
-			// Extract and remove the technical messages
-			aMessages = aContexts.map(function (oContext) {
-				return oContext.getObject();
-			});
-			sap.ui.getCore().getMessageManager().removeMessages(aMessages);
-
-			this._setUIChanges(true);
-			this._bTechnicalErrors = true;
-			MessageBox.error(aMessages[0].message, {
-				id : "serviceErrorMessageBox",
-				onClose : function () {
-					bMessageOpen = false;
-				}
-			});
-
-			bMessageOpen = true;
-		},
+      // Extract and remove the technical messages
+      const messages = contexts.map(context => context.getObject());
+      Messaging.removeMessages(messages);
+      this._setUIChanges(true);
+      this._bTechnicalErrors = true;
+      MessageBox.error(messages[0].message, {
+        id: "serviceErrorMessageBox",
+        onClose: () => {
+          messageOpen = false;
+        }
+      });
+      messageOpen = true;
+    },
 ...
 ```
 
@@ -336,10 +328,11 @@ We implement the event handler for the `change` event of the `ListBinding` to th
 		onRefresh() {
 			...
 		},
-		onResetChanges() {
-			this.byId("peopleList").getBinding("items").resetChanges();
+		onResetChanges(): void {
+			((this.byId("peopleList") as List).getBinding("items") as ODataListBinding).resetChanges();
+			// If there were technical errors, cancelling changes resets them.
 			this._bTechnicalErrors = false;
-			this._setUIChanges();
+			this._setUIChanges(false);
 		},
 		onSearch() {
 			...
@@ -350,17 +343,18 @@ We implement the event handler for the `change` event of the `ListBinding` to th
 ```js
 // webapp/controller/App.controller.js
 ...
-		onRefresh: function () {
-			...
-		},
-		onResetChanges : function () {
-			this.byId("peopleList").getBinding("items").resetChanges();
-			this._bTechnicalErrors = false;
-			this._setUIChanges();
-		},
-		onSearch: function () {
-			...
-		},
+    onRefresh() {
+      ...
+    },
+    onResetChanges() {
+      this.byId("peopleList").getBinding("items").resetChanges();
+      // If there were technical errors, cancelling changes resets them.
+      this._bTechnicalErrors = false;
+      this._setUIChanges(false);
+    },
+    onSearch() {
+      ...
+    },
 ...
 ```
 
@@ -372,13 +366,16 @@ The `onResetChanges` method handles discarding pending changes. It uses the `res
 		onCreate() {
 			...
 		},
-		onInputChange(oEvt) {
-			if (oEvt.getParameter("escPressed")) {
+		onInputChange(evt: Event<{ escPressed: boolean }>): void {
+			if (evt.getParameter("escPressed")) {
 				this._setUIChanges();
 			} else {
 				this._setUIChanges(true);
-				if (oEvt.getSource().getParent().getBindingContext().getProperty("UserName")) {
-					this.getView().getModel("appView").setProperty("/usernameEmpty", false);
+				// Check if the username in the changed table row is empty and set the appView
+				// property accordingly
+				const ctx = (evt.getSource() as Input).getParent()?.getBindingContext();
+				if (ctx && ctx.getProperty("UserName")) {
+					(this.getView().getModel("appView") as JSONModel).setProperty("/usernameEmpty", false);
 				}
 			}
 		},
@@ -391,22 +388,25 @@ The `onResetChanges` method handles discarding pending changes. It uses the `res
 ```js
 // webapp/controller/App.controller.js
 ...
-		onCreate: function () {
-			...
-		},
-		onInputChange : function (oEvt) {
-			if (oEvt.getParameter("escPressed")) {
-				this._setUIChanges();
-			} else {
-				this._setUIChanges(true);
-				if (oEvt.getSource().getParent().getBindingContext().getProperty("UserName")) {
-					this.getView().getModel("appView").setProperty("/usernameEmpty", false);
-				}
-			}
-		},
-		onRefresh : function () {
-			...
-		},
+    onCreate() {
+      ...
+    },
+    onInputChange(evt) {
+      if (evt.getParameter("escPressed")) {
+        this._setUIChanges();
+      } else {
+        this._setUIChanges(true);
+        // Check if the username in the changed table row is empty and set the appView
+        // property accordingly
+        const ctx = evt.getSource().getParent()?.getBindingContext();
+        if (ctx && ctx.getProperty("UserName")) {
+          this.getView().getModel("appView").setProperty("/usernameEmpty", false);
+        }
+      }
+    },
+    onRefresh() {
+      ...
+    },
 ...
 ```
 
@@ -432,7 +432,7 @@ The `onInputChange` event handler manages entries in any of the `Input` fields a
               items="{
                 path: '/People',
                 parameters: {
-                $count: true,
+                  $count: true,
                   $$updateGroupId : 'peopleGroup'
                 }
               }">
@@ -444,7 +444,7 @@ The `onInputChange` event handler manages entries in any of the `Input` fields a
                       id="searchField"
                       width="20%"
                       placeholder="{i18n>searchFieldPlaceholder}"
-                      enabled="{= !${appView>/hasUIChanges}}"
+                      enabled="{= !${appView>/hasUIChanges} }"
                       search=".onSearch"/>
                     <Button
                       id="addUserButton"
@@ -455,17 +455,16 @@ The `onInputChange` event handler manages entries in any of the `Input` fields a
                         <OverflowToolbarLayoutData priority="NeverOverflow"/>
                       </layoutData>
                     </Button>
-
                     <Button
                       id="refreshUsersButton"
                       icon="sap-icon://refresh"
-                      enabled="{= !${appView>/hasUIChanges}}"
+                      enabled="{= !${appView>/hasUIChanges} }"
                       tooltip="{i18n>refreshButtonText}"
                       press=".onRefresh"/>
                     <Button
                       id="sortUsersButton"
                       icon="sap-icon://sort"
-                      enabled="{= !${appView>/hasUIChanges}}"
+                      enabled="{= !${appView>/hasUIChanges} }"
                       tooltip="{i18n>sortButtonText}"
                       press=".onSort"/>
                   </content>
@@ -492,7 +491,6 @@ The `onInputChange` event handler manages entries in any of the `Input` fields a
                       value="{UserName}"
                       valueLiveUpdate="true"
                       liveChange=".onInputChange"/>
-
                   </cells>
                   <cells>
                     <Input
@@ -529,7 +527,6 @@ The `onInputChange` event handler manages entries in any of the `Input` fields a
                 press=".onResetChanges"/>
             </Toolbar>
           </footer>
-
         </Page>
       </pages>
     </App>
@@ -556,11 +553,11 @@ saveButtonText=Save
 #XBUT: Button text for cancel
 cancelButtonText=Cancel
 
-#XBUT: Button text for add user
-createButtonText=Add User
-
 #XTOL: Tooltip for sort
 sortButtonText=Sort by Last Name
+
+#XBUT: Button text for add user
+createButtonText=Add User
 ...
 # Messages
 #XMSG: Message for user changes sent to the service

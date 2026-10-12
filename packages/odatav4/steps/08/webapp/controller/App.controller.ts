@@ -25,7 +25,7 @@ import type ODataListBinding from "sap/ui/model/odata/v4/ODataListBinding";
  */
 export default class App extends Controller {
 
-	private _bTechnicalErrors = false;
+	private _bTechnicalErrors: boolean;
 
 	/**
 	 *  Hook for initializing the controller
@@ -102,8 +102,8 @@ export default class App extends Controller {
 	/**
 	 * Lock UI when changing data in the input controls
 	 */
-	onInputChange(evt: Event): void {
-		if ((evt as unknown as { getParameter(n: string): unknown }).getParameter("escPressed")) {
+	onInputChange(evt: Event<{ escPressed: boolean }>): void {
+		if (evt.getParameter("escPressed")) {
 			this._setUIChanges();
 		} else {
 			this._setUIChanges(true);

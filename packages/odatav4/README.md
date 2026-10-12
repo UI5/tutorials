@@ -6,7 +6,7 @@ OData is a standard protocol for creating and consuming data using simple HTTP a
 
 We start with an initial app that simply retrieves data from an OData V4 service and displays it as a plain list, and progressively grow it across 11 steps.
 
-> 💡  
+> 💡
 > You don't have to do all tutorial steps sequentially, you can also jump directly to any step you want. Just download the code from the previous step, and start there.
 >
 > You can view and download the files for all steps in the Demo Kit at [OData V4](https://sdk.openui5.org/#/entity/sap.ui.core.tutorial.odatav4).

@@ -6,7 +6,7 @@ import ResourceModel from "sap/ui/model/resource/ResourceModel";
 import ResourceBundle from "sap/base/i18n/ResourceBundle";
 import Component from "sap/ui/core/Component";
 import List from "sap/m/List";
-import type ListBinding from "sap/ui/model/ListBinding";
+import type ODataListBinding from "sap/ui/model/odata/v4/ODataListBinding";
 
 /**
  * @namespace ui5.tutorial.odatav4.controller
@@ -33,7 +33,7 @@ export default class App extends Controller {
 	 * Refresh the data.
 	 */
 	onRefresh(): void {
-		const binding = (this.byId("peopleList") as List).getBinding("items") as unknown as { hasPendingChanges(): boolean; refresh(): void };
+		const binding = (this.byId("peopleList") as List).getBinding("items") as ODataListBinding;
 
 		if (binding.hasPendingChanges()) {
 			MessageBox.error(this._getText("refreshNotPossibleMessage"));

@@ -18,17 +18,19 @@ You can download the solution for this step here: <span class="ts-only">[📥 Do
 
 ```json
 ...
-        "": {
+      "": {
         "dataSource": "default",
+        "preload": true,
         "settings": {
           "autoExpandSelect": true,
-          "operationMode": "Server",
-          "groupId": "$auto"
+          "earlyRequests": true,
+          "operationMode": "Server"
         }
+      }
 ...
 ```
 
-In the previous steps, batch processing was turned off, so that we could monitor the network traffic between our app and the service more easily. Now we turn on batch processing by changing the `groupID` to `$auto`. You can also just remove the line from the code as this is the default.
+In the previous steps, batch processing was turned off, so that we could monitor the network traffic between our app and the service more easily. Now we turn on batch processing by changing the `groupId` to `$auto`. You can also just remove the line from the code as this is the default.
 
 We now run the app and open the browser developer tools. On the *Console* tab, we clear all messages and choose the *Refresh* button.
 

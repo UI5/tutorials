@@ -24,20 +24,13 @@ You can download the solution for this step here: <span class="ts-only">[📥 Do
   "sap.app": {...
   },
   "sap.ui": {
-    "technology": "UI5",
-    "deviceTypes": {
-
-    }
+    "technology": "UI5"
   },
   "sap.ui5": {
     "rootView": {
     ...
     },
     "dependencies": {
-      ...
-      }
-    },
-    "contentDensities": {
       ...
     },
     "handleValidation": true,
@@ -56,7 +49,7 @@ In the `manifest.json` descriptor file, we add the `"handleValidation": true` se
 We now run the app using the `index.html` file and enter values that don't match the type and constraints given in the metadata file. For example, enter the string value `Young at Heart` in field *Age*, which requires an integer input \(OpenUI5 type `sap.ui.model.odata.type.Int64`, corresponding to OData type `Edm.Int64`\), or remove an entry from the *User Name* or *First Name* fields, which are mandatory. Fields with incorrect entries are highlighted and an error message is displayed.
 
 > 📝
-> If you explicitly define a type in the binding info of a control, the automatic type detection for that binding will be turned off. For example, if you change the `Input` for `Age` in the view to `<Input value="{path:'Age', type:'sap.ui.model.type.String'}/>`, the `String` type will be used, not the `Int64` type from the service metadata.
+> If you explicitly define a type in the binding info of a control, the automatic type detection for that binding will be turned off. For example, if you change the `Input` for `Age` in the view to `<Input value="{path:'Age', type:'sap.ui.model.type.String'}"/>`, the `String` type will be used, not the `Int64` type from the service metadata.
 
 ### localService/metadata.xml
 
