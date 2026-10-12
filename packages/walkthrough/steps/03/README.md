@@ -18,20 +18,6 @@ You can access the live preview by clicking on this link: [🔗 Live Preview of 
 You can download the solution for this step here: <span class="ts-only">[📥 Download step 3](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-03.zip)<span class="lang-suffix"> (TS)</span></span><span class="js-only">[📥 Download step 3](https://ui5.github.io/tutorials/walkthrough/walkthrough-step-03-js.zip)<span class="lang-suffix"> (JS)</span></span>.
 ***
 
-<details class="ts-only" markdown="1">
-
-### Development Environment
-
-To get the type definitions for OpenUI5, we need to install them to our project. We open a terminal in the root folder of our app and exectue the following command:
-
-```sh
-npm install @openui5/types --save-dev
-```
-
-***
-
-</details>
-
 ### webapp/index.ts/.js
 
 <details class="ts-only" markdown="1">

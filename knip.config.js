@@ -23,7 +23,7 @@ const config = {
 		"ui5-middleware-serveframework",
 		"ui5-middleware-simpleproxy",
 		"ui5-tooling-transpile",
-		"@types/openui5",
+		"@openui5/types",
 		"@ui5/ts-interface-generator",
 
 		/**

@@ -1,6 +1,6 @@
 {
   "reject": [
-    "@types/openui5",
+    "@openui5/types",
     "@types/sinon"
   ]
 }

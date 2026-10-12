@@ -46,7 +46,7 @@ function getSteps(tutorialDir) {
 
 function removeTSfromPackageJSON(packageJson) {
 	delete packageJson.devDependencies.typescript;
-	delete packageJson.devDependencies["@types/openui5"];
+	delete packageJson.devDependencies["@openui5/types"];
 	delete packageJson.devDependencies["ui5-tooling-transpile"];
 	delete packageJson.devDependencies["@ui5/ts-interface-generator"];
 	delete packageJson.scripts.typecheck;

@@ -51,6 +51,11 @@ npm install typescript --save-dev
 
 By running this command, npm will download the TypeScript package from the npm registry and install it in our project's "node_modules" directory. It will also add an entry for TypeScript in the "devDependencies" section of our package.json file, so that other developers working on the project can easily install the same version of TypeScript.
 
+To get the type definitions for OpenUI5, we need to install them to our project. We open a terminal in the root folder of our app and exectue the following command:
+
+```sh
+npm install @openui5/types --save-dev
+```
 
 ### tsconfig.json \(New\)
 

@@ -46,14 +46,20 @@
 		},
 		{
 			"matchDepNames": [
+				"@openui5/types"
+			],
+			"overrideDatasource": "custom.openui5_lts"
+		},
+		{
+			"matchDepNames": [
 				"openui5_lts",
-				"@types/openui5"
+				"@openui5/types"
 			],
 			"automerge": false,
 			"groupName": "openui5",
 			"commitMessagePrefix": "deps:",
 			"commitMessageAction": "Update",
-			"minimumReleaseAge": "0 days",
+			"minimumReleaseAge": null,
 			"schedule": [
 				"* 8-16 * * 1"
 			]
