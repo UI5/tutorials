@@ -14,7 +14,7 @@
     "@openui5/types": "1.148.9",
     "@types/qunit": "2.5.4",
     "@ui5/cli": "^4.0.53",
-    "@ui5/ts-interface-generator": "^0.11.0",
+    "@ui5/ts-interface-generator": "^0.12.0",
     "local-web-server": "^5.4.0",
     "typescript": "^6.0.3",
     "ui5-middleware-livereload": "^3.3.1",
