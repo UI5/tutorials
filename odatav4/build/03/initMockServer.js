@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageBox","./localService/mockserver"],function(e,n){"use strict";function t(e){return e&&e.__esModule&&typeof e.default!=="undefined"?e.default:e}function o(e){return new Promise(function(n,t){sap.ui.require([e],function(t){if(!(t&&t.__esModule)){t=t===null||!(typeof t==="object"&&e.endsWith("/library"))?{default:t}:t;Object.defineProperty(t,"__esModule",{value:true})}n(t)},function(e){t(e)})})}const u=t(n);u.init().catch(n=>{e.error(n.message)}).finally(()=>{void o("sap/ui/core/ComponentSupport")})});
+//# sourceMappingURL=initMockServer.js.map

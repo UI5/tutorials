@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(n){"use strict";const t=n.extend("ui5.tutorial.navigation.controller.NotFound",{onInit:function n(){}});return t});
+//# sourceMappingURL=NotFound.controller.js.map

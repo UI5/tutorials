@@ -1,0 +1,16 @@
+{
+  "name": "ui5.tutorial.odatav4.step08",
+  "version": "1.0.0",
+  "author": "SAP SE",
+  "description": "OpenUI5 TypeScript Tutorial — OData V4: Step 8 — OData Operations",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve -o index.html"
+  },
+  "devDependencies": {
+    "@types/qunit": "2.5.4",
+    "@ui5/cli": "^4.0.53",
+    "ui5-middleware-livereload": "^3.3.1",
+    "ui5-middleware-serveframework": "^3.8.1"
+  }
+}
