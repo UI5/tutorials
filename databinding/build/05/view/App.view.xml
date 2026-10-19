@@ -1,0 +1,34 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	core:require="{ColumnLayout:'sap/ui/layout/form/ColumnLayout'}">
+	<Panel
+		headerText="{/panelHeaderText}"
+		class="sapUiResponsiveMargin"
+		width="auto">
+		<form:SimpleForm
+			editable="true"
+			layout="ColumnLayout">
+			<Label
+				text="First Name"/>
+			<Input
+				value="{/firstName}"
+				valueLiveUpdate="true"
+				width="200px"
+				enabled="{/enabled}"/>
+			<Label
+				text="Last Name"/>
+			<Input
+				value="{/lastName}"
+				valueLiveUpdate="true"
+				width="200px"
+				enabled="{/enabled}"/>
+			<Label
+				text="Enabled"/>
+			<CheckBox
+				selected="{/enabled}"/>
+		</form:SimpleForm>
+	</Panel>
+</mvc:View>
