@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/model/json/JSONModel","sap/ui/model/Filter","sap/ui/model/FilterOperator"],function(e,t,i,n){"use strict";const o=e.extend("ui5.tutorial.walkthrough.controller.App",{onInit:function e(){const i=new t({currency:"EUR"});this.getView()?.setModel(i,"view")},onFilterInvoices:function e(t){const o=[];const r=t.getParameter("query");if(r){o.push(new i("ProductName",n.Contains,r))}const s=this.byId("invoiceList");const c=s?.getBinding("items");c?.filter(o)}});return o});
+//# sourceMappingURL=InvoiceList.controller.js.map

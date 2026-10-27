@@ -1,0 +1,33 @@
+{
+  "tutorial": "quickstart",
+  "namespace": "ui5.tutorial.quickstart",
+  "steps": [
+    {
+      "n": 1,
+      "id": "01",
+      "title": "Ready...",
+      "previewUrl": "https://ui5.github.io/tutorials/quickstart/build/01/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/quickstart/quickstart-step-01.zip",
+      "zipJs": "https://ui5.github.io/tutorials/quickstart/quickstart-step-01-js.zip",
+      "description": "Let's get you ready for your journey! We bootstrap OpenUI5 in an HTML page and implement a simple \"Hello World\" example."
+    },
+    {
+      "n": 2,
+      "id": "02",
+      "title": "Steady...",
+      "previewUrl": "https://ui5.github.io/tutorials/quickstart/build/02/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/quickstart/quickstart-step-02.zip",
+      "zipJs": "https://ui5.github.io/tutorials/quickstart/quickstart-step-02-js.zip",
+      "description": "Now we extend our minimalist HTML page to a basic app with a view and a controller."
+    },
+    {
+      "n": 3,
+      "id": "03",
+      "title": "Go!",
+      "previewUrl": "https://ui5.github.io/tutorials/quickstart/build/03/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/quickstart/quickstart-step-03.zip",
+      "zipJs": "https://ui5.github.io/tutorials/quickstart/quickstart-step-03-js.zip",
+      "description": "Finally, we add a second page to our app showcasing some of the key OpenUI5 concepts."
+    }
+  ]
+}
