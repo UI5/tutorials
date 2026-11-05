@@ -1,6 +1,7 @@
 {
   "tutorial": "agentic",
   "namespace": "ui5.tutorial.agentic",
+  "sources": false,
   "steps": [
     {
       "n": 1,
