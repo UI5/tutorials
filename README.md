@@ -4,7 +4,7 @@
 
 These tutorials cover [OpenUI5](https://sdk.openui5.org/#/topic/ec699e0817fb46a0817b0fa276a249f8) application development, from beginner foundations to focused deep dives on specific concepts. Along the way you'll also use the [UI5 CLI](https://ui5.github.io/cli/stable/) for local development tooling.
 
-All tutorials (everything except Agentic Development) are available in both **TypeScript** and **JavaScript** — use the language toggle at the top of each tutorial page to switch between versions. The Agentic Development tutorial is documentation-only and walks through both languages as part of its workflow rather than offering a toggle.
+Most tutorials are available in both **TypeScript** and **JavaScript** — use the language toggle at the top of each tutorial page to switch between versions. The UI5 linter tutorial is documentation-only and JavaScript-based; it has no language toggle. The Agentic Development tutorial is also documentation-only and walks through both languages as part of its workflow rather than offering a toggle.
 
 No prior OpenUI5 experience is needed. Basic familiarity with HTML, CSS, and JavaScript (or TypeScript) is assumed.
 
@@ -17,6 +17,7 @@ No prior OpenUI5 experience is needed. Basic familiarity with HTML, CSS, and Jav
 | [Data Binding](./packages/databinding/) | Deep dive | Explores the core binding modes in depth along with formatting, data types, and validation. |
 | [Navigation and Routing](./packages/navigation/) | Deep dive | Covers the core routing API through a realistic employee app: URL parameters, transitions, bookmarkable states, lazy loading, and error handling. |
 | [OData V4](./packages/odatav4/) | Deep dive | Builds a list/detail app against an OData V4 service covering CRUD operations, filtering, sorting, batch groups, and OData actions. |
+| [UI5 Linter](./packages/linter/) | Tooling | Detects deprecated APIs, outdated themes, missing CSP compliance, and other issues in a OpenUI5 application; a subset of findings can be resolved automatically with the built-in autofix. |
 | [Agentic Development](./packages/agentic/) | Agentic | Use Claude Code CLI or GitHub Copilot CLI with the UI5 plugin to create, convert, and modernize OpenUI5 apps grounded in the live API reference and best-practice guidelines. |
 
 The live published site is at **<https://ui5.github.io/tutorials/>**.
@@ -30,13 +31,13 @@ packages/
   steps/        # One self-contained app per step (documentation-only tutorials hold just a README per step)
 ```
 
-Each step under `steps/` in a code-bearing tutorial is a standalone npm workspace package named `ui5.tutorial.<name>.stepNN`. The Agentic Development tutorial is documentation-only: its steps are READMEs (with optional starter code under `apps/`) and are not workspace packages.
+Each step under `steps/` in a code-bearing tutorial is a standalone npm workspace package named `ui5.tutorial.<name>.stepNN`. Two tutorials are documentation-only and not workspace packages: the UI5 Linter tutorial (step READMEs only, no runnable app per step) and the Agentic Development tutorial (step READMEs with optional starter code under `apps/`).
 
 The JS/TS language toggle is implemented via CSS classes (`ts-only`, `js-only`) on elements in the markdown source. The local dev server and the GitHub Pages site both apply the toggle at render time. On plain github.com those elements render as standard collapsed HTML details.
 
 ## Running locally
 
-The repository is set up as an npm workspaces monorepo. Each step of a code-bearing tutorial under `packages/*/steps/*` is a self-contained app you can run standalone, and the root build orchestrator produces a unified preview that mirrors the published GitHub Pages site. The documentation-only Agentic Development tutorial has no runnable steps — `npm run build` renders its READMEs but builds no apps for it.
+The repository is set up as an npm workspaces monorepo. Each step of a code-bearing tutorial under `packages/*/steps/*` is a self-contained app you can run standalone, and the root build orchestrator produces a unified preview that mirrors the published GitHub Pages site. The documentation-only UI5 Linter and Agentic Development tutorials have no runnable steps — `npm run build` renders their READMEs but builds no apps for them.
 
 **Prerequisites:** 
 Node.js 20.11.0 or higher, or v22 or higher (v21 is not supported). The UI5 CLI is installed automatically as part of `npm install`. 

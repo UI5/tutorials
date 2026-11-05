@@ -1,0 +1,64 @@
+{
+	"_version": "1.76.0",
+	"sap.app": {
+		"id": "sap.ui.demo.todo",
+		"type": "application",
+		"dataSources": {
+			"businessData": {
+				"uri": "/api/odata-4/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		}
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.136.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ui.commons": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"rootView": {
+			"viewName": "sap.ui.demo.todo.view.App",
+			"type": "XML",
+			"id": "app",
+			"async": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.ui.demo.todo.i18n.i18n",
+					"async": true
+				}
+			},
+			"": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/todoitems.json"
+			},
+			"businessData": {
+				"dataSource": "businessData",
+				"settings": {
+					"synchronizationMode": "None"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/styles.css"
+				}
+			],
+			"js": []
+		}
+	}
+}
