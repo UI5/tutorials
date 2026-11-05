@@ -1,6 +1,6 @@
 # Repository Guide for AI Agents
 
-This repository ships five OpenUI5 tutorials rendered as a GitHub Pages site with a client-side JavaScript / TypeScript language toggle. Every tutorial step is a self-contained, runnable UI5 app under `packages/<tutorial>/steps/NN/`. This document tells an agent enough about the layout, the toolchain, and the authoring conventions to be useful without re-deriving everything from source.
+This repository ships six OpenUI5 tutorials rendered as a GitHub Pages site with a client-side JavaScript / TypeScript language toggle. Every tutorial step is a self-contained, runnable UI5 app under `packages/<tutorial>/steps/NN/`. This document tells an agent enough about the layout, the toolchain, and the authoring conventions to be useful without re-deriving everything from source.
 
 ## Layout
 
@@ -9,6 +9,7 @@ This repository ships five OpenUI5 tutorials rendered as a GitHub Pages site wit
 - `packages/databinding/` — 15 steps on data binding (JSON & resource models, property/two-way/one-way/aggregation/element/expression binding, formatters, data types, validation).
 - `packages/navigation/` — 17 steps on routing and navigation.
 - `packages/odatav4/` — 11 steps on OData V4.
+- `packages/agentic/` — 5 steps on agentic UI5 development with Claude Code CLI and the UI5 plugin.
 - `packages/<pkg>/README.md` — the tutorial's overview and step index.
 - `packages/<pkg>/steps.json` — machine-readable index of the tutorial's steps (`n`, `id`, `title`, `description`, `previewUrl`, `zipTs`, `zipJs`). Regenerate with `node _/generate-steps-index.js` after adding, removing, or renaming steps.
 - `packages/<pkg>/steps/NN/` — one runnable app per step. Contains `README.md`, `webapp/`, `package.json`, `ui5.yaml`, and (for TS steps) `tsconfig.json`.
@@ -46,7 +47,7 @@ Rely on `npm start -w <workspace>` when you need to see a specific step in a bro
 
 ## Tutorial namespace and package naming
 
-All five tutorials share one convention:
+All tutorials share one convention:
 
 - App namespace: `ui5.tutorial.<pkg>` (used in `manifest.json` `sap.app.id`, `Controller` names, XML `controllerName`, `index.html` resource-roots, and JSDoc `@namespace`).
 - Per-step `package.json` name: `ui5.tutorial.<pkg>.stepNN` (zero-padded).
@@ -88,9 +89,10 @@ The steps are *pedagogical*, not *canonical*. Step 01 of each tutorial is delibe
 - **Routing / navigation questions** → [packages/navigation/steps/17/](packages/navigation/steps/17/) is the full picture. Walkthrough steps 30–32 are a routing subset (single-page → detail flow) and will mislead if the user needs deep-linking, unmatched routes, or target lifecycle.
 - **OData V4** → [packages/odatav4/steps/11/](packages/odatav4/steps/11/) covers CRUD, batch groups, operations, list-detail, and `:n` navigation. **The tutorial's data layer is a mock server simulating TripPin — do not cargo-cult `webapp/localService/` into an answer about connecting to a real backend.** Point the user at a real OData destination and keep only the model/binding code from the tutorial.
 - **First-15-minutes demo, not a project starter** → [packages/quickstart/](packages/quickstart/) is 3 steps and stops before Component/manifest wiring. Use it to *show* UI5, not to *scaffold* from.
+- **Agentic UI5 development** → [packages/agentic/](packages/agentic/) covers using Claude Code CLI with the UI5 plugin to create, convert, modernize, and extend OpenUI5 apps. **The tutorial steps are task-driven exercises, not self-contained runnable apps.** Do not reference its steps as code examples for UI5 patterns; use the other tutorials for that.
 - **Tooling handshake** ([npm install](packages/walkthrough/steps/01/README.md), `ui5 init`, `ui5 use OpenUI5`, `ui5 add sap.ui.core themelib_sap_horizon`, `tsconfig.json`) — always take these from [walkthrough/steps/01](packages/walkthrough/steps/01/README.md) + [walkthrough/steps/02](packages/walkthrough/steps/02/README.md). They are the only steps that document setup from scratch.
 
-Out of scope for this repo — do not invent code claiming these are covered here: CAP / CDS backends, Fiori elements, BTP / Cloud Foundry / ABAP deployment, `easy-ui5` / `generator-ui5-*` scaffolding, CI setup, real authentication.
+Out of scope for this repo — do not invent code claiming these are covered here: Fiori elements, BTP / Cloud Foundry / ABAP deployment, `easy-ui5` / `generator-ui5-*` scaffolding, CI setup, real authentication. (`packages/agentic/steps/02` includes a CAP mock service as a local data source; that is the only place CAP appears and it is not a CAP tutorial.)
 
 ### Reading the markdown correctly
 
