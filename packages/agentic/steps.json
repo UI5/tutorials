@@ -1,0 +1,36 @@
+{
+  "tutorial": "agentic",
+  "namespace": "ui5.tutorial.agentic",
+  "steps": [
+    {
+      "n": 1,
+      "id": "01",
+      "title": "Getting Started — Claude Code CLI & the UI5 Plugin",
+      "description": "Set up Claude Code with the UI5 plugin and confirm the agent is grounded in the OpenUI5 API reference."
+    },
+    {
+      "n": 2,
+      "id": "02",
+      "title": "Create & Enhance a New OpenUI5 Application in JavaScript",
+      "description": "Scaffold a OpenUI5 app wired to an OData V4 service, add a table, a detail form, i18n texts, and a formatter."
+    },
+    {
+      "n": 3,
+      "id": "03",
+      "title": "Convert a JavaScript OpenUI5 Project to TypeScript",
+      "description": "Use the UI5 TypeScript conversion skill to migrate the app to TypeScript and fix remaining type errors."
+    },
+    {
+      "n": 4,
+      "id": "04",
+      "title": "Modernize a Legacy OpenUI5 Project",
+      "description": "Run the phased UI5 Modernization workflow on a deliberately legacy app and verify each phase with the UI5 linter."
+    },
+    {
+      "n": 5,
+      "id": "05",
+      "title": "Create a Custom Control in TypeScript (optional)",
+      "description": "Build a reusable, accessible, CSP-safe custom control with a typed metadata object and a modern apiVersion: 2 renderer."
+    }
+  ]
+}
