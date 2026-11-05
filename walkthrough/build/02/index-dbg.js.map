@@ -1,0 +1,1 @@
+{"version":3,"file":"index-dbg.js","names":["alert"],"sourceRoot":"/home/runner/work/tutorials/tutorials/packages/walkthrough/steps/02","sources":["index.ts"],"sourcesContent":["alert(\"UI5 is ready\");\n"],"mappings":"AAAAA,KAAK,CAAC,cAAc,CAAC","ignoreList":[]}

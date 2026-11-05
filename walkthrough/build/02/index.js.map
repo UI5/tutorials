@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","names":["alert"],"sources":["/home/runner/work/tutorials/tutorials/packages/walkthrough/steps/02/index.ts"],"sourcesContent":["alert(\"UI5 is ready\");\n"],"mappings":"AAAAA,MAAM","ignoreList":[]}
