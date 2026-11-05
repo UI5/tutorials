@@ -17,6 +17,7 @@ No prior OpenUI5 experience is needed. Basic familiarity with HTML, CSS, and Jav
 | [Data Binding](./packages/databinding/) | Deep dive | Explores the core binding modes in depth along with formatting, data types, and validation. |
 | [Navigation and Routing](./packages/navigation/) | Deep dive | Covers the core routing API through a realistic employee app: URL parameters, transitions, bookmarkable states, lazy loading, and error handling. |
 | [OData V4](./packages/odatav4/) | Deep dive | Builds a list/detail app against an OData V4 service covering CRUD operations, filtering, sorting, batch groups, and OData actions. |
+| [UI5 Linter](./packages/linter/) | Tooling | Modernizes a legacy application end-to-end using UI5 linter: first analysis, auto-fix, manual fixes for deprecated APIs, themes, libraries, CSP, and test setup. |
 
 The live published site is at **<https://ui5.github.io/tutorials/>**.
 

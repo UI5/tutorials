@@ -1,0 +1,49 @@
+{
+  "tutorial": "linter",
+  "namespace": "ui5.tutorial.linter",
+  "sources": false,
+  "steps": [
+    {
+      "n": 1,
+      "id": "01",
+      "title": "Introduction & Setup",
+      "description": "Learn what UI5 linter is, install it, and set up the demo project you will modernize throughout this tutorial."
+    },
+    {
+      "n": 2,
+      "id": "02",
+      "title": "Running UI5 linter — First Analysis",
+      "description": "Run the linter for the first time, explore the 53 findings in the legacy demo app, and use the --details flag to understand each issue."
+    },
+    {
+      "n": 3,
+      "id": "03",
+      "title": "Understanding Linter Rules",
+      "description": "Survey the rule categories, learn which findings can be auto-fixed and which require manual changes, and understand why deprecated patterns matter."
+    },
+    {
+      "n": 4,
+      "id": "04",
+      "title": "Auto-fixing Issues",
+      "description": "Run ui5lint --fix to apply automatic fixes, inspect what changed with git diff, and learn which issues are blocked until manual fixes are in place."
+    },
+    {
+      "n": 5,
+      "id": "05",
+      "title": "Manual Fixes",
+      "description": "Migrate the controller to sap.ui.define(), fix global variable access, replace deprecated themes and libraries, update the manifest version, resolve CSP violations, and migrate to the Test Starter concept."
+    },
+    {
+      "n": 6,
+      "id": "06",
+      "title": "Best Practices",
+      "description": "Integrate UI5 linter into your development workflow and CI/CD pipeline to prevent regressions."
+    },
+    {
+      "n": 7,
+      "id": "07",
+      "title": "Appendix: Legacy Patterns Reference",
+      "description": "Full reference table of all 53 legacy findings in the demo app, organized by file."
+    }
+  ]
+}
