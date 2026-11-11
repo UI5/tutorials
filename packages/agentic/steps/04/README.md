@@ -55,6 +55,10 @@ Then open Claude Code:
 claude
 ```
 
+> 📝
+> `legacy` is a new folder, so Claude Code asks you to trust it on launch (see
+> [Step 1 → section 1.4](../01/README.md#14-launch-claude-code)); confirm to proceed.
+
 ## 4.2 Take a baseline linter reading
 
 > 💡

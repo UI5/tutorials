@@ -264,9 +264,18 @@ The control CSS must be loaded as an external file, not as inline `<style>` cont
 
 ## General Agent / Claude Code Questions
 
+**Q: When I start Claude Code in a new folder it asks me to trust the files there. Is that safe, and why does it keep happening?**
+
+That is the folder-trust prompt (introduced in [Step 1 → section 1.4](steps/01/README.md#14-launch-claude-code)). Claude Code shows it the first time you start it in a directory it hasn't seen, because it may read and run files in that folder. It is a control checkpoint, not an error. For this tutorial every folder is one you created or extracted yourself, so confirm to proceed. The choice is remembered per folder, which is why you only see it once per folder, then again for each new folder a later step introduces (the `apps` folder in Step 2, `products-ts` in Step 3, `legacy` in Step 4).
+
+---
+
 **Q: Claude Code keeps asking for permission to run a tool I want it to use freely.**
 
-You can approve a tool for the whole session by selecting "Always allow" in the permission prompt, or configure per-project permissions. For read-only operations (linter, API reference, manifest validation) it is safe to allow them session-wide.
+The first time a given tool runs, Claude Code asks permission (allow once / allow and don't ask again / reject). To stop the repeat prompts, choose **allow and don't ask again** for that tool. For the read-only UI5 MCP tools (`get_api_reference`, `run_ui5_linter`, `run_manifest_validation`, `get_version_info`, …) that is safe. You can review or change these decisions any time with `/permissions`.
+
+> 📝
+> Running `claude --dangerously-skip-permissions` bypasses *all* prompts for the session. It exists for unattended/CI use; do **not** use it while following this tutorial. The point here is to review what the agent does, and the prompts are how you do that.
 
 ---
 

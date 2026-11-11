@@ -46,6 +46,10 @@ cd ~/apps
 claude
 ```
 
+> 📝
+> This is a new folder, so Claude Code asks you to trust it on launch (see
+> [Step 1 → section 1.4](../01/README.md#14-launch-claude-code)); confirm to proceed.
+
 > 💡
 > **Task:** Ask Claude Code to scaffold the application:
 > ```

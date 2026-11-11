@@ -80,6 +80,14 @@ From a project directory where you want to work:
 claude
 ```
 
+> 📝
+> **First launch in a folder: the trust prompt.** The first time you start Claude Code in a
+> directory it hasn't seen before, it asks you to confirm you trust the files there (it may read
+> and run them). This is part of staying in control: you decide what the agent is allowed to touch.
+> For this tutorial, you created the folder yourself, so confirm to proceed. Claude remembers the
+> choice per folder, so you won't be asked again for this one, but you *will* see it again each time
+> a later step has you start Claude Code in a new folder.
+
 > 💡
 > **Task:** Confirm the UI5 MCP server tools are available. Ask Claude Code:
 > ```
@@ -103,6 +111,15 @@ claude
 > ```
 >
 > Watch it call the `get_version_info` tool to look up the latest OpenUI5 release.
+
+> 📝
+> **First tool call: the permission prompt.** The first time Claude Code runs a given tool (here a
+> UI5 MCP server tool), it asks for your permission, offering roughly: allow once, allow and don't
+> ask again for this tool, or reject. This is the same "you approve what the agent does" control as
+> the folder-trust prompt. The UI5 MCP tools (`get_version_info`, `get_api_reference`,
+> `run_ui5_linter`, `run_manifest_validation`, …) are read-only lookups and validators, so choosing
+> **allow and don't ask again** for them is safe and spares you a prompt on every call through the
+> rest of the tutorial. You can review or change these choices later with `/permissions`.
 
 ## Verify
 

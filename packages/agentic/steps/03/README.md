@@ -41,6 +41,10 @@ claude --disallowedTools "mcp__plugin_ui5_ui5-mcp-server__get_typescript_convers
 ```
 
 > 📝
+> `products-ts` is a new folder, so Claude Code asks you to trust it on launch (see
+> [Step 1 → section 1.4](../01/README.md#14-launch-claude-code)); confirm to proceed.
+
+> 📝
 > The conversion **skill** owns the full setup (dependencies, `tsconfig.json`, `ui5.yaml` transpile
 > config, ES-module conversion). The UI5 MCP server also exposes a TypeScript-conversion guideline
 > tool — disabling it prevents overlap so the skill drives the conversion end-to-end.
