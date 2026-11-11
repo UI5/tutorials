@@ -53,10 +53,9 @@ claude
 > 💡
 > **Task:** Ask Claude Code to scaffold the application:
 > ```
-> Create a new OpenUI5 application in JavaScript with namespace `ui5.tutorial.agentic.products`
-> inside the `cap-mock/app` folder.
+> Create a new OpenUI5 application in JavaScript with namespace `ui5.tutorial.agentic.products` inside a new `app` folder.
 > Wire it to the OData V4 service at `http://localhost:4004/odata/v4/catalog/` and the `Products` entity set.
-> Leverage `cds-plugin-ui5` (https://github.com/ui5-community/ui5-ecosystem-showcase/tree/main/packages/cds-plugin-ui5).
+> Configure `cds-plugin-ui5` (https://github.com/ui5-community/ui5-ecosystem-showcase/tree/main/packages/cds-plugin-ui5) so the OpenUI5 app is served alongside the CAP service.
 > ```
 
 Inspect the generated project. Notice the modern defaults the tool applies:
