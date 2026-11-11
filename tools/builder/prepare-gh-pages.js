@@ -124,11 +124,15 @@ function removeTSfromUI5YAML(ui5yaml) {
 		});
 		return content;
 	}
-	function rewriteLinks(file) {
+	function rewriteLinks(file, languageToggle = true) {
 		let permalink = file.split("dist/")[1].replace(".md", ".html");
 		const title = "OpenUI5 Tutorials";
 		const breadcrumb = breadcrumbFor(permalink);
-		let content = `---\ntitle: ${title}\npermalink: ${permalink}\n---\n\n${breadcrumb}${readFileSync(file, { encoding: "utf8"})}`;
+		// Documentation-only tutorials ("sources": false) have no TS/JS variants,
+		// so the global language switch is suppressed via a hidden marker the
+		// client-side runtime (assets/js/custom.js) checks for.
+		const marker = languageToggle ? "" : `<div data-no-language-toggle hidden></div>\n\n`;
+		let content = `---\ntitle: ${title}\npermalink: ${permalink}\n---\n\n${marker}${breadcrumb}${readFileSync(file, { encoding: "utf8"})}`;
 		content = content.replace(/README\.md/g, "index.html");
 		content = content.replace(/\.\/packages\//g, "./");
 		content = content.replace(/\[LICENSE\]\([\.\/\w]*\)/g, "[LICENSE](https://github.com/UI5/tutorials/blob/-/LICENSE)");
@@ -171,6 +175,9 @@ function removeTSfromUI5YAML(ui5yaml) {
 		const distTutorialDir = join(cwd, "dist", tutorial);
 		const steps = getSteps(tutorialDir);
 
+		const stepsJsonPath = join(tutorialDir, "steps.json");
+		const hasSources = !existsSync(stepsJsonPath) || JSON.parse(readFileSync(stepsJsonPath, { encoding: "utf8" })).sources !== false;
+
 		console.log(`\n📦 Processing tutorial: ${tutorial} (${steps.length} steps)`);
 
 		mkdirSync(distTutorialDir, { recursive: true });
@@ -178,7 +185,16 @@ function removeTSfromUI5YAML(ui5yaml) {
 		console.log(`  👉 Copying tutorial README.md...`);
 		if (existsSync(join(tutorialDir, "README.md"))) {
 			copyFileSync(join(tutorialDir, "README.md"), join(distTutorialDir, "index.md"));
-			rewriteLinks(join(distTutorialDir, "index.md"));
+			rewriteLinks(join(distTutorialDir, "index.md"), hasSources);
+		}
+
+		const extraMarkdown = fg.globSync(["*.md"], { cwd: tutorialDir }).filter(f => f !== "README.md");
+		if (extraMarkdown.length > 0) {
+			console.log(`  👉 Copying extra markdown files: ${extraMarkdown.join(", ")}...`);
+			extraMarkdown.forEach((mdFile) => {
+				copyFileSync(join(tutorialDir, mdFile), join(distTutorialDir, mdFile));
+				rewriteLinks(join(distTutorialDir, mdFile), hasSources);
+			});
 		}
 
 		if (existsSync(join(tutorialDir, "steps.json"))) {
@@ -194,23 +210,27 @@ function removeTSfromUI5YAML(ui5yaml) {
 			});
 		}
 
-		console.log(`  👉 Zipping TypeScript sources...`);
-		await Promise.all(steps.map((step) => {
-			return zipDirectory(
-				join(tutorialDir, "steps", step),
-				join(distTutorialDir, `${tutorial}-step-${step}.zip`)
-			);
-		}));
+		if (hasSources) {
+			console.log(`  👉 Zipping TypeScript sources...`);
+			await Promise.all(steps.map((step) => {
+				return zipDirectory(
+					join(tutorialDir, "steps", step),
+					join(distTutorialDir, `${tutorial}-step-${step}.zip`)
+				);
+			}));
+		}
 
 		const buildDir = join(distTutorialDir, "build");
 		mkdirSync(buildDir, { recursive: true });
 
-		console.log(`  👉 Building steps...`);
-		for (const step of steps) {
-			console.log(`    👉 Building step ${step}...`);
-			await execute(`npx ui5 build --dest ${join(buildDir, step)}`, {
-				cwd: join(tutorialDir, "steps", step)
-			});
+		if (hasSources) {
+			console.log(`  👉 Building steps...`);
+			for (const step of steps) {
+				console.log(`    👉 Building step ${step}...`);
+				await execute(`npx ui5 build --dest ${join(buildDir, step)}`, {
+					cwd: join(tutorialDir, "steps", step)
+				});
+			}
 		}
 
 		console.log(`  👉 Copying step README.md files...`);
@@ -219,7 +239,7 @@ function removeTSfromUI5YAML(ui5yaml) {
 			const [, path, step] = readme.match("steps/((.*)/README.md)");
 			mkdirSync(join(buildDir, step), { recursive: true });
 			copyFileSync(join(tutorialDir, readme), join(buildDir, path));
-			rewriteLinks(join(buildDir, path));
+			rewriteLinks(join(buildDir, path), hasSources);
 		});
 
 		console.log(`  🌅 Copying step assets...`);
@@ -230,59 +250,61 @@ function removeTSfromUI5YAML(ui5yaml) {
 			copyFileSync(join(tutorialDir, "steps", step, "assets", assetFile), join(buildDir, step, "assets", assetFile));
 		});
 
-		console.log(`  👉 Generating JavaScript sources...`);
-		await Promise.all(steps.map((step) => {
-			const jsStepBaseDir = join(tutorialDir, "steps", step);
-			const buildOutputDir = join(buildDir, step);
-			const targetDir = join(distTutorialDir, "steps", step);
+		if (hasSources) {
+			console.log(`  👉 Generating JavaScript sources...`);
+			await Promise.all(steps.map((step) => {
+				const jsStepBaseDir = join(tutorialDir, "steps", step);
+				const buildOutputDir = join(buildDir, step);
+				const targetDir = join(distTutorialDir, "steps", step);
 
-			console.log(`    👉 Generating sources for step ${step}...`);
+				console.log(`    👉 Generating sources for step ${step}...`);
 
-			const files = fg.sync(["**/*"], { cwd: jsStepBaseDir, dot: true });
-			files.forEach((file) => {
-				const source = join(jsStepBaseDir, file);
-				const target = join(targetDir, file);
-				if (file.endsWith(".ts") && file.startsWith("webapp")) {
-					const outputFile = file.substring(7, file.length - 3);
-					let sourceJS;
-					if (file.endsWith("controller.ts")) {
-						sourceJS = join(buildOutputDir, `${outputFile.substring(0, outputFile.length - 11)}-dbg.controller.js`);
-					} else if (!file.endsWith(".d.ts")) {
-						sourceJS = join(buildOutputDir, `${outputFile}-dbg.js`);
-					}
-
-					if (!file.endsWith(".d.ts")) {
-						if (existsSync(sourceJS)) {
-							const targetJS = target.replace(/\.ts$/, ".js");
-							mkdirSync(dirname(targetJS), { recursive: true });
-							let content = readFileSync(sourceJS, { encoding: "utf8" });
-							content = sanitize(content);
-							writeFileSync(targetJS, content, { encoding: "utf8" });
-						} else {
-							console.error("No JS file found for", source);
+				const files = fg.sync(["**/*"], { cwd: jsStepBaseDir, dot: true });
+				files.forEach((file) => {
+					const source = join(jsStepBaseDir, file);
+					const target = join(targetDir, file);
+					if (file.endsWith(".ts") && file.startsWith("webapp")) {
+						const outputFile = file.substring(7, file.length - 3);
+						let sourceJS;
+						if (file.endsWith("controller.ts")) {
+							sourceJS = join(buildOutputDir, `${outputFile.substring(0, outputFile.length - 11)}-dbg.controller.js`);
+						} else if (!file.endsWith(".d.ts")) {
+							sourceJS = join(buildOutputDir, `${outputFile}-dbg.js`);
 						}
-					}
-				} else if(file === "package.json") {
-					const packageJson = removeTSfromPackageJSON(JSON.parse(readFileSync(source, { encoding: "utf8" })));
-					writeFileSync(target, JSON.stringify(packageJson, null, 2), { encoding: "utf8" });
-				} else if(file.endsWith(".yaml")) {
-					const ui5yaml = removeTSfromUI5YAML(yaml.load(readFileSync(source, { encoding: "utf8" })));
-					writeFileSync(target, yaml.dump(ui5yaml));
-				} else if (file.endsWith("README.md")) {
-					let content = escapeCodeBlocks(readFileSync(source, { encoding: "utf8"}));
-					mkdirSync(dirname(target), { recursive: true });
-					writeFileSync(target, content, { encoding: "utf8" });
-				} else if (file !== "tsconfig.json") {
-					mkdirSync(dirname(target), { recursive: true });
-					copyFileSync(source, target);
-				}
-			});
 
-			return zipDirectory(
-				join(distTutorialDir, "steps", step),
-				join(distTutorialDir, `${tutorial}-step-${step}-js.zip`)
-			);
-		}));
+						if (!file.endsWith(".d.ts")) {
+							if (existsSync(sourceJS)) {
+								const targetJS = target.replace(/\.ts$/, ".js");
+								mkdirSync(dirname(targetJS), { recursive: true });
+								let content = readFileSync(sourceJS, { encoding: "utf8" });
+								content = sanitize(content);
+								writeFileSync(targetJS, content, { encoding: "utf8" });
+							} else {
+								console.error("No JS file found for", source);
+							}
+						}
+					} else if(file === "package.json") {
+						const packageJson = removeTSfromPackageJSON(JSON.parse(readFileSync(source, { encoding: "utf8" })));
+						writeFileSync(target, JSON.stringify(packageJson, null, 2), { encoding: "utf8" });
+					} else if(file.endsWith(".yaml")) {
+						const ui5yaml = removeTSfromUI5YAML(yaml.load(readFileSync(source, { encoding: "utf8" })));
+						writeFileSync(target, yaml.dump(ui5yaml));
+					} else if (file.endsWith("README.md")) {
+						let content = escapeCodeBlocks(readFileSync(source, { encoding: "utf8"}));
+						mkdirSync(dirname(target), { recursive: true });
+						writeFileSync(target, content, { encoding: "utf8" });
+					} else if (file !== "tsconfig.json") {
+						mkdirSync(dirname(target), { recursive: true });
+						copyFileSync(source, target);
+					}
+				});
+
+				return zipDirectory(
+					join(distTutorialDir, "steps", step),
+					join(distTutorialDir, `${tutorial}-step-${step}-js.zip`)
+				);
+			}));
+		}
 	}
 
 }());

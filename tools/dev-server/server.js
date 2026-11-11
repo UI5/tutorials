@@ -85,6 +85,30 @@ function breadcrumbFor(reqPath) {
 	);
 }
 
+/**
+ * Documentation-only tutorials (steps.json `"sources": false`)
+ * have no TS/JS source variants, so the global language switch is suppressed.
+ * Mirror the production builder by injecting the hidden marker that
+ * assets/js/custom.js checks for. Returns "" for pages that keep the toggle.
+ */
+function languageToggleMarkerFor(reqPath) {
+	const match = reqPath.match(/^\/packages\/([^/]+)\//);
+	if (!match) {
+		return "";
+	}
+	const stepsJson = join(cwd, "packages", match[1], "steps.json");
+	if (existsSync(stepsJson)) {
+		try {
+			if (JSON.parse(readFileSync(stepsJson, { encoding: "utf-8" })).sources === false) {
+				return `<div data-no-language-toggle hidden></div>\n`;
+			}
+		} catch {
+			// malformed steps.json: fall through and keep the toggle
+		}
+	}
+	return "";
+}
+
 async function getTemplate() {
 	const headContent = readFileSync(join(cwd, "_includes/head-custom.html"), { encoding: "utf-8" });
 	let template = readFileSync(join(__dirname, "ghpage-template.hbs"), { encoding: "utf-8" });
@@ -145,6 +169,7 @@ app.use(async (req, res, next) => {
 		let bodyContent = await convertMarkdown(md);
 		bodyContent = rewriteGhPagesUrls(bodyContent);
 		bodyContent = breadcrumbFor(reqUrlWithoutParams) + bodyContent;
+		bodyContent = languageToggleMarkerFor(reqUrlWithoutParams) + bodyContent;
 		const templateFn = await getTemplate();
 		// get title as first line in the md file which starts with hashes, which indicates it is a title of some kind
 		const title = md.match(/^##* (.+)$/m)?.[1] || reqUrlWithoutParams;
