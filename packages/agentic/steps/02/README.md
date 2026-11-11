@@ -7,14 +7,15 @@ In this step you use Claude Code to **scaffold** a new OpenUI5 application (Java
 and add translatable texts with formatting logic. Throughout, Claude Code consults the OpenUI5 API reference and the
 best-practice guidelines — you learn to *drive* it and to *review* what it produces.
 
-The backend is the CAP mock service in [`steps/02/apps/cap-mock`](apps/cap-mock/README.md).
-
 ## 2.1 Start the mock OData service
 
-Download the CAP mock service [cap-mock.zip](apps/cap-mock.zip). Create a folder called `apps` somewhere on your machine, save the zip there. Then open a **new terminal** and run:
+The backend is a CAP mock service that you start before scaffolding the app.
+
+First, create a folder named `apps` at a location of your choice. Throughout this tutorial you'll keep every app you create or download inside this one folder.
+
+Download [`cap-mock.zip`](apps/cap-mock.zip) into your `apps` folder. Then open a **new terminal in the `apps` folder**, unpack the archive, and start the service:
 
 ```bash
-cd ~/apps
 tar -xf cap-mock.zip
 cd cap-mock
 npm install
@@ -39,10 +40,9 @@ This is the data your OpenUI5 application will bind to in the steps below.
 
 ## 2.2 Scaffold the app
 
-Open a **new Claude Code session** from your `apps` folder before scaffolding:
+Open a **new terminal** in your `apps/cap-mock` folder and start a **new Claude Code session** there before scaffolding:
 
 ```bash
-cd ~/apps
 claude
 ```
 

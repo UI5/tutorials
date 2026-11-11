@@ -13,7 +13,7 @@ Running the content of this repository locally (as opposed to following the tuto
 
 > This section describes how to run the content of the repository locally and is *not* required for following the tutorial. For following the tutorial, simply start with Step 1 in the list of steps above. From there, you can also download and run the result of each step locally.
 
-The project is set up as monorepo. All steps are located inside the `steps` folder and labelled with their step number. The monorepo uses `npm` workspaces to manage all steps together. But you can also run `npm` inside each individual step.
+The project is set up as monorepo. All steps are located inside the `steps` folder and labelled with their step number. The monorepo uses `npm` workspaces to manage the steps of the code-bearing tutorials together, and you can also run `npm` inside each individual step. (The Agentic Development tutorial is documentation-only — its steps are READMEs, not workspace packages, so the commands below do not apply to it.)
 
 To set up the monorepo you first need to install all depenedencies:
 

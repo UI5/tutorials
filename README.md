@@ -4,7 +4,7 @@
 
 These tutorials cover [OpenUI5](https://sdk.openui5.org/#/topic/ec699e0817fb46a0817b0fa276a249f8) application development, from beginner foundations to focused deep dives on specific concepts. Along the way you'll also use the [UI5 CLI](https://ui5.github.io/cli/stable/) for local development tooling.
 
-All tutorials are available in both **TypeScript** and **JavaScript**. Use the language toggle at the top of each tutorial page to switch between versions.
+All tutorials (everything except Agentic Development) are available in both **TypeScript** and **JavaScript** — use the language toggle at the top of each tutorial page to switch between versions. The Agentic Development tutorial is documentation-only and walks through both languages as part of its workflow rather than offering a toggle.
 
 No prior OpenUI5 experience is needed. Basic familiarity with HTML, CSS, and JavaScript (or TypeScript) is assumed.
 
@@ -27,16 +27,16 @@ The live published site is at **<https://ui5.github.io/tutorials/>**.
 packages/
  <tutorial>/
   docs/         # Markdown source for the tutorial steps
-  steps/        # One self-contained app per step
+  steps/        # One self-contained app per step (documentation-only tutorials hold just a README per step)
 ```
 
-Each step under `steps/` is a standalone npm workspace package named `ui5.tutorial.<name>.stepNN`.
+Each step under `steps/` in a code-bearing tutorial is a standalone npm workspace package named `ui5.tutorial.<name>.stepNN`. The Agentic Development tutorial is documentation-only: its steps are READMEs (with optional starter code under `apps/`) and are not workspace packages.
 
 The JS/TS language toggle is implemented via CSS classes (`ts-only`, `js-only`) on elements in the markdown source. The local dev server and the GitHub Pages site both apply the toggle at render time. On plain github.com those elements render as standard collapsed HTML details.
 
 ## Running locally
 
-The repository is set up as an npm workspaces monorepo. Each tutorial step under `packages/*/steps/*` is a self-contained app you can run standalone, and the root build orchestrator produces a unified preview that mirrors the published GitHub Pages site.
+The repository is set up as an npm workspaces monorepo. Each step of a code-bearing tutorial under `packages/*/steps/*` is a self-contained app you can run standalone, and the root build orchestrator produces a unified preview that mirrors the published GitHub Pages site. The documentation-only Agentic Development tutorial has no runnable steps — `npm run build` renders its READMEs but builds no apps for it.
 
 **Prerequisites:** 
 Node.js 20.11.0 or higher, or v22 or higher (v21 is not supported). The UI5 CLI is installed automatically as part of `npm install`. 

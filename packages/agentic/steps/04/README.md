@@ -20,10 +20,9 @@ intentional anti-patterns.
 
 ## 4.1 Set up the legacy app
 
-Download the legacy app [legacy.zip](apps/legacy.zip) and save it into the `apps` folder you created in Step 2. Then open a **new terminal** and run:
+Download the legacy app [legacy.zip](apps/legacy.zip) and save it into the `apps` folder you created in Step 2. Then open a **new terminal in your `apps` folder** and run:
 
 ```bash
-cd ~/apps
 tar -xf legacy.zip
 cd legacy
 npm install

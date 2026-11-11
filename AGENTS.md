@@ -1,6 +1,6 @@
 # Repository Guide for AI Agents
 
-This repository ships six OpenUI5 tutorials rendered as a GitHub Pages site with a client-side JavaScript / TypeScript language toggle. Every tutorial step is a self-contained, runnable UI5 app under `packages/<tutorial>/steps/NN/`. This document tells an agent enough about the layout, the toolchain, and the authoring conventions to be useful without re-deriving everything from source.
+This repository ships six OpenUI5 tutorials rendered as a GitHub Pages site with a client-side JavaScript / TypeScript language toggle. In the five code-bearing tutorials, every step is a self-contained, runnable UI5 app under `packages/<tutorial>/steps/NN/`. The sixth, `agentic`, is documentation-only: its steps are task-driven exercises, not runnable apps (see the `packages/agentic/` entry and the `steps.json` `sources` flag below). This document tells an agent enough about the layout, the toolchain, and the authoring conventions to be useful without re-deriving everything from source.
 
 ## Layout
 
@@ -11,8 +11,8 @@ This repository ships six OpenUI5 tutorials rendered as a GitHub Pages site with
 - `packages/odatav4/` — 11 steps on OData V4.
 - `packages/agentic/` — 5 steps on agentic UI5 development with Claude Code CLI and the UI5 plugin.
 - `packages/<pkg>/README.md` — the tutorial's overview and step index.
-- `packages/<pkg>/steps.json` — machine-readable index of the tutorial's steps (`n`, `id`, `title`, `description`, `previewUrl`, `zipTs`, `zipJs`). Regenerate with `node _/generate-steps-index.js` after adding, removing, or renaming steps.
-- `packages/<pkg>/steps/NN/` — one runnable app per step. Contains `README.md`, `webapp/`, `package.json`, `ui5.yaml`, and (for TS steps) `tsconfig.json`.
+- `packages/<pkg>/steps.json` — machine-readable index of the tutorial's steps (`n`, `id`, `title`, `description`, and — for code-bearing tutorials — `previewUrl`, `zipTs`, `zipJs`). A top-level `"sources": false` marks a **documentation-only** tutorial (currently only `agentic`): the builder ([tools/builder/prepare-gh-pages.js](tools/builder/prepare-gh-pages.js)) treats `sources !== false` as "has sources", so `false` makes it skip `ui5 build`, ZIP packaging, and TS→JS transpilation for that tutorial, and its steps carry no `previewUrl`/`zipTs`/`zipJs`. Preserve this flag when editing the file — keep `"sources": false` on `agentic`, and do not add it to a tutorial that ships runnable code. Regenerate with `node _/generate-steps-index.js` after adding, removing, or renaming steps.
+- `packages/<pkg>/steps/NN/` — in a code-bearing tutorial, one runnable app per step: `README.md`, `webapp/`, `package.json`, `ui5.yaml`, and (for TS steps) `tsconfig.json`. In the documentation-only `agentic` tutorial a step is just a `README.md` (plus optional `apps/` starter code and `assets/`) — no `webapp/`, `package.json`, or `ui5.yaml`.
 - `assets/` — CSS and JS that power the site (language toggle, code-couple tab container, `.ts/.js` extension substitution). Ships as-is to `dist/`.
 - `tools/builder/` — build orchestrator (`node tools/builder`) that produces `dist/` for GitHub Pages: transpiles TS steps to JS, packages ZIP downloads, renders READMEs.
 - `tools/dev-server/` — dev server (`npm start`) that mirrors the built site with live reload.
@@ -22,7 +22,7 @@ This repository ships six OpenUI5 tutorials rendered as a GitHub Pages site with
 
 ## Running the code
 
-The repo is an npm workspaces monorepo. Each `packages/*/steps/*` is a workspace.
+The repo is an npm workspaces monorepo. Each code-bearing `packages/*/steps/*` (one that has a `package.json`) is a workspace. The documentation-only `agentic` steps have no `package.json`, so they are not workspaces — `npm start -w …` does not apply to them.
 
 ```sh
 # one-time
