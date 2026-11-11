@@ -124,11 +124,15 @@ function removeTSfromUI5YAML(ui5yaml) {
 		});
 		return content;
 	}
-	function rewriteLinks(file) {
+	function rewriteLinks(file, languageToggle = true) {
 		let permalink = file.split("dist/")[1].replace(".md", ".html");
 		const title = "OpenUI5 Tutorials";
 		const breadcrumb = breadcrumbFor(permalink);
-		let content = `---\ntitle: ${title}\npermalink: ${permalink}\n---\n\n${breadcrumb}${readFileSync(file, { encoding: "utf8"})}`;
+		// Documentation-only tutorials ("sources": false) have no TS/JS variants,
+		// so the global language switch is suppressed via a hidden marker the
+		// client-side runtime (assets/js/custom.js) checks for.
+		const marker = languageToggle ? "" : `<div data-no-language-toggle hidden></div>\n\n`;
+		let content = `---\ntitle: ${title}\npermalink: ${permalink}\n---\n\n${marker}${breadcrumb}${readFileSync(file, { encoding: "utf8"})}`;
 		content = content.replace(/README\.md/g, "index.html");
 		content = content.replace(/\.\/packages\//g, "./");
 		content = content.replace(/\[LICENSE\]\([\.\/\w]*\)/g, "[LICENSE](https://github.com/UI5/tutorials/blob/-/LICENSE)");
@@ -171,6 +175,9 @@ function removeTSfromUI5YAML(ui5yaml) {
 		const distTutorialDir = join(cwd, "dist", tutorial);
 		const steps = getSteps(tutorialDir);
 
+		const stepsJsonPath = join(tutorialDir, "steps.json");
+		const hasSources = !existsSync(stepsJsonPath) || JSON.parse(readFileSync(stepsJsonPath, { encoding: "utf8" })).sources !== false;
+
 		console.log(`\n📦 Processing tutorial: ${tutorial} (${steps.length} steps)`);
 
 		mkdirSync(distTutorialDir, { recursive: true });
@@ -178,7 +185,7 @@ function removeTSfromUI5YAML(ui5yaml) {
 		console.log(`  👉 Copying tutorial README.md...`);
 		if (existsSync(join(tutorialDir, "README.md"))) {
 			copyFileSync(join(tutorialDir, "README.md"), join(distTutorialDir, "index.md"));
-			rewriteLinks(join(distTutorialDir, "index.md"));
+			rewriteLinks(join(distTutorialDir, "index.md"), hasSources);
 		}
 
 		const extraMarkdown = fg.globSync(["*.md"], { cwd: tutorialDir }).filter(f => f !== "README.md");
@@ -186,16 +193,13 @@ function removeTSfromUI5YAML(ui5yaml) {
 			console.log(`  👉 Copying extra markdown files: ${extraMarkdown.join(", ")}...`);
 			extraMarkdown.forEach((mdFile) => {
 				copyFileSync(join(tutorialDir, mdFile), join(distTutorialDir, mdFile));
-				rewriteLinks(join(distTutorialDir, mdFile));
+				rewriteLinks(join(distTutorialDir, mdFile), hasSources);
 			});
 		}
 
 		if (existsSync(join(tutorialDir, "steps.json"))) {
 			copyFileSync(join(tutorialDir, "steps.json"), join(distTutorialDir, "steps.json"));
 		}
-
-		const stepsJsonPath = join(tutorialDir, "steps.json");
-		const hasSources = !existsSync(stepsJsonPath) || JSON.parse(readFileSync(stepsJsonPath, { encoding: "utf8" })).sources !== false;
 
 		if (existsSync(join(tutorialDir, "assets"))) {
 			console.log(`  🌅 Copying tutorial assets...`);
@@ -235,7 +239,7 @@ function removeTSfromUI5YAML(ui5yaml) {
 			const [, path, step] = readme.match("steps/((.*)/README.md)");
 			mkdirSync(join(buildDir, step), { recursive: true });
 			copyFileSync(join(tutorialDir, readme), join(buildDir, path));
-			rewriteLinks(join(buildDir, path));
+			rewriteLinks(join(buildDir, path), hasSources);
 		});
 
 		console.log(`  🌅 Copying step assets...`);

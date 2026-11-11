@@ -238,6 +238,17 @@ function updatePrevNextLinks(lang) {
 
 // dynamic overall language switching
 
+/**
+ * Documentation-only tutorials (steps.json `"sources": false`)
+ * ship no TypeScript/JavaScript source variants, so there is nothing
+ * for the TS/JS switch to toggle. Their rendered pages carry a hidden
+ * `[data-no-language-toggle]` marker (injected by the builder and the dev
+ * server); when present, the global language switch must not be shown.
+ */
+function isLanguageToggleSuppressed() {
+	return !!document.querySelector("[data-no-language-toggle]");
+}
+
 function addLanguageSwitchButtons() {
 	const buttonContainer = document.createElement("div");
 	buttonContainer.classList.add("language-switch-container");
@@ -338,7 +349,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		replaceDetailSections();
 		boxJSTSCouples(); // should happen after replaceDetailSections, so all couples are recognized
 		replaceFileExtensions(lang);
-		addLanguageSwitchButtons();
+		if (!isLanguageToggleSuppressed()) {
+			addLanguageSwitchButtons();
+		}
 		updateAllCodeCouples(lang);
 		updatePrevNextLinks(lang);
 		renderImageCaptions();
