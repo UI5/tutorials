@@ -1,10 +1,10 @@
 # Frequently Asked Questions
 
-Answers to the most common questions that come up during the workshop.
+Answers to the most common questions that come up during the tutorial.
 
 ---
 
-## Exercise 0 — Getting Started
+## Step 1 — Getting Started
 
 **Q: I get "plugin not found" when running `claude plugin install ui5@claude-plugins-official`.**
 
@@ -19,13 +19,13 @@ claude plugin install ui5@claude-plugins-official
 
 **Q: After installing the UI5 plugin, Claude Code doesn't list the UI5 MCP server tools.**
 
-Make sure you started (or restarted) `claude` **after** the plugin install — MCP tools are loaded at startup. Exit your current session with `/exit`, then run `claude` again from the repo root.
+Make sure you started (or restarted) `claude` **after** the plugin install — MCP tools are loaded at startup. Exit your current session with `/exit`, then run `claude` again.
 
 ---
 
 **Q: I asked "Which UI5 MCP server tools do you have available?" and got no tool names — only a generic answer.**
 
-This means the UI5 MCP server wasn't loaded. Verify the plugin is installed (`claude plugin list`) and restart `claude`. If the list is there but empty, check that you launched `claude` from a directory where the plugin context loads (the repo root is the safest location).
+This means the UI5 MCP server wasn't loaded. Verify the plugin is installed (`claude plugin list`) and restart `claude`. If the list is there but empty, check that you launched `claude` from a directory where the plugin context loads.
 
 ---
 
@@ -42,7 +42,7 @@ In rare cases the MCP server process fails to start cleanly during plugin load. 
    ```
    You should now see tools such as `get_guidelines`, `get_api_reference`, `run_ui5_linter`, and `create_ui5_app`.
 
-The expected tool list is covered in [Exercise 0 → section 0.4](exercises/ex0/README.md#04-launch-claude-code-in-the-repo).
+The expected tool list is covered in [Step 1 → section 1.4](steps/01/README.md#14-launch-claude-code).
 
 ---
 
@@ -52,14 +52,16 @@ Check the output carefully: a grounded call shows a tool-use block labelled `get
 
 ---
 
-## Exercise 1 — Create & Enhance a JS App
+## Step 2 — Create & Enhance a JS App
 
 **Q: `npm run watch` for the CAP mock service fails with "not found" or port errors.**
 
-Make sure you are in the right directory:
+Make sure you extracted the zip and are in the right directory:
 
 ```bash
-cd exercises/ex1/apps/cap-mock
+cd ~/apps
+tar -xf cap-mock.zip
+cd cap-mock
 npm install      # if not done yet
 npm run watch
 ```
@@ -95,7 +97,7 @@ Ask Claude Code explicitly:
 The `manifest.json` must declare Spanish in `sap.ui5/models/i18n`:
 
 ```json
-"supportedLocales": ["", "es"],
+"supportedLocales": ["en", "es", ""],
 "fallbackLocale": ""
 ```
 
@@ -103,13 +105,28 @@ The empty string `""` registers the default bundle; without it, the resource bun
 
 ---
 
-## Exercise 2 — Convert to TypeScript
+## Step 3 — Convert to TypeScript
+
+**Q: I get "plugin not found" when running `claude plugin install ui5-typescript-conversion@claude-plugins-official`.**
+
+The TypeScript conversion plugin is separate from the base UI5 plugin. Refresh the marketplace first:
+
+```bash
+claude plugin marketplace update claude-plugins-official
+claude plugin install ui5-typescript-conversion@claude-plugins-official
+```
+
+---
 
 **Q: The TypeScript conversion skill and the UI5 MCP server's own TypeScript tool both want to run at the same time.**
 
-Follow the exercise note: disable the MCP server's TypeScript tool for this exercise and let the skill own the full setup. Ask Claude Code:
+The conversion **skill** owns the full setup. Disable the MCP server's TypeScript tool so the two don't overlap:
 
-> *"Disable the TypeScript-conversion MCP tool and run the `/ui5-typescript-conversion` skill instead."*
+```bash
+claude --disallowedTools "mcp__plugin_ui5_ui5-mcp-server__get_typescript_conversion_guidelines"
+```
+
+Start a fresh Claude Code session with this flag before running `/ui5-typescript-conversion`.
 
 ---
 
@@ -118,7 +135,7 @@ Follow the exercise note: disable the MCP server's TypeScript tool for this exer
 Common cases:
 - `this.byId("someId")` returns `UI5Element | undefined` — cast it to the specific control type.
 - `this.getModel()` returns `Model | undefined` — cast to `ODataModel` where appropriate.
-- Event handler parameters (e.g. `event: Event`) should use the specific OpenUI5 event type (e.g. `Table$SelectionChangeEvent`).
+- Event handler parameters (e.g. `event: Event`) should use the specific OpenUI5 event type (e.g. `ListBase$SelectionChangeEvent` from `sap/m/ListBase`).
 
 Ask Claude Code:
 
@@ -132,16 +149,29 @@ A conversion that passes `tsc` but breaks at runtime usually means a module path
 
 ---
 
-## Exercise 3 — Modernize a Legacy App
+## Step 4 — Modernize a Legacy App
+
+**Q: I get "plugin not found" when running `claude plugin install ui5-modernization@claude-plugins-official`.**
+
+The modernization plugin is separate from the base UI5 plugin. Refresh the marketplace first:
+
+```bash
+claude plugin marketplace update claude-plugins-official
+claude plugin install ui5-modernization@claude-plugins-official
+```
+
+---
 
 **Q: The workflow refuses to start with "working tree is not clean".**
 
 The modernization skill commits one change per phase and requires a clean baseline. Commit (or stash) any uncommitted changes first:
 
 ```bash
-cd exercises/ex3/legacy
+cd ~/apps/legacy
 git add -A && git commit -m "baseline: before modernization"
 ```
+
+If you have not yet initialized a git repository, see [Step 4 → section 4.1](steps/04/README.md#41-set-up-the-legacy-app).
 
 ---
 
@@ -153,7 +183,7 @@ That is fine — the exact count can vary by `ui5lint` version. What matters is 
 
 **Q: Phase 1 (Test Starter) and Phase 5 (CSP) both say "nothing to fix" and produce no commit.**
 
-That is the expected behavior for the curated legacy app. The exercise note explains it: the test infrastructure and `index.html` bootstrap were already modernized before the workshop. Seeing the workflow correctly identify "nothing to do" is itself part of the learning.
+That is the expected behavior for the curated legacy app. The exercise note explains it: the test infrastructure and `index.html` bootstrap were already modernized before the tutorial. Seeing the workflow correctly identify "nothing to do" is itself part of the learning.
 
 ---
 
@@ -179,7 +209,7 @@ These are cases that require human judgment — usually business-logic-dependent
 
 ---
 
-## Exercise 4 — Custom Control (TypeScript)
+## Step 5 — Custom Control (TypeScript)
 
 **Q: After scaffolding the control, `getValue()` and `setValue()` are not recognized by TypeScript.**
 
@@ -250,17 +280,17 @@ Look for the `get_api_reference` tool call in the output. If it's there, the ans
 
 **Q: The agent made a change that broke the app. How do I roll back?**
 
-If you are in a git repo (which all exercises are), the simplest recovery is:
+If you are in a git repo (which all steps with a legacy app are), the simplest recovery is:
 
 ```bash
 git diff          # see what changed
 git restore .     # undo all uncommitted changes
 ```
 
-In Exercise 3, the per-phase commits let you revert individual phases with `git revert`.
+In Step 4, the per-phase commits let you revert individual phases with `git revert`.
 
 ---
 
-**Q: I want to try a different prompt than the one suggested in the exercise. Is that OK?**
+**Q: I want to try a different prompt than the one suggested in the step. Is that OK?**
 
-Yes — the example prompts are starting points, not a fixed script. The goal is to get comfortable driving the agent yourself. Try variations, see what the agent does differently, and ask follow-up questions. The verify checklists at the end of each exercise are what matter, not the exact prompt you used to get there.
+Yes — the example prompts are starting points, not a fixed script. The goal is to get comfortable driving the agent yourself. Try variations, see what the agent does differently, and ask follow-up questions. The verify checklists at the end of each step are what matter, not the exact prompt you used to get there.

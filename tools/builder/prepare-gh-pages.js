@@ -181,6 +181,15 @@ function removeTSfromUI5YAML(ui5yaml) {
 			rewriteLinks(join(distTutorialDir, "index.md"));
 		}
 
+		const extraMarkdown = fg.globSync(["*.md"], { cwd: tutorialDir }).filter(f => f !== "README.md");
+		if (extraMarkdown.length > 0) {
+			console.log(`  👉 Copying extra markdown files: ${extraMarkdown.join(", ")}...`);
+			extraMarkdown.forEach((mdFile) => {
+				copyFileSync(join(tutorialDir, mdFile), join(distTutorialDir, mdFile));
+				rewriteLinks(join(distTutorialDir, mdFile));
+			});
+		}
+
 		if (existsSync(join(tutorialDir, "steps.json"))) {
 			copyFileSync(join(tutorialDir, "steps.json"), join(distTutorialDir, "steps.json"));
 		}

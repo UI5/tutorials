@@ -23,23 +23,28 @@ npm run watch
 
 The service boots, deploys the seed data to an in-memory database, and serves `CatalogService`:
 
-![Terminal showing cds watch startup and a curl of the live Products data](images/01_00_cds-watch.png)
+![Terminal showing cds watch startup and a curl of the live Products data](assets/01_00_cds-watch.png)
 
 It serves at `http://localhost:4004`. The CAP welcome page lists the `CatalogService` with its
 `Products` and `Suppliers` endpoints:
 
-![CAP welcome page listing the CatalogService endpoints](images/01_01_cap-welcome.png)
+![CAP welcome page listing the CatalogService endpoints](assets/01_01_cap-welcome.png)
 
 Confirm the products endpoint returns data — open
 `http://localhost:4004/odata/v4/catalog/Products` (tick **Pretty-print** in the browser):
 
-![Products OData endpoint returning the seeded product data as JSON](images/01_02_products-odata.png)
+![Products OData endpoint returning the seeded product data as JSON](assets/01_02_products-odata.png)
 
 This is the data your OpenUI5 application will bind to in the steps below.
 
 ## 2.2 Scaffold the app
 
-Back in your Claude Code session navigate to your `apps` folder:
+Open a **new Claude Code session** from your `apps` folder before scaffolding:
+
+```bash
+cd ~/apps
+claude
+```
 
 > 💡
 > **Task:** Ask Claude Code to scaffold the application:

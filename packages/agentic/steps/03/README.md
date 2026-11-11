@@ -19,40 +19,37 @@ clean.
 **If you completed Step 2**, copy your finished app into a new folder: copy the project folder and
 paste it with a new name (e.g. `products-ts`) next to the original.
 
-Then open a **new Claude Code session** pointed at the new project folder.
-
 **If you did not complete Step 2**, download the ready-made sample app instead:
 
-1. Download [sample-app.zip](https://github.com/ui5-community/ui5-ecosystem-showcase/archive/refs/heads/main.zip) and save it to your `apps` folder.
+1. Download [sample-app.zip](https://github.com/UI5/sample-app/archive/refs/heads/main.zip) and save it to your `apps` folder.
 2. Extract it into `apps/products-ts`.
 3. Open a terminal in `apps/products-ts` and run:
    ```
    npm install
    ```
 
-Then open a **new Claude Code session** pointed at `apps/products-ts`.
-
-> 💡
-> Starting a new session keeps the TypeScript conversion context clean and avoids carry-over
-> tool state from Step 2.
-
-## 3.1 Install the TypeScript conversion plugin
+Then install the TypeScript conversion plugin:
 
 ```bash
 claude plugin install ui5-typescript-conversion@claude-plugins-official
 ```
 
+Then open a **new Claude Code session** pointed at the project folder (`apps/products-ts`), with the conflicting MCP tool disabled:
+
+```bash
+claude --disallowedTools "mcp__plugin_ui5_ui5-mcp-server__get_typescript_conversion_guidelines"
+```
+
 > 📝
 > The conversion **skill** owns the full setup (dependencies, `tsconfig.json`, `ui5.yaml` transpile
 > config, ES-module conversion). The UI5 MCP server also exposes a TypeScript-conversion guideline
-> tool — **disable it** so the two don't overlap and the skill drives the conversion.
->
-> Exit any running Claude Code session first, then start a new one with the tool disabled:
-> ```bash
-> claude --disallowedTools "mcp__plugin_ui5_ui5-mcp-server__get_typescript_conversion_guidelines"
-> ```
+> tool — disabling it prevents overlap so the skill drives the conversion end-to-end.
 
-## 3.2 Run the conversion skill
+> 💡
+> Starting a new session keeps the TypeScript conversion context clean and avoids carry-over
+> tool state from Step 2.
+
+## 3.1 Run the conversion skill
 
 > 💡
 > **Task:** Point Claude Code at the Step 2 app and run:
@@ -60,12 +57,18 @@ claude plugin install ui5-typescript-conversion@claude-plugins-official
 > /ui5-typescript-conversion
 > ```
 > Approve the steps as it works. Watch it:
-> - add `typescript`, `@OpenUI5/types` (matching the project's OpenUI5 version), and the
+> - add `typescript`, `@openui5/types` (matching the project's OpenUI5 version), and the
 >   `ui5-tooling-transpile` tooling as dev dependencies;
 > - add a `tsconfig.json` (with the `paths` map for the app namespace) and a `ts-typecheck` script;
 > - update `ui5.yaml` with the transpile task and middleware.
 
-## 3.3 Watch the code conversion
+## 3.2 Watch the code conversion
+
+> 📝
+> The conversion is interactive. Claude Code may pause to show you a plan and ask for approval
+> before proceeding, and may ask follow-up questions during conversion, for example whether to
+> update existing unit tests to match a changed type signature. Read each prompt and confirm or
+> adjust as needed.
 
 Claude Code converts the app modules from the proprietary OpenUI5 class syntax to standard ES classes
 and ES imports:
@@ -76,9 +79,9 @@ and ES imports:
 - Event handlers get **specific OpenUI5 event types**, e.g.:
 
 ```ts
-import { Table$SelectionChangeEvent } from "sap/m/Table";
+import { ListBase$SelectionChangeEvent } from "sap/m/ListBase";
 
-onSelectionChange(event: Table$SelectionChangeEvent): void {
+onSelectionChange(event: ListBase$SelectionChangeEvent): void {
     // event.getParameter(...) is now typed
 }
 ```
@@ -87,7 +90,7 @@ onSelectionChange(event: Table$SelectionChangeEvent): void {
 > **Task:** Skim one converted controller. Confirm it imports real OpenUI5 types (no `sap.m.Button`
 > global references, no `any`/`unknown` casts) and that all JSDoc comments were preserved.
 
-## 3.4 Fix remaining type errors
+## 3.3 Fix remaining type errors
 
 > 💡
 > **Task:** Ask Claude Code:

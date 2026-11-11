@@ -53,7 +53,7 @@ git --version
 claude --version
 ```
 
-![Terminal showing npm, node, git and claude version output](images/00_01_prerequisites.png)
+![Terminal showing npm, node, git and claude version output](assets/00_01_prerequisites.png)
 
 ## 1.3 Install the UI5 plugin
 
@@ -92,7 +92,7 @@ claude
 > If you restarted `claude` but the tools are still not listed, the MCP server process may have
 > failed to start. Type `/plugins`, search for **ui5**, and click **Reconnect**.
 
-![MCP server reconnect screen in the plugins panel](images/00_02_mcp-server-fail.png)
+![MCP server reconnect screen in the plugins panel](assets/00_02_mcp-server-fail.png)
 
 ## 1.5 Confirm grounding works
 

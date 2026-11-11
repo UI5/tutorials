@@ -20,7 +20,7 @@ intentional anti-patterns.
 
 ## 4.1 Set up the legacy app
 
-Download the legacy app [legacy.zip](apps/legacy.zip). Save the zip into an `apps` folder on your machine. Then open a **new terminal** and run:
+Download the legacy app [legacy.zip](apps/legacy.zip) and save it into the `apps` folder you created in Step 2. Then open a **new terminal** and run:
 
 ```bash
 cd ~/apps
@@ -43,13 +43,19 @@ Then initialize the repo:
 git init && git add -A && git commit -m "baseline: legacy app"
 ```
 
-Open the `legacy/` folder in Claude Code (e.g. `claude ~/apps/legacy`) — all subsequent tasks in this step run from that folder.
-
-## 4.2 Install the plugin and take a baseline linter reading
+All subsequent tasks in this step run from the `legacy/` folder. First, install the UI5 modernization plugin:
 
 ```bash
 claude plugin install ui5-modernization@claude-plugins-official
 ```
+
+Then open Claude Code:
+
+```bash
+claude
+```
+
+## 4.2 Take a baseline linter reading
 
 > 💡
 > **Task:** Ask Claude Code:
@@ -60,7 +66,7 @@ claude plugin install ui5-modernization@claude-plugins-official
 The baseline for this app is **36 problems (30 errors, 6 warnings) and 1 fatal error** — the
 findings map directly to the modernization phases:
 
-![Terminal showing the UI5 linter baseline report with 36 problems](images/03_01_linter-baseline.png)
+![Terminal showing the UI5 linter baseline report with 36 problems](assets/03_01_linter-baseline.png)
 
 You should see findings that map to the modernization phases. A tour of what's intentionally wrong:
 

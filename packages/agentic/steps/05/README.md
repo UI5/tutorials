@@ -115,9 +115,8 @@ Confirm:
 > 💡
 > **Task:** Ask Claude Code:
 > ```
-> Add a CSS file for the control and load it from the control (e.g. via a `library.css` /
-> `includeStyleSheet` on init or a renderer-added class), so the bar and its states are themed.
-> Keep the styling CSP-safe — no inline `style` strings assembled from user input.
+> Add a CSS file for the control and make sure the app loads it (e.g. register it in `manifest.json` under
+> `sap.ui5/resources/css`, or load it via the imported `sap/ui/dom/includeStylesheet` module), so the bar and its states are themed.
 > ```
 
 The agent should add a stylesheet with classes that match the ones emitted by the renderer (e.g.
