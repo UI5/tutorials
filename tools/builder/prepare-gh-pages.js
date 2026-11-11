@@ -87,7 +87,7 @@ function removeTSfromUI5YAML(ui5yaml) {
 	// so they work under the site's `/tutorials/` base path. Returns "" for the
 	// root index and tutorial-overview pages.
 	function breadcrumbFor(permalink) {
-		const match = permalink.match(/^([^/]+)\/build\/[^/]+\/README\.html$/);
+		const match = permalink.match(/^([^/]+)\/(?:build\/[^/]+\/README|steps\/[^/]+\/index)\.html$/);
 		if (!match) {
 			return "";
 		}
@@ -221,7 +221,9 @@ function removeTSfromUI5YAML(ui5yaml) {
 		}
 
 		const buildDir = join(distTutorialDir, "build");
-		mkdirSync(buildDir, { recursive: true });
+		if (hasSources) {
+			mkdirSync(buildDir, { recursive: true });
+		}
 
 		if (hasSources) {
 			console.log(`  👉 Building steps...`);
@@ -236,18 +238,27 @@ function removeTSfromUI5YAML(ui5yaml) {
 		console.log(`  👉 Copying step README.md files...`);
 		const readmes = fg.globSync(["steps/*/README.md"], { cwd: tutorialDir });
 		readmes.forEach((readme) => {
-			const [, path, step] = readme.match("steps/((.*)/README.md)");
-			mkdirSync(join(buildDir, step), { recursive: true });
-			copyFileSync(join(tutorialDir, readme), join(buildDir, path));
-			rewriteLinks(join(buildDir, path), hasSources);
+			const [, , step] = readme.match("steps/((.*)/README.md)");
+			if (hasSources) {
+				mkdirSync(join(buildDir, step), { recursive: true });
+				copyFileSync(join(tutorialDir, readme), join(buildDir, step, "README.md"));
+				rewriteLinks(join(buildDir, step, "README.md"), hasSources);
+			} else {
+				// Doc-only tutorials: place steps at steps/<step>/index.md so that the
+				// overview's README.md→index.html-rewritten links (steps/NN/index.html) resolve.
+				mkdirSync(join(distTutorialDir, "steps", step), { recursive: true });
+				copyFileSync(join(tutorialDir, readme), join(distTutorialDir, "steps", step, "index.md"));
+				rewriteLinks(join(distTutorialDir, "steps", step, "index.md"), hasSources);
+			}
 		});
 
 		console.log(`  🌅 Copying step assets...`);
 		const assets = fg.globSync(["steps/*/assets/**/*"], { cwd: tutorialDir });
 		assets.forEach((asset) => {
 			const [, step, assetFile] = asset.match("steps/(.*)/assets/(.*)");
-			mkdirSync(dirname(join(buildDir, step, "assets", assetFile)), { recursive: true });
-			copyFileSync(join(tutorialDir, "steps", step, "assets", assetFile), join(buildDir, step, "assets", assetFile));
+			const destBase = hasSources ? join(buildDir, step) : join(distTutorialDir, "steps", step);
+			mkdirSync(dirname(join(destBase, "assets", assetFile)), { recursive: true });
+			copyFileSync(join(tutorialDir, "steps", step, "assets", assetFile), join(destBase, "assets", assetFile));
 		});
 
 		if (hasSources) {
