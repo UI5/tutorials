@@ -1,0 +1,69 @@
+{
+  "_version": "2.8.0",
+  "sap.app": {
+    "id": "ui5.tutorial.odatav4",
+    "type": "application",
+    "i18n": {
+      "supportedLocales": [
+        ""
+      ],
+      "fallbackLocale": "",
+      "bundleName": "ui5.tutorial.odatav4.i18n.i18n"
+    },
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "default": {
+        "uri": "https://services.odata.org/TripPinRESTierService/(S(id))/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5"
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "ui5.tutorial.odatav4.view.App",
+      "type": "XML",
+      "id": "appView"
+    },
+    "dependencies": {
+      "minUI5Version": "1.148",
+      "libs": {
+        "sap.f": {},
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "handleValidation": true,
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ui5.tutorial.odatav4.i18n.i18n",
+          "supportedLocales": [
+            ""
+          ],
+          "fallbackLocale": ""
+        }
+      },
+      "": {
+        "dataSource": "default",
+        "preload": true,
+        "settings": {
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "operationMode": "Server"
+        }
+      }
+    }
+  }
+}
