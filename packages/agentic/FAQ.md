@@ -293,7 +293,8 @@ If you are in a git repo (which all steps with a legacy app are), the simplest r
 
 ```bash
 git diff          # see what changed
-git restore .     # undo all uncommitted changes
+git restore .     # undo unstaged changes to tracked files only
+git status --short # inspect staged changes and untracked files that remain
 ```
 
 In Step 4, the per-phase commits let you revert individual phases with `git revert`.

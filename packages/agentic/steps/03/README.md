@@ -34,7 +34,7 @@ Then install the TypeScript conversion plugin:
 claude plugin install ui5-typescript-conversion@claude-plugins-official
 ```
 
-Then open a **new Claude Code session** pointed at the project folder (`apps/products-ts`), with the conflicting MCP tool disabled:
+Then open a terminal in the copied or extracted project's root directory (the directory containing `package.json` and `ui5.yaml`) and launch a **new Claude Code session** with the conflicting MCP tool disabled:
 
 ```bash
 claude --disallowedTools "mcp__plugin_ui5_ui5-mcp-server__get_typescript_conversion_guidelines"

@@ -56,7 +56,7 @@ claude
 > Create a new OpenUI5 application in JavaScript with namespace `ui5.tutorial.agentic.products`
 > inside the `cap-mock/app` folder.
 > Wire it to the OData V4 service at `http://localhost:4004/odata/v4/catalog/` and the `Products` entity set.
-> Leverage the ui5-cds-plugin (https://github.com/ui5-community/ui5-ecosystem-showcase/tree/main/packages/cds-plugin-ui5).
+> Leverage `cds-plugin-ui5` (https://github.com/ui5-community/ui5-ecosystem-showcase/tree/main/packages/cds-plugin-ui5).
 > ```
 
 Inspect the generated project. Notice the modern defaults the tool applies:
@@ -132,7 +132,7 @@ OpenUI5's resource bundle resolves locale files by matching the browser language
 
 Confirm:
 - `webapp/i18n/i18n_es.properties` is present and contains a Spanish translation for **every** key defined in `i18n.properties` — not just the keys added in this step.
-- `manifest.json` → `sap.ui5/models/i18n` declares:
+- `manifest.json` → `sap.ui5/models/i18n/settings` declares:
   - `"supportedLocales": ["en", "es", ""]` — the empty string `""` registers the default bundle.
   - `"fallbackLocale": ""` — ensures users with unsupported locales still see the default text.
 - Appending `?sap-language=es` to the URL loads the Spanish texts in the running app.
