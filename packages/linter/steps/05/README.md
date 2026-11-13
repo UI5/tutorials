@@ -155,7 +155,7 @@ sap.ui.define([
                 "Module path: " + sModulePath);
 
             const oDefaults = { itemsRemovable: true };
-            const oSettings = merge({}, oDefaults);
+            const oSettings = merge({isMobile: Device.browser.mobile}, oDefaults);
 
             this.getView().setModel(new JSONModel(oSettings), "view");
         },
