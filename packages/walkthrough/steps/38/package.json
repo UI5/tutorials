@@ -16,7 +16,7 @@
     "@ui5/cli": "^4.0.73",
     "@ui5/ts-interface-generator": "^0.12.0",
     "local-web-server": "^5.4.2",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.0",
     "ui5-middleware-livereload": "^3.4.0",
     "ui5-middleware-serveframework": "^3.8.2",
     "ui5-middleware-simpleproxy": "^3.9.0",
