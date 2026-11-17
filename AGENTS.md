@@ -43,7 +43,7 @@ npm start -w ui5.tutorial.odatav4.step03
 npm run typecheck
 ```
 
-Rely on `npm start -w <workspace>` when you need to see a specific step in a browser — the root dev server is heavier and only needed for site-level checks.
+Rely on `npm start -w <workspace>` when you need to see a specific step in a browser — the root dev server is heavier and only needed for site-level checks. By default, the root preview server and its BrowserSync proxy/UI bind only to `127.0.0.1`; `npm start -- --host 0.0.0.0` explicitly enables trusted-network access (or pass a specific LAN interface address). File requests remain confined to the repository checkout, including symlink targets. Network mode has no authentication and exposes repository files and the BrowserSync UI to reachable clients. This is a development preview, not a public hosting server.
 
 ## Tutorial namespace and package naming
 
@@ -122,7 +122,7 @@ Verify a rippling change with `git grep` before *and* after — the count of mat
 
 ## Verification
 
-- **Static:** `npm run typecheck` for TS integrity, `git grep` for corpus-wide cleanliness.
+- **Static:** `npm run typecheck` for TS integrity, `npm run test:dev-server` for dev-server security regressions (both run via `npm test`), `git grep` for corpus-wide cleanliness.
 - **Rendered:** `npm start`, then load a step README in the browser (e.g. `http://localhost:1337/packages/walkthrough/steps/09/README.md`). Toggle the TS/JS button and confirm both languages render correctly.
 - **Built:** `npm run build`, then `open dist/walkthrough/build/09/index-cdn.html` for the built app, or `dist/walkthrough/steps/09/README.html` for the built README.
 

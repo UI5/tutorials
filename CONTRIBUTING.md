@@ -66,7 +66,19 @@ Then, to actually start the server, run
 npm start
 ```
 
-A browser window will automatically open (on port 3000 or the next free port) and automatically reload on every saved change.
+A browser window will automatically open (on port 3000 or the next free port) and automatically reload on every saved change. By default, the root preview server and its BrowserSync proxy/UI bind only to `127.0.0.1`. File requests are confined to the repository checkout, including symlink targets.
+
+To share the preview on a trusted local network, run:
+
+```sh
+npm start -- --host 0.0.0.0
+```
+
+You can instead pass a specific LAN interface address to `--host`. From another device, open `http://<your-LAN-IP>:1337/packages/walkthrough/`, or use the BrowserSync port (3000 or the next free port) for live reload. `npm start -- --help` lists the options.
+
+> ⚠️ Network mode has no authentication and exposes repository files and the BrowserSync UI to anyone who can reach the listener. Use it only on a trusted network; this is a development preview, not a public hosting server.
+
+Run the dev-server security regression tests with `npm run test:dev-server`. These also run as part of `npm test`, before the workspace typechecks.
 
 
 ### Writing *one* document which covers both JavaScript and TypeScript without duplication
