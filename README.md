@@ -54,6 +54,20 @@ npm start
 
 After `npm start`, open <http://localhost:1337/packages/walkthrough/> (or any other tutorial's `packages/<name>/`). The dev server renders the markdown overview, rewrites the published `https://ui5.github.io/tutorials/...` URLs to point at the local `dist/`, and serves the built apps from the same origin.
 
+By default, the root preview server and its BrowserSync proxy/UI bind only to `127.0.0.1`. File requests are confined to the repository checkout, including symlink targets.
+
+To share the preview on a trusted local network, explicitly choose a bind address:
+
+```sh
+npm start -- --host 0.0.0.0
+# Or bind only to a specific LAN interface:
+npm start -- --host 192.168.1.10
+```
+
+From another device, open `http://<your-LAN-IP>:1337/packages/walkthrough/`, or use the BrowserSync port (3000 or the next free port) for live reload. `npm start -- --help` lists the options.
+
+> ⚠️ Network mode has no authentication and exposes repository files and the BrowserSync UI to anyone who can reach the listener. Use it only on a trusted network; this is a development preview, not a public hosting server.
+
 To run a single step directly without going through the build:
 
 ```sh

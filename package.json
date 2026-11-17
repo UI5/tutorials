@@ -27,7 +27,8 @@
     "knip": "knip --config knip.config.js",
     "lint:lockfile": "lockfile-lint --path package-lock.json --type npm --allowed-hosts npm --validate-https",
     "start": "node tools/dev-server",
-    "test": "npm run typecheck",
+    "test": "npm run test:dev-server && npm run typecheck",
+    "test:dev-server": "node --test tools/dev-server/server.test.js",
     "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "devDependencies": {
