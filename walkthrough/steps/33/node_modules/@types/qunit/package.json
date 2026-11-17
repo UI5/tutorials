@@ -1,0 +1,51 @@
+{
+    "name": "@types/qunit",
+    "version": "2.19.14",
+    "description": "TypeScript definitions for qunit",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/qunit",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "James Bracy",
+            "githubUsername": "waratuman",
+            "url": "https://github.com/waratuman"
+        },
+        {
+            "name": "Stefan Sechelmann",
+            "githubUsername": "sechel",
+            "url": "https://github.com/sechel"
+        },
+        {
+            "name": "Krystan HuffMenne",
+            "githubUsername": "gitKrystan",
+            "url": "https://github.com/gitKrystan"
+        },
+        {
+            "name": "James C. Davis",
+            "githubUsername": "jamescdavis",
+            "url": "https://github.com/jamescdavis"
+        },
+        {
+            "name": "Peter Wagenet",
+            "githubUsername": "wagenet",
+            "url": "https://github.com/wagenet"
+        },
+        {
+            "name": "Timo Tijhof",
+            "githubUsername": "Krinkle",
+            "url": "https://github.com/Krinkle"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/qunit"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "peerDependencies": {},
+    "typesPublisherContentHash": "8b2400a76e290a4357f2ae62631699d87812e420ac0069af173eebb6e75f6dd6",
+    "typeScriptVersion": "5.3"
+}

@@ -1,0 +1,141 @@
+{
+  "tutorial": "databinding",
+  "namespace": "ui5.tutorial.databinding",
+  "steps": [
+    {
+      "n": 1,
+      "id": "01",
+      "title": "No Data Binding",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/01/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-01.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-01-js.zip",
+      "description": "In this step, we create a basic application and simply place some text on the screen using a standard sap.m.Text control. The text in this control is a hard-coded part of the control's definition; therefore, this is not an example of data binding!"
+    },
+    {
+      "n": 2,
+      "id": "02",
+      "title": "Creating a Model",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/02/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-02.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-02-js.zip",
+      "description": "In this step, we create a model. It serves as a container for the data your application operates on."
+    },
+    {
+      "n": 3,
+      "id": "03",
+      "title": "Create Property Binding",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/03/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-03.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-03-js.zip",
+      "description": "Although there is no visible difference, the text on the screen is now derived from model data."
+    },
+    {
+      "n": 4,
+      "id": "04",
+      "title": "Two-Way Data Binding",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/04/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-04.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-04-js.zip",
+      "description": "In the examples we've looked at so far, we've displayed the value of a model property using a read-only field. We'll now change the user interface to display first and last name fields using sap.m.Input fields. We're also adding a check box control to enable or disable both input fields. This setup illustrates a feature known as \"two-way data binding\". As the view now contains more controls, we're also moving the view definition into an XML file."
+    },
+    {
+      "n": 5,
+      "id": "05",
+      "title": "One-Way Data Binding",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/05/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-05.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-05-js.zip",
+      "description": "Unlike the two-way binding behavior we've seen, one-way data binding is also possible. In this case, data travels in one direction only: from the model, through the binding instance, to the consumer \\(usually the property of a control\\), but never in the other direction. Let's modify the previous example to use one-way data binding. This shows how you can switch off the flow of data from the user interface back to the model if needed."
+    },
+    {
+      "n": 6,
+      "id": "06",
+      "title": "Resource Models",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/06/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-06.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-06-js.zip",
+      "description": "Business applications often require language-specific \\(translatable\\) text used as labels and descriptions on the user interface."
+    },
+    {
+      "n": 7,
+      "id": "07",
+      "title": "\\(Optional\\) Resource Bundles and Multiple Languages",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/07/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-07.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-07-js.zip",
+      "description": "Resource bundles exist to enable an app to run in multiple languages without the need to change any code. To demonstrate this feature, let's create a German version of the app – in fact, all we need to do is create a German version of the resource bundle file. In our code, we activate the German locale for the ResourceModel."
+    },
+    {
+      "n": 8,
+      "id": "08",
+      "title": "Binding Paths: Accessing Properties in Hierarchically Structured Models",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/08/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-08.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-08-js.zip",
+      "description": "In Step 6 , we stated that the fields in a resource model are arranged in a flat structure; in other words, there is no hierarchy of properties. However, this is only true for resource models. The properties within JSON and OData models are usually arranged in a hierarchical structure. So, let's explore how to reference fields in a hierarchically structured model object."
+    },
+    {
+      "n": 9,
+      "id": "09",
+      "title": "Formatting Values",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/09/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-09.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-09-js.zip",
+      "description": "We'd also like to provide our users with a way of contacting Harry Hawk, so we're adding a link that sends an e-mail to Harry. To do this, we convert our data in the model to match the sap.m.URLHelper.normalizeEmail API. As soon as the user changes the name, the e-mail also changes. We need a custom formatter function for this."
+    },
+    {
+      "n": 10,
+      "id": "10",
+      "title": "Property Formatting Using Data Types",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/10/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-10.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-10-js.zip",
+      "description": "OpenUI5 offers a set of simple data types, including Boolean, Currency, Date and Float. You can apply these data types to controls to ensure that the value displayed on the screen is formatted correctly. If the field is open for input, this also ensures that the user input meets the requirements of that data type. Let's add a new field called Sales Amount of type Currency."
+    },
+    {
+      "n": 11,
+      "id": "11",
+      "title": "Validation Using `sap/ui/core/Messaging`",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/11/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-11.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-11-js.zip",
+      "description": "Up to this point, we've created a currency field that formats itself correctly. The currency data type can also validate user input to ensure it meets currency requirements. However, OpenUI5 manages data type validation functions and doesn't have a built-in mechanism for reporting error messages back to the UI. We therefore need a way to report error messages from validation functions back to the user. In this step, we're enabling validation for the entire app with a feature known as \"Messaging\". Once this is set up, any validation error messages based on user input get passed to Messaging, which then connects them to the appropriate view and control that caused the error."
+    },
+    {
+      "n": 12,
+      "id": "12",
+      "title": "Aggregation Binding Using Templates",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/12/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-12.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-12-js.zip",
+      "description": "Aggregation binding, also known as \"list binding\", lets a control bind to a list within the model data. This binding allows relative binding to the list entries by its child controls."
+    },
+    {
+      "n": 13,
+      "id": "13",
+      "title": "Element Binding",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/13/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-13.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-13-js.zip",
+      "description": "Now, let's do something with that newly generated list. Typically, you use a list to allow selection of an item and then display the details of that item elsewhere. To accomplish this, we use a form with relatively bound controls and bind it to the selected entity via element binding."
+    },
+    {
+      "n": 14,
+      "id": "14",
+      "title": "Expression Binding",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/14/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-14.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-14-js.zip",
+      "description": "An expression binding lets you display a calculated value on the screen, which is derived from values found in a model object. This feature allows you to insert simple formatting or calculations directly into the data binding string. In this example, we're changing the color of the price depending on whether it's above or below a certain threshold. The threshold value is stored in the JSON model."
+    },
+    {
+      "n": 15,
+      "id": "15",
+      "title": "Aggregation Binding Using a Factory Function",
+      "previewUrl": "https://ui5.github.io/tutorials/databinding/build/15/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/databinding/databinding-step-15.zip",
+      "zipJs": "https://ui5.github.io/tutorials/databinding/databinding-step-15-js.zip",
+      "description": "Instead of using a single hard-coded template control, we now opt for a factory function to generate different controls based on the data received at runtime. This approach is much more flexible and allows for the display of complex or heterogeneous data."
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"AllJourneys.js","names":["sap","ui","define","Opa5","Startup","extendConfig","arrangements","viewNamespace","autoWait"],"sources":["AllJourneys-dbg.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACb,mBACA,6DACA,yDACE,SAAUC,EAAMC,GAClB,aAEAD,EAAKE,aAAa,CACjBC,aAAe,IAAIF,EACnBG,cAAgB,6BAChBC,SAAW,MAEb","ignoreList":[]}
