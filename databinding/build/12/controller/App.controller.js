@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/library","sap/ui/core/mvc/Controller","sap/ui/model/type/Currency"],function(e,t,n){"use strict";const r=e["URLHelper"];const i=t.extend("ui5.tutorial.databinding.controller.App",{formatMail:async function e(t,n){const i=await this.getView().getModel("i18n").getResourceBundle();return r.normalizeEmail(`${t}.${n}@example.com`,i.getText("mailSubject",[t]),i.getText("mailBody"))},formatStockValue:function e(t,r,i){const o=new n;return o.formatValue([t*r,i],"string")}});return i});
+//# sourceMappingURL=App.controller.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"NotFound.controller.js","names":["BaseController","_interopRequireDefault","__BaseController","NotFound","extend","onInit","_onInit"],"sources":["./NotFound.controller.ts"],"mappings":"oLAAOA,EAAcC,EAAAC,GAErB,MAGqBC,EAAiBH,EAAcI,OAAA,+CAE3CC,OAAM,SAAAC,IAEb,IAAC,OAJkBH,CAAQ","ignoreList":[]}

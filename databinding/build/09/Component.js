@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent"],function(n){"use strict";const t=n.extend("ui5.tutorial.databinding.Component",{metadata:{interfaces:["sap.ui.core.IAsyncContentCreation"],manifest:"json"}});return t});
+//# sourceMappingURL=Component.js.map

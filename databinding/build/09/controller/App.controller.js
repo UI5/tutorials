@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/library","sap/ui/core/mvc/Controller"],function(e,t){"use strict";const i=e["URLHelper"];const n=t.extend("ui5.tutorial.databinding.controller.App",{formatMail:async function e(t,n){const a=await this.getView().getModel("i18n").getResourceBundle();return i.normalizeEmail(`${t}.${n}@example.com`,a.getText("mailSubject",[t]),a.getText("mailBody"))}});return n});
+//# sourceMappingURL=App.controller.js.map

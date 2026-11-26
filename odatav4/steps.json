@@ -1,0 +1,105 @@
+{
+  "tutorial": "odatav4",
+  "namespace": "ui5.tutorial.odatav4",
+  "steps": [
+    {
+      "n": 1,
+      "id": "01",
+      "title": "The Initial App",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/01/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-01.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-01-js.zip",
+      "description": "We start by setting up a simple app that loads data from an OData service and displays it in a table. We use a mock server to simulate requests to and responses from the service."
+    },
+    {
+      "n": 2,
+      "id": "02",
+      "title": "Data Access and Client-Server Communication",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/02/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-02.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-02-js.zip",
+      "description": "In this step, we see how the Table that is bound to the People entity set initially requests its data, and how the data can be refreshed. We use the Console tab in the browser developer tools to monitor the communication between the browser and the server. We see the initial request as well as the requests for refreshing the data."
+    },
+    {
+      "n": 3,
+      "id": "03",
+      "title": "Automatic Data Type Detection",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/03/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-03.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-03-js.zip",
+      "description": "In this step, we use the automatic data type detection of the OData V4 model to parse, validate, and format user entries. The service metadata contains type information for the properties of each entity."
+    },
+    {
+      "n": 4,
+      "id": "04",
+      "title": "Filtering, Sorting, and Counting",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/04/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-04.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-04-js.zip",
+      "description": "In this step, we add features to filter, sort, and count the user data by using the OData V4 model API to apply OData system query options $filter, $orderby, and $count."
+    },
+    {
+      "n": 5,
+      "id": "05",
+      "title": "Batch Groups",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/05/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-05.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-05-js.zip",
+      "description": "In this step, we have a closer look at batch groups. Batch groups are used to group multiple requests into one server request to improve the overall performance."
+    },
+    {
+      "n": 6,
+      "id": "06",
+      "title": "Create and Edit",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/06/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-06.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-06-js.zip",
+      "description": "In this step, we will make it possible to create and edit \\(update\\) user data from the user interface and send the data to the back end."
+    },
+    {
+      "n": 7,
+      "id": "07",
+      "title": "Delete",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/07/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-07.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-07-js.zip",
+      "description": "In this step, we make it possible to delete user data."
+    },
+    {
+      "n": 8,
+      "id": "08",
+      "title": "OData Operations",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/08/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-08.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-08-js.zip",
+      "description": "Our OData service provides one OData operation: the ResetDataSource action. In this step, we add a button that resets all data changes we made during the tutorial to their original state using this action."
+    },
+    {
+      "n": 9,
+      "id": "09",
+      "title": "List-Detail Scenario",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/09/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-09.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-09-js.zip",
+      "description": "In this step we add a detail area with additional information."
+    },
+    {
+      "n": 10,
+      "id": "10",
+      "title": "Enable Data Reuse",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/10/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-10.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-10-js.zip",
+      "description": "In this step we avoid unnecessary back-end requests by preventing the destruction of data shown in the detail area when sorting or filtering the list."
+    },
+    {
+      "n": 11,
+      "id": "11",
+      "title": "Add Table with :n Navigation to Detail Area",
+      "previewUrl": "https://ui5.github.io/tutorials/odatav4/build/11/index-cdn.html",
+      "zipTs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-11.zip",
+      "zipJs": "https://ui5.github.io/tutorials/odatav4/odatav4-step-11-js.zip",
+      "description": "In this step we add a table with additional information to the detail area."
+    }
+  ]
+}

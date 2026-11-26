@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","names":["XMLView","create","viewName","then","view","placeAt"],"sources":["./index.ts"],"mappings":"mEAEAA,EAAQC,OAAO,CACdC,SAAU,gCACRC,KAAMC,GAASA,EAAKC,QAAQ,WAAY","ignoreList":[]}

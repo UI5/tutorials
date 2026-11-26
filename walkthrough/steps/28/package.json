@@ -1,0 +1,17 @@
+{
+  "name": "ui5.tutorial.walkthrough.step28",
+  "version": "1.0.0",
+  "author": "SAP SE",
+  "description": "OpenUI5 TypeScript Walkthrough: Step 28 - Integration Test with OPA",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve -o test/mockServer.html"
+  },
+  "devDependencies": {
+    "@types/qunit": "2.19.14",
+    "@ui5/cli": "^4.0.73",
+    "ui5-middleware-livereload": "^3.4.0",
+    "ui5-middleware-serveframework": "^3.8.2",
+    "ui5-middleware-simpleproxy": "^3.9.0"
+  }
+}

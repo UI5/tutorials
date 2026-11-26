@@ -1,0 +1,1 @@
+{"version":3,"file":"InvoiceList.controller.js","names":["App","Controller","extend","onInit","_onInit","viewModel","JSONModel","currency","this","getView","setModel"],"sources":["./InvoiceList.controller.ts"],"mappings":"sGAGA,MAGqBA,EAAYC,EAAUC,OAAA,2CAE1CC,OAAM,SAAAC,IACL,MAAMC,EAAY,IAAIC,EAAU,CAC/BC,SAAU,QAEXC,KAAKC,WAAWC,SAASL,EAAW,OACrC,IACC,OARmBL,CAAG","ignoreList":[]}

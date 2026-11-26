@@ -1,0 +1,1 @@
+{"version":3,"file":"App.controller.js","names":["AppController","Controller","extend","onShowHello","_onShowHello","alert"],"sources":["./App.controller.ts"],"mappings":"sEAEA,MAGqBA,EAAsBC,EAAUC,OAAA,2CACpDC,YAAW,SAAAC,IAEVC,MAAM,cACN,IACA,OALmBL,CAAa","ignoreList":[]}

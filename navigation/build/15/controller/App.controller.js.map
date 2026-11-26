@@ -1,0 +1,1 @@
+{"version":3,"file":"App.controller.js","names":["BaseController","_interopRequireDefault","__BaseController","App","extend","onInit","_onInit"],"sources":["./App.controller.ts"],"mappings":"oLAAOA,EAAcC,EAAAC,GAErB,MAGqBC,EAAYH,EAAcI,OAAA,0CAEtCC,OAAM,SAAAC,IAEb,IAAC,OAJkBH,CAAG","ignoreList":[]}

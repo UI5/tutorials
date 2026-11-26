@@ -1,0 +1,1 @@
+{"version":3,"file":"App.controller.js","names":["App","Controller","extend","onInit","_onInit","this","getView","addStyleClass","getOwnerComponent","getContentDensityClass"],"sources":["./App.controller.ts"],"mappings":"sEAGA,MAGqBA,EAAYC,EAAUC,OAAA,2CAC1CC,OAAM,SAAAC,IACLC,KAAKC,WAAWC,cAAeF,KAAKG,oBAAkCC,yBACvE,IACC,OAJmBT,CAAG","ignoreList":[]}

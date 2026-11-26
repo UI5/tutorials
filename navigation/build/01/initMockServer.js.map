@@ -1,0 +1,1 @@
+{"version":3,"file":"initMockServer.js","names":["mockserver","_interopRequireDefault","__mockserver","init","catch","error","MessageBox","message","finally","__ui5_require_async"],"sources":["./initMockServer.ts"],"mappings":"mcAAOA,EAAUC,EAAAC,GAGjBF,EAAWG,OAAOC,MAAOC,IACvBC,EAAWD,MAAMA,EAAME,WACtBC,QAAQ,KAETC,EAAO,iCACN","ignoreList":[]}
