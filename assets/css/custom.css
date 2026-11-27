@@ -1,34 +1,263 @@
-/* color-scheme for light/default appearance */
+/* ============================================================
+   OpenUI5 Tutorials — Design System
+   ============================================================ */
+
+/* ---- Custom properties: light mode ---- */
 :root {
-    --active-bg: white;
-    --active-color: black;
-    --active-border: #0969da;
-    --inactive-bg: #eee;
-    --inactive-color: #666;
-    --inactive-border: #ccc;
-    --neutral-border: #aaa;
-    /* sliding switch track */
-    --switch-track-bg: #eef4f9;
-    --switch-track-border: #d6e3ef;
+    /* Brand */
+    --brand-orange:        #E55300;
+    --brand-orange-hover:  #FF6D00;
+    --brand-navy:          #1A1F4B;
+
+    /* Backgrounds */
+    --bg-page:             #F5F4F0;
+    --bg-content:          #FFFFFF;
+    --bg-code:             #E8EBF0;
+
+    /* Text */
+    --text-body:           #333333;
+    --text-muted:          #666666;
+
+    /* Borders */
+    --border-subtle:       #E0DDD5;
+    --border-accent:       var(--brand-orange);
+
+    /* Code-couple tabs (carry-forward names used in custom.js) */
+    --active-bg:           #FFFFFF;
+    --active-color:        #1A1F4B;
+    --active-border:       var(--brand-orange);
+    --inactive-bg:         #F5F4F0;
+    --inactive-color:      #666666;
+    --inactive-border:     #E0DDD5;
+    --neutral-border:      #E0DDD5;
+
+    /* Language switch track */
+    --switch-track-bg:     #F5F4F0;
+    --switch-track-border: #E0DDD5;
 }
 
-/* color-scheme for dark mode */
+/* ---- Custom properties: dark mode ---- */
 @media (prefers-color-scheme: dark) {
     :root {
-        --active-bg: black;
-        --active-color: white;
-        --active-border: #0969da;
-        --inactive-bg: black;
-        --inactive-color: #aaa;
-        --inactive-border: #666;
-        --neutral-border: #666;
-        /* sliding switch track */
-        --switch-track-bg: #0b0f14;
-        --switch-track-border: #30363d;
+        --brand-orange:        #FF7A33;
+        --brand-orange-hover:  #FF9655;
+        --brand-navy:          #C8CCFF;
+
+        --bg-page:             #0F111A;
+        --bg-content:          #1A1D2E;
+        --bg-code:             #0D0F18;
+
+        --text-body:           #C8CCE0;
+        --text-muted:          #888AAA;
+
+        --border-subtle:       #2E3250;
+        --border-accent:       var(--brand-orange);
+
+        --active-bg:           #1A1D2E;
+        --active-color:        #C8CCFF;
+        --active-border:       var(--brand-orange);
+        --inactive-bg:         #0F111A;
+        --inactive-color:      #888AAA;
+        --inactive-border:     #2E3250;
+        --neutral-border:      #2E3250;
+
+        --switch-track-bg:     #0F111A;
+        --switch-track-border: #2E3250;
     }
 }
 
-/* hide content in the non-current language */
+/* ============================================================
+   Base / Reset
+   ============================================================ */
+
+html, body {
+    background-color: var(--bg-page) !important;
+    font-family: system-ui, -apple-system, sans-serif !important;
+    color: var(--text-body) !important;
+}
+
+/* github-markdown-css forces its own colors on .markdown-body via
+   --color-* custom properties. We remap those to our design tokens. */
+.markdown-body {
+    --color-fg-default:        var(--text-body) !important;
+    --color-fg-muted:          var(--text-muted) !important;
+    --color-canvas-default:    var(--bg-content) !important;
+    --color-canvas-subtle:     var(--bg-code) !important;
+    --color-border-default:    var(--border-subtle) !important;
+    --color-border-muted:      var(--border-subtle) !important;
+    --color-accent-fg:         var(--brand-orange) !important;
+    --color-accent-emphasis:   var(--brand-orange) !important;
+    --color-neutral-muted:     var(--bg-page) !important;
+    background-color: transparent !important;
+    font-family: system-ui, -apple-system, sans-serif !important;
+}
+
+/* ============================================================
+   Site header (dev server: .site-header-custom injected by template)
+   ============================================================ */
+
+.site-header-custom {
+    background-color: var(--bg-content);
+    border-bottom: 3px solid var(--brand-orange);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.site-title-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none !important;
+    color: var(--brand-orange) !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    padding: 14px 0;
+}
+
+.site-title-link:hover {
+    color: var(--brand-orange-hover) !important;
+}
+
+.site-logo {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.site-title-text {
+    font-family: system-ui, sans-serif;
+}
+
+/* ============================================================
+   Content wrapper
+   ============================================================ */
+
+.container-lg {
+    background-color: var(--bg-content);
+    padding: 2.5rem 3rem !important;
+    min-height: calc(100vh - 60px);
+}
+
+@media (max-width: 720px) {
+    .container-lg {
+        padding: 1.5rem 1.25rem !important;
+    }
+}
+
+/* ============================================================
+   Typography — headings
+   ============================================================ */
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+    font-family: system-ui, sans-serif !important;
+    color: var(--brand-navy) !important;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+}
+
+.markdown-body h1 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--border-subtle) !important;
+    padding-bottom: 0.5rem;
+}
+
+.markdown-body h2 {
+    font-size: 1.45rem;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    padding-bottom: 0.35rem;
+}
+
+.markdown-body h3 {
+    font-size: 1.15rem;
+}
+
+/* ============================================================
+   Typography — links
+   ============================================================ */
+
+.markdown-body a {
+    color: var(--brand-orange) !important;
+    text-decoration: none;
+}
+
+.markdown-body a:hover {
+    color: var(--brand-orange-hover) !important;
+    text-decoration: underline;
+}
+
+/* ============================================================
+   Typography — inline code & code blocks
+   ============================================================ */
+
+.markdown-body code,
+.markdown-body tt {
+    background-color: var(--bg-code) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--brand-navy) !important;
+    border-radius: 4px;
+    font-size: 0.875em;
+}
+
+.markdown-body pre {
+    background-color: var(--bg-code) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 6px;
+}
+
+.markdown-body pre code {
+    background-color: transparent !important;
+    border: none !important;
+    color: inherit !important;
+}
+
+/* ============================================================
+   Typography — blockquote / callouts
+   ============================================================ */
+
+.markdown-body blockquote {
+    border-left: 4px solid var(--brand-orange) !important;
+    color: var(--text-muted) !important;
+    background-color: var(--bg-page);
+    border-radius: 0 6px 6px 0;
+    padding: 0.75rem 1rem;
+}
+
+/* ============================================================
+   Typography — tables
+   ============================================================ */
+
+.markdown-body table th {
+    background-color: var(--bg-page) !important;
+    color: var(--brand-navy) !important;
+    font-weight: 600;
+}
+
+.markdown-body table tr:nth-child(2n) {
+    background-color: color-mix(in srgb, var(--bg-page) 50%, var(--bg-content)) !important;
+}
+
+/* ============================================================
+   Typography — HR
+   ============================================================ */
+
+.markdown-body hr {
+    border-color: var(--border-subtle) !important;
+    border-top-width: 1px;
+}
+
+/* ============================================================
+   Hide content in the non-current language
+   ============================================================ */
+
 .page-language-ts .js-only,
 .page-language-ts .code-couple .language-js.highlighter-rouge {
     display: none;
@@ -43,47 +272,45 @@
     display: none;
 }
 
-/* Suffix like "(TS)" / "(JS)" attached to language-paired inline links
-   (e.g. download-solution links). Visible in raw markdown for readability,
-   hidden on the rendered site — the surrounding .ts-only / .js-only span
-   already disambiguates the language once one of the pair is displayed. */
 .lang-suffix {
     display: none;
 }
 
+/* ============================================================
+   Code-couple tabs
+   ============================================================ */
 
-/* tabbed switchable language area: folder-style tabs above the code block */
 .code-couple-button {
     margin-top: 8px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     border-width: 2px;
     border-style: solid;
     border-bottom-width: 0;
-    border-radius: 16px 16px 0 0;
+    border-radius: 10px 10px 0 0;
     cursor: pointer;
+    font-family: system-ui, sans-serif;
+    font-size: 0.875rem;
+    transition: color 0.15s, background-color 0.15s;
 }
 
-/* active */
 .code-couple-button-active {
     color: var(--active-color);
     background-color: var(--active-bg);
-    font-weight: bold;
+    font-weight: 700;
     border-color: var(--active-border);
 }
 
-/* inactive */
 .code-couple-button-inactive {
     color: var(--inactive-color);
     background-color: var(--inactive-bg);
     border-color: var(--inactive-border);
 }
 
-/* default state based on page language */
 .page-language-ts .code-couple-button-ts:not(.code-couple-button-active):not(.code-couple-button-inactive),
 .page-language-js .code-couple-button-js:not(.code-couple-button-active):not(.code-couple-button-inactive) {
     color: var(--active-color);
     background-color: var(--active-bg);
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .page-language-ts .code-couple-button-js:not(.code-couple-button-active):not(.code-couple-button-inactive),
@@ -94,11 +321,14 @@
 
 .code-couple-container {
     border: 1px solid var(--neutral-border);
+    border-radius: 0 6px 6px 6px;
+    overflow: hidden;
 }
 
-
-/* overall language switch buttons: matching segmented pill, top-right,
-   with a knob that slides between the two segments. */
+/* ============================================================
+   Language switch (TS / JS toggle pill, fixed top-right)
+   Knob geometry: buttons are 48px wide, 2px gap → shift by 50px
+   ============================================================ */
 
 .language-switch-container {
     position: fixed;
@@ -108,14 +338,11 @@
     gap: 2px;
     padding: 4px;
     background-color: var(--switch-track-bg);
-    border: 1px solid var(--switch-track-border);
+    border: 2px solid var(--brand-orange);
     border-radius: 999px;
     z-index: 1000;
 }
 
-/* the sliding knob sits behind the active segment.
-   Geometry: buttons are 48px wide with a 2px gap, so a language change
-   slides the knob by exactly one segment (48px + 2px = 50px). */
 .language-switch-container::before {
     content: "";
     position: absolute;
@@ -124,8 +351,7 @@
     width: 48px;
     height: calc(100% - 8px);
     box-sizing: border-box;
-    background-color: var(--active-bg);
-    border: 2px solid var(--active-border);
+    background-color: var(--brand-orange);
     border-radius: 999px;
     transition: transform 0.25s ease;
 }
@@ -135,70 +361,90 @@ body.page-language-js .language-switch-container::before {
 }
 
 .language-switch-button {
-    position: relative;   /* keep labels above the sliding knob */
+    position: relative;
     z-index: 1;
     width: 48px;
     padding: 5px 0;
     text-align: center;
     background-color: transparent;
-    color: var(--inactive-color);
+    color: var(--brand-orange);
     border: 0;
     border-radius: 999px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: system-ui, sans-serif;
+    letter-spacing: 0.02em;
     transition: color 0.25s ease;
 }
 
 body.page-language-js .language-switch-button.lang-js,
 body.page-language-ts .language-switch-button.lang-ts {
-    color: var(--active-color);
+    color: #FFFFFF;
 }
 
 li > section.ts-only, li > section.js-only {
-	display: inline;
+    display: inline;
 }
 
 .language-switch-button:hover {
     opacity: 0.85;
 }
 
+/* ============================================================
+   BrowserSync notification
+   ============================================================ */
+
 #__bs_notify__ {
-    background-color: rgba(27, 32, 50, 0.3) !important;
-    top: 40px !important;
+    background-color: rgba(26, 31, 75, 0.85) !important;
+    color: #fff !important;
+    top: 56px !important;
 }
 
-/* Image captions rendered from each image's alt text (see renderImageCaptions
-   in assets/js/custom.js). Restores the SAP Demo Kit behavior of showing the
-   image description below the figure. The figure shrink-wraps to the image and
-   is centered on the page, with the caption centered beneath the image. */
+/* ============================================================
+   Image captions
+   ============================================================ */
+
 figure.img-figure {
     display: table;
-    margin: 16px auto;
+    margin: 20px auto;
 }
 
 figure.img-figure > .img-caption {
     display: table-caption;
     caption-side: bottom;
-    margin-top: 6px;
-    font-size: 90%;
+    margin-top: 8px;
+    font-size: 0.875rem;
     font-style: italic;
-    color: var(--inactive-color);
+    color: var(--text-muted);
     text-align: center;
 }
 
-/* Breadcrumb shown at the top of each step page: "UI5 Tutorials › <Tutorial>".
-   Injected server-side (tools/builder/prepare-gh-pages.js for GitHub Pages,
-   tools/dev-server/server.js for local preview) so the reader knows which
-   tutorial they are in and can jump back to its overview. */
+/* ============================================================
+   Breadcrumb
+   ============================================================ */
+
 .tutorial-breadcrumb {
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--neutral-border);
-    font-size: 90%;
-    color: var(--inactive-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-family: system-ui, sans-serif;
+}
+
+.tutorial-breadcrumb a {
+    color: var(--brand-orange) !important;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tutorial-breadcrumb a:hover {
+    color: var(--brand-orange-hover) !important;
+    text-decoration: underline;
 }
 
 .tutorial-breadcrumb .tutorial-breadcrumb-sep {
     margin: 0 6px;
-    color: var(--inactive-color);
+    color: var(--text-muted);
 }
