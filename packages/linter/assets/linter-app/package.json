@@ -1,0 +1,25 @@
+{
+	"name": "ui5.tutorial.linter.step01",
+	"version": "0.5.0",
+	"description": "Sample of an OpenUI5 app with legacy patterns for the UI5 Linter Tutorial",
+	"private": true,
+	"engines": {
+		"node": "^20.11.0 || >=22.0.0",
+		"npm": ">= 8"
+	},
+	"scripts": {
+		"start": "ui5 serve --port 8080",
+		"lint": "eslint webapp && ui5lint",
+		"test-runner": "npx puppeteer browsers install chrome && ui5-test-runner --url http://localhost:8080/test/testsuite.qunit.html --start start --start-timeout 30000",
+		"test": "npm run lint && npm run test-runner"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10",
+		"@ui5/cli": "^4",
+		"@ui5/linter": "^1",
+		"@ui5/middleware-code-coverage": "^2",
+		"eslint": "^10",
+		"globals": "^17",
+		"ui5-test-runner": "^5"
+	}
+}

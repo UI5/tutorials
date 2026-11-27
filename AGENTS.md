@@ -1,6 +1,6 @@
 # Repository Guide for AI Agents
 
-This repository ships six OpenUI5 tutorials rendered as a GitHub Pages site with a client-side JavaScript / TypeScript language toggle. In the five code-bearing tutorials, every step is a self-contained, runnable UI5 app under `packages/<tutorial>/steps/NN/`. The sixth, `agentic`, is documentation-only: its steps are task-driven exercises, not runnable apps (see the `packages/agentic/` entry and the `steps.json` `sources` flag below). This document tells an agent enough about the layout, the toolchain, and the authoring conventions to be useful without re-deriving everything from source.
+This repository ships seven OpenUI5 tutorials rendered as a GitHub Pages site with a client-side JavaScript / TypeScript language toggle. In the five code-bearing tutorials, every step is a self-contained, runnable UI5 app under `packages/<tutorial>/steps/NN/`. Two tutorials are documentation-only: `linter` (JavaScript-based, no TS/JS toggle) and `agentic` (walks through both languages as part of its workflow) — their steps are READMEs, not runnable apps (see the `steps.json` `sources` flag below). This document tells an agent enough about the layout, the toolchain, and the authoring conventions to be useful without re-deriving everything from source.
 
 ## Layout
 
@@ -9,10 +9,11 @@ This repository ships six OpenUI5 tutorials rendered as a GitHub Pages site with
 - `packages/databinding/` — 15 steps on data binding (JSON & resource models, property/two-way/one-way/aggregation/element/expression binding, formatters, data types, validation).
 - `packages/navigation/` — 17 steps on routing and navigation.
 - `packages/odatav4/` — 11 steps on OData V4.
+- `packages/linter/` — 7 steps on the UI5 linter tooling. **Documentation-only and JavaScript-based** — no runnable app per step, no TS/JS language toggle.
 - `packages/agentic/` — 5 steps on agentic UI5 development with Claude Code CLI and the UI5 plugin.
 - `packages/<pkg>/README.md` — the tutorial's overview and step index.
-- `packages/<pkg>/steps.json` — machine-readable index of the tutorial's steps (`n`, `id`, `title`, `description`, and — for code-bearing tutorials — `previewUrl`, `zipTs`, `zipJs`). A top-level `"sources": false` marks a **documentation-only** tutorial (currently only `agentic`): the builder ([tools/builder/prepare-gh-pages.js](tools/builder/prepare-gh-pages.js)) treats `sources !== false` as "has sources", so `false` makes it skip `ui5 build`, ZIP packaging, and TS→JS transpilation for that tutorial, and its steps carry no `previewUrl`/`zipTs`/`zipJs`. Preserve this flag when editing the file — keep `"sources": false` on `agentic`, and do not add it to a tutorial that ships runnable code. Regenerate with `node _/generate-steps-index.js` after adding, removing, or renaming steps.
-- `packages/<pkg>/steps/NN/` — in a code-bearing tutorial, one runnable app per step: `README.md`, `webapp/`, `package.json`, `ui5.yaml`, and (for TS steps) `tsconfig.json`. In the documentation-only `agentic` tutorial a step is just a `README.md` (plus optional `apps/` starter code and `assets/`) — no `webapp/`, `package.json`, or `ui5.yaml`.
+- `packages/<pkg>/steps.json` — machine-readable index of the tutorial's steps (`n`, `id`, `title`, `description`, and — for code-bearing tutorials — `previewUrl`, `zipTs`, `zipJs`). A top-level `"sources": false` marks a **documentation-only** tutorial (currently `linter` and `agentic`): the builder ([tools/builder/prepare-gh-pages.js](tools/builder/prepare-gh-pages.js)) treats `sources !== false` as "has sources", so `false` makes it skip `ui5 build`, ZIP packaging, and TS→JS transpilation for that tutorial, and its steps carry no `previewUrl`/`zipTs`/`zipJs`. Preserve this flag when editing the file — keep `"sources": false` on `linter` and `agentic`, and do not add it to a tutorial that ships runnable code. Regenerate with `node _/generate-steps-index.js` after adding, removing, or renaming steps.
+- `packages/<pkg>/steps/NN/` — in a code-bearing tutorial, one runnable app per step: `README.md`, `webapp/`, `package.json`, `ui5.yaml`, and (for TS steps) `tsconfig.json`. In documentation-only tutorials (`linter` and `agentic`) a step is just a `README.md` — no `webapp/`, `package.json`, or `ui5.yaml`. The `agentic` tutorial may also include optional `apps/` starter code and `assets/`.
 - `assets/` — CSS and JS that power the site (language toggle, code-couple tab container, `.ts/.js` extension substitution). Ships as-is to `dist/`.
 - `tools/builder/` — build orchestrator (`node tools/builder`) that produces `dist/` for GitHub Pages: transpiles TS steps to JS, packages ZIP downloads, renders READMEs.
 - `tools/dev-server/` — dev server (`npm start`) that mirrors the built site with live reload.
@@ -22,7 +23,7 @@ This repository ships six OpenUI5 tutorials rendered as a GitHub Pages site with
 
 ## Running the code
 
-The repo is an npm workspaces monorepo. Each code-bearing `packages/*/steps/*` (one that has a `package.json`) is a workspace. The documentation-only `agentic` steps have no `package.json`, so they are not workspaces — `npm start -w …` does not apply to them.
+The repo is an npm workspaces monorepo. Each code-bearing `packages/*/steps/*` (one that has a `package.json`) is a workspace. The documentation-only `linter` and `agentic` steps have no `package.json`, so they are not workspaces — `npm start -w …` does not apply to them.
 
 ```sh
 # one-time
@@ -77,7 +78,7 @@ Full author docs are in [CONTRIBUTING.md](CONTRIBUTING.md).
 Other conventions:
 
 - Callouts use `> :note:`, `> :tip:`, `> :info:` (custom syntax, not GitHub's `[!NOTE]` alerts).
-- Step navigation footer: a single `***` separator, then `**Next:** [Step N+1: <title>](../<NN+1>/README.md)` and `**Previous:** [Step N-1: <title>](../<NN-1>/README.md)`. When a step also has a **Related Information** section, the order is Next/Previous first, then another `***`, then `**Related Information**` (matches all five tutorials). The first step has no `**Previous:**`; the last step has no `**Next:**`. The link display text must match the target step's actual title.
+- Step navigation footer: a single `***` separator, then `**Next:** [Step N+1: <title>](../<NN+1>/README.md)` and `**Previous:** [Step N-1: <title>](../<NN-1>/README.md)`. When a step also has a **Related Information** section, the order is Next/Previous first, then another `***`, then `**Related Information**` (matches all five code-bearing tutorials). The first step has no `**Previous:**`; the last step has no `**Next:**`. The link display text must match the target step's actual title.
 - Preview images: descriptive `alt` text (no bare `![](…)`), optional `"title"` for the hover tooltip.
 - Do not add `<!-- loio… -->` markers or `<a name="loio…"/>` anchors — those are SAP-internal SDK artifacts.
 
@@ -90,6 +91,7 @@ The steps are *pedagogical*, not *canonical*. Step 01 of each tutorial is delibe
 - **OData V4** → [packages/odatav4/steps/11/](packages/odatav4/steps/11/) covers CRUD, batch groups, operations, list-detail, and `:n` navigation. **The tutorial's data layer is a mock server simulating TripPin — do not cargo-cult `webapp/localService/` into an answer about connecting to a real backend.** Point the user at a real OData destination and keep only the model/binding code from the tutorial.
 - **First-15-minutes demo, not a project starter** → [packages/quickstart/](packages/quickstart/) is 3 steps and stops before Component/manifest wiring. Use it to *show* UI5, not to *scaffold* from.
 - **Agentic UI5 development** → [packages/agentic/](packages/agentic/) covers using Claude Code CLI with the UI5 plugin to create, convert, modernize, and extend OpenUI5 apps. **The tutorial steps are task-driven exercises, not self-contained runnable apps.** Do not reference its steps as code examples for UI5 patterns; use the other tutorials for that.
+- **UI5 linter tooling** → [packages/linter/](packages/linter/) covers running and applying the UI5 linter to a JavaScript legacy app. **Documentation-only and JavaScript-based — no TS/JS variants, no runnable app per step.** Do not use it as a source for TypeScript patterns or for scaffolding; it documents a tooling workflow, not an app architecture.
 - **Tooling handshake** ([npm install](packages/walkthrough/steps/01/README.md), `ui5 init`, `ui5 use OpenUI5`, `ui5 add sap.ui.core themelib_sap_horizon`, `tsconfig.json`) — always take these from [walkthrough/steps/01](packages/walkthrough/steps/01/README.md) + [walkthrough/steps/02](packages/walkthrough/steps/02/README.md). They are the only steps that document setup from scratch.
 
 Out of scope for this repo — do not invent code claiming these are covered here: Fiori elements, BTP / Cloud Foundry / ABAP deployment, `easy-ui5` / `generator-ui5-*` scaffolding, CI setup, real authentication. (`packages/agentic/steps/02` includes a CAP mock service as a local data source; that is the only place CAP appears and it is not a CAP tutorial.)
